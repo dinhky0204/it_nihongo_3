@@ -32,6 +32,7 @@
   </div>
 
   <div class="field">
+<<<<<<< HEAD
     <%= form.label :photo %>
     <%= form.text_field :photo, id: :game_photo %>
   </div>
@@ -42,6 +43,10 @@
             <%= content_tag(:option, publisher.name, value: publisher.id) %>
         <% end %>
     <% end %>
+=======
+    <%= form.label :publisher_id %>
+    <%= form.number_field :publisher_id, id: :game_publisher_id %>
+>>>>>>> e0e981a45ecc5acfa8a7a97dca4456e173336753
   </div>
 
   <div class="actions">

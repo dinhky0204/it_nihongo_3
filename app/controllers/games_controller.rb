@@ -15,7 +15,10 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+<<<<<<< HEAD
     @publishers = Publisher.all
+=======
+>>>>>>> e0e981a45ecc5acfa8a7a97dca4456e173336753
   end
 
   # GET /games/1/edit

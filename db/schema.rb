@@ -20,7 +20,10 @@ ActiveRecord::Schema.define(version: 20170924150344) do
     t.text "story"
     t.text "description"
     t.text "guide"
+<<<<<<< HEAD
     t.string "photo"
+=======
+>>>>>>> e0e981a45ecc5acfa8a7a97dca4456e173336753
     t.integer "publisher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -21,4 +21,9 @@
 /yarn-error.log
 
 .byebug_history
+<<<<<<< HEAD
 /config/database.yml
+=======
+/config/database.yml
+/.idea
+>>>>>>> e0e981a45ecc5acfa8a7a97dca4456e173336753
