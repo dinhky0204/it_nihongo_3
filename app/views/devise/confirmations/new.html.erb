@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <% resource.errors.each do |key, value| %>
+        <%= content_tag(:p, "#{key} #{value}", :class => "flash alert alert-danger") %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="wrap">
+      <p class="form-title">Resend confirmation instructions</p>
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "resend-confirmation" }) do |f| %>
+          <div class="field">
+            <%= f.email_field :email, autofocus: true, placeholder: "Email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Resend confirmation instructions", class: "btn btn-primary" %>
+          </div>
+          <%= render "devise/shared/links" %>
+      <% end %>
+    </div>
+  </div>
+</div>
