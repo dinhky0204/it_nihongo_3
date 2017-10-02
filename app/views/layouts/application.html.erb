@@ -5,8 +5,13 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'devise' if params[:controller] == 'devise/sessions' || 'devise/confirmations' || 'devise/passwords' || 'users/registrations' %>
+    <%= stylesheet_link_tag  'games' if params[:controller]== "games" %>
+    <%= stylesheet_link_tag 'devise' if params[:controller] == 'devise/sessions' %>
+    <%= stylesheet_link_tag 'devise' if params[:controller] == 'devise/confirmations' %>
+    <%= stylesheet_link_tag 'devise' if params[:controller] == 'devise/passwords' %>
+    <%= stylesheet_link_tag 'devise' if params[:controller] == 'users/registrations' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'game' if params[:controller]== "games" %>
   </head>
   <body class="body">
   <div class="overlay">

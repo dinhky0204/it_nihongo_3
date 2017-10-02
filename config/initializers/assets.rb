@@ -12,4 +12,11 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+Rails.application.config.assets.precompile += %w( ckeditor/*)
+Rails.application.config.assets.precompile += %w( games.css )
+Rails.application.config.assets.precompile += %w(game.js)
+Rails.application.config.assets.precompile += %w( materialize-sprockets.js )
+Rails.application.config.assets.precompile += %w( materialize.js )
+Rails.application.config.assets.precompile += %w( jquery.turbolinks.js )
+Rails.application.config.assets.precompile += %w( materialize/extras/nouislider.js )
 Rails.application.config.assets.precompile += %w( devise.css )

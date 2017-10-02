@@ -1,42 +1,74 @@
-<%= form_with(model: game, local: true) do |form| %>
-  <% if game.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+<%= javascript_include_tag "application", "data-turbolinks-track" => "reload" %>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= include_gon %>
 
-      <ul>
-      <% game.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="container">
+  <div class="game-container  col-md-10 col-md-offset-1">
+    <%= form_with(model: game, local: true, html: {multipart: true}) do |form| %>
+        <% if game.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :game_name %>
+              <ul>
+                <% game.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="file-field input-field col-md-4">
+          <div class="image-game">
+            <%= image_tag("yasuo.jpg", id: "new_photo") %>
+          </div>
+          <div class="btn btn-csm">
+            <span>File</span>
+            <%= form.file_field :photo, id: "game_photo"%>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Upload one file">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s6">
+            <%= form.text_field :name, required: "required", class: "validate"%>
+            <label for="last_name">Name</label>
+          </div>
+          <div class="input-field col s6">
+            <%= form.text_field :story, required: "required", class: "validate"%>
+            <label for="last_name">Story</label>
+          </div>
+          <div class="input-field col s6">
+            <%= form.select(:publisher_id) do %>
+                <% @publishers.each do |publisher| -%>
+                    <%= content_tag(:option, publisher.name, value: publisher.id) %>
+                <% end %>
+            <% end %>
+            <label>Publisher</label>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">mode_edit</i>
+            <%= form.text_area :guide, id: 'icon_prefix2', class: "materialize-textarea" %>
+            <label for="icon_prefix2">Guide</label>
+          </div>
+          <div class="col-md-4">
+            <span class="genre">Genres</span>
+            <div class="chips chips-autocomplete"></div>
+            <input type="hidden" name="list_genre" id="test_genre">
+          </div>
+        </div>
+        <div class="field">
+          <span class="game-desc">Description:</span>
+          <%= form.cktext_area :description, id: :game_description, value: "" %>
+        </div>
+        <button class="btn waves-effect waves-light col-md-offset-5" id="create_game" type="submit" name="action">Create
+          <i class="material-icons right">send</i>
+        </button>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :story %>
-    <%= form.text_area :story, id: :game_story %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :game_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :guide %>
-    <%= form.text_area :guide, id: :game_guide %>
-  </div>
-
-  <div class="field">
-    <%= form.label :publisher_id %>
-    <%= form.number_field :publisher_id, id: :game_publisher_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

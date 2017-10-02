@@ -5,8 +5,8 @@ class CreateGames < ActiveRecord::Migration[5.1]
       t.text :story
       t.text :description
       t.text :guide
-      t.integer :publisher_id
       t.string :photo
+      t.integer :publisher_id
       t.timestamps
     end
     add_foreign_key :games, :publishers
