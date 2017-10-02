@@ -31,6 +31,18 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'pg'
 gem 'devise'
+gem 'carrierwave', '~> 1.0'
+gem "mini_magick"
+gem 'bootstrap_tokenfield_rails'
+gem 'sprockets-rails'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'bootstrap-sass'
+gem 'gon'
+gem 'ckeditor'
+gem 'paperclip'
+gem 'materialize-sass'
+gem 'jquery-turbolinks'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -1,6 +1,6 @@
 class Game < ApplicationRecord
-<<<<<<< HEAD
 	belongs_to :publisher
-=======
->>>>>>> e0e981a45ecc5acfa8a7a97dca4456e173336753
+  mount_uploader :photo, GameUploader
+  has_many :game_genres
+  has_many :genres, through: :game_genres
 end

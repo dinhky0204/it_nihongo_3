@@ -1,3 +1,44 @@
-// Place all the styles related to the Games controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "materialize/components/color";
+@import 'materialize';
+@import "materialize/extras/nouislider";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+.input-field {
+  label {
+    font-size: 16px;
+  }
+  input {
+    font-size: 16px!important;
+  }
+  textarea {
+    font-size: 16px!important;
+  }
+  .btn-csm {
+    border-radius: 0px;
+  }
+  margin-bottom: 1.5%;
+}
+.waves-effect {
+  margin-top: 5%;
+}
+.chips-autocomplete {
+  font-size: 16px;
+  input {
+    font-size: 16px!important;
+  }
+}
+
+.image-game {
+  img {
+    display: block;
+    position: relative;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 150px;
+  }
+  input {
+    border-bottom: none;
+    background-color: #ff9487;
+    color: white;
+  }
+}

@@ -1,3 +1,4 @@
+require 'csv'
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
@@ -5,6 +6,7 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @games = Game.all
+    @game_genre = GameGenre.all
   end
 
   # GET /games/1
@@ -15,23 +17,38 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
-<<<<<<< HEAD
     @publishers = Publisher.all
-=======
->>>>>>> e0e981a45ecc5acfa8a7a97dca4456e173336753
+    gon.genres = Genre.all
   end
 
   # GET /games/1/edit
   def edit
+    @publishers = Publisher.all()
+    gon.genres = Genre.all
   end
 
   # POST /games
   # POST /games.json
   def create
+    list_genre_id = []
+    list_genre = JSON.parse(params[:list_genre])
+    puts "================>"
+    # puts list_genre[0].class
+    # puts list_genre[0]['tag']
+
     @game = Game.new(game_params)
 
+    list_genre.each_with_index do |element, index|
+      genre = Genre.find_by(name: list_genre[index]['tag'])
+      list_genre_id.push(genre.id)
+    end
+    puts list_genre_id
+    list_genre_id = list_genre_id.uniq
     respond_to do |format|
       if @game.save
+        list_genre_id.each do |element|
+          GameGenre.create(game_id: @game.id, genre_id: element)
+        end
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render :show, status: :created, location: @game }
       else
@@ -58,6 +75,7 @@ class GamesController < ApplicationController
   # DELETE /games/1
   # DELETE /games/1.json
   def destroy
+    GameGenre.where(game_id: @game.id).destroy_all
     @game.destroy
     respond_to do |format|
       format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
@@ -74,5 +92,8 @@ class GamesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
       params.require(:game).permit(:name, :story, :description, :guide, :publisher_id, :photo)
+    end
+    def genre_params
+      params.require(:genre).permit(:list_genre)
     end
 end
