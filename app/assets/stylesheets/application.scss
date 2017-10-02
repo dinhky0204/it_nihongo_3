@@ -10,7 +10,31 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  *= require bootstrap-tokenfield
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+a {
+  font-size: 14px !important;
+}
+
+a:hover {
+  background-color: transparent !important;
+  color: dodgerblue !important;
+}
+
+.field_with_errors {
+  background-color: transparent;
+  display: inline;
+  input {
+    border-color: red !important;
+  }
+}
+.alert {
+  margin: 50px;
+}
+.overlay {
+  height: 150vh;
+  width: 100vw;
+}

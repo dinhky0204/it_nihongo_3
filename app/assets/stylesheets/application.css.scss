@@ -1,3 +1,26 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-tokenfield";
+a {
+  font-size: 14px !important;
+}
+
+a:hover {
+  background-color: transparent !important;
+  color: dodgerblue !important;
+}
+
+.field_with_errors {
+  background-color: transparent;
+  display: inline;
+  input {
+    border-color: red !important;
+  }
+}
+.alert {
+  margin: 50px;
+}
+.overlay {
+  height: 150vh;
+  width: 100%;
+}

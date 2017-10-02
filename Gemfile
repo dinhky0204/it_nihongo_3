@@ -37,7 +37,6 @@ gem 'bootstrap_tokenfield_rails'
 gem 'sprockets-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'bootstrap-sass'
 gem 'gon'
 gem 'ckeditor'
 gem 'paperclip'
@@ -65,3 +64,9 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# use bootstrap
+gem "bootstrap-sass", "~> 3.3.6"
+
+# use jquery
+gem "jquery-rails"

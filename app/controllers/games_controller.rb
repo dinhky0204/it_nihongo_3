@@ -1,6 +1,7 @@
 require 'csv'
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :new]
 
   # GET /games
   # GET /games.json

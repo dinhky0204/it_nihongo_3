@@ -6,11 +6,42 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag  'games' if params[:controller]== "games" %>
+    <%= stylesheet_link_tag 'devise' if params[:controller] == 'devise/sessions' %>
+    <%= stylesheet_link_tag 'devise' if params[:controller] == 'devise/confirmations' %>
+    <%= stylesheet_link_tag 'devise' if params[:controller] == 'devise/passwords' %>
+    <%= stylesheet_link_tag 'devise' if params[:controller] == 'users/registrations' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'game' if params[:controller]== "games" %>
   </head>
-
-  <body>
+  <body class="body">
+  <div class="overlay">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Page 1</a></li>
+          <li><a href="#">Page 2</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li> <%= link_to "Sign up", new_user_registration_path %><br /></li>
+          <% if current_user.present? %>
+              <li>
+                <%= current_user.name %>
+                <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+              </li>
+          <%else%>
+              <li> <%= link_to "Log in", new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key == "alert"? "danger":(key == "notice"? "info": key)  %>"><%= value %></div>
+    <% end %>
     <%= yield %>
+  </div>
   </body>
 </html>
