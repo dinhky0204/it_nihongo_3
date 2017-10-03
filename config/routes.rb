@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'static_pages/home'
+
+  get 'static_pages/help'
+
   mount Ckeditor::Engine => '/ckeditor'
   resources :games
   resources :genres
