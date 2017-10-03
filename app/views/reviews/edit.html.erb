@@ -1,0 +1,44 @@
+<style>
+  .CodeMirror-fullscreen {
+    top: 80px;
+  }
+</style>
+<div class="container edit-blog">
+  <div class="row">
+    <div class="col-sm-12">
+      <%= form_with model: @review,url: review_path, method: :patch do |f| %>
+          <br>
+          <div class="form-group pmd-textfield form-group-lg">
+            <label for="regular1" class="control-label">
+              <%= t 'Updated at' %>
+              <%= time_ago_in_words @review.updated_at %> <%= t 'ago' %>
+            </label>
+            <%= f.text_field :title, class: "form-control input-group-lg" %>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <label><%= t 'tag game you want' %></label>
+                <%= f.select :game_id, @review.game.map{|b| [b.title, b.id]},
+                             {selected: @review.game.pluck(:id)},
+                             {class: "tags-form form-control pmd-select2-tags", multiple: false} %>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <br>
+              <button class="btn btn-primary pmd-btn-raised pull-right btn-lg btn-publish">
+                <%= t 'Post' %>
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <br><br>
+              <%= f.text_area :content, id: "editor" %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

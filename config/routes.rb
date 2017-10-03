@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews, only: [:index, :show, :create, :edit, :update, :destroy]
   mount Ckeditor::Engine => '/ckeditor'
   resources :games
   resources :genres
