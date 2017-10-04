@@ -5,21 +5,21 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag  'games' if params[:controller]== "games" %>
-    <%= stylesheet_link_tag 'devise' if params[:controller] == 'devise/sessions' %>
-    <%= stylesheet_link_tag 'devise' if params[:controller] == 'devise/confirmations' %>
-    <%= stylesheet_link_tag 'devise' if params[:controller] == 'devise/passwords' %>
-    <%= stylesheet_link_tag 'devise' if params[:controller] == 'users/registrations' %>
+    <%= stylesheet_link_tag  'games', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller]== "games" %>
+    <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'devise/sessions' %>
+    <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'devise/confirmations' %>
+    <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'devise/passwords' %>
+    <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'users/registrations' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'game' if params[:controller]== "games" %>
-    <%= stylesheet_link_tag 'static_pages' if params[:controller] == 'static_pages' %>
+    <%= stylesheet_link_tag 'static_pages', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'static_pages' %>
   </head>
   <body class="body">
   <div class="overlay">
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">WebSiteName</a>
+          <%= link_to "ゲームセンター", root_path, :class => "navbar-brand" %>
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="#">Home</a></li>
@@ -30,8 +30,12 @@
           <li> <%= link_to "Sign up", new_user_registration_path %><br /></li>
           <% if current_user.present? %>
               <li>
-                <%= current_user.name %>
-                <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+                <a class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %>
+                    <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#"><%= link_to('My Profile', edit_user_registration_path) %></a></li>
+                    <li><a href="#"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></a></li>
+                  </ul>
               </li>
           <%else%>
               <li> <%= link_to "Log in", new_user_session_path %></li>
