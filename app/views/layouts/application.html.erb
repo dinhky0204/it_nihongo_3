@@ -12,6 +12,7 @@
     <%= stylesheet_link_tag 'devise' if params[:controller] == 'users/registrations' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'game' if params[:controller]== "games" %>
+    <%= stylesheet_link_tag 'static_pages' if params[:controller] == 'static_pages' %>
   </head>
   <body class="body">
   <div class="overlay">

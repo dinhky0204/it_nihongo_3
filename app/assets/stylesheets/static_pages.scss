@@ -1,0 +1,118 @@
+.glyphicon { margin-right:5px;}
+.top-hr hr {width: 90%; align:center;}
+.section-box h2 {
+    margin-top:20px;
+    color:#27ae60;
+}
+.panel-body {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+.section-box h3 {
+    color:#27ae60;
+}
+
+.section-box h2 a { font-size:15px; }
+
+.glyphicon-comment { color:#27ae60;}
+.separator { padding-right:5px;padding-left:5px; }
+.section-box hr {margin-top: 0;margin-bottom: 5px;border: 0;border-top: 1px solid rgb(199, 199, 199);}
+
+.panel.panel-horizontal {
+    display:table;
+    width:100%;
+}
+.panel.panel-horizontal > .panel-heading, .panel.panel-horizontal > .panel-body, .panel.panel-horizontal > .panel-footer {
+    display:table-cell;
+}
+.panel.panel-horizontal > .panel-heading, .panel.panel-horizontal > .panel-footer {
+    width: 25%;
+    border:0;
+    vertical-align: middle;
+}
+.panel.panel-horizontal > .panel-heading {
+    border-right: 1px solid #ddd;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 4px;
+
+}
+.panel.panel-horizontal > .panel-footer {
+    border-left: 1px solid #ddd;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 4px;
+}
+
+.email {
+    padding-bottom: 10px;
+    font-size: 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.circle {
+    border-radius: 50%;
+    background: #27ae60;
+    color: #FFF;
+}
+
+.circle-big {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+}
+.circle-small {
+     width: 35px;
+    height: 35px;
+    font-size: 15px;
+    line-height: 35px;
+}
+
+.display-center {
+   display: block;
+   margin: auto;
+   width: 100%;
+//   height: 100%;
+}
+
+.display-full {
+    display: block;
+   margin: 0 0 0 0;
+   padding-left: 0px;
+   padding-right: 0px;
+   width: 100%;
+   height: 100%;
+}
+
+.pod-header {
+    text-transform: uppercase;
+    font-weight: normal;
+    font-style: normal;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-left: 5px solid #27ae60;
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+
+.pod-title {
+        font-weight: normal !important;
+    font-style: normal;
+    padding: 0 0 0 15px;
+    margin: 0;
+    position: relative;
+    color: #333;
+    float: none;
+    font-size: 1rem;
+    line-height: 1.3rem;
+}
+
+.media {
+    overflow: hidden;
+    display: block;
+    position: relative;
+}

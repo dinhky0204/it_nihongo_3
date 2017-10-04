@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+        <h1>Reviews</h1>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="panel panel-default">
+                    <a href=""><img class="display-center"
+                                    src="https://static.gamespot.com/uploads/screen_kubrick/1197/11970954/3293592-divinityos2-review-promo123.jpg"></img></a>
+                    <!--<%= link_to image_tag("https://static.gamespot.com/uploads/screen_kubrick/1197/11970954/3293592-divinityos2-review-promo123.jpg"), {action: 'home', controller: 'static_pages'}, {class: 'img-responsive'} %>-->
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="section-box">
+
+                    <div class="circle circle-big text-center">8</div>
+                    <h2>Divinity: Original Sin 2 Review</h2>
+                    <p>In the Age of the Internet, where we demand everything faster and our attention spans shrink to
+                        that of a goldfish, it's interesting that both PES and FIFA are slowing down</p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="row slide-item-game">
+        <!--<div class="col-md-12">-->
+        <% (0..3).each do |i| %>
+        <%= render "static_pages/slide_item_game" %>
+        <% end %>
+        <!--</div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="pod-header">
+                <div class="pod-header-item">
+                    <div class="pod-title">
+                        <h4>Latest Reviews</h4>
+                    </div>
+                </div>
+            </div>
+            <% (0..5).each do |i| %>
+            <%= render "static_pages/item_game" %>
+            <% end %>
+        </div>
+        <div class="col-md-3">
+            <div class="pod-header">
+                <div class="pod-header-item">
+                    <div class="pod-title">
+                        <h4>TOP REVIEWS</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="pod-body">
+                <article class="media media-is-top"></article>
+                <% (0..9).each do |i| %>
+                <%= render "static_pages/item_top" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
