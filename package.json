@@ -4,6 +4,8 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "jquery": "^3.2.1",
+    "propellerkit": "^1.1.0",
+    "propellerkit-select2": "^1.1.0",
     "select2": "^4.0.4",
     "select2-bootstrap-theme": "^0.1.0-beta.10"
   }

@@ -10,8 +10,8 @@
           <br>
           <div class="form-group pmd-textfield form-group-lg">
             <label for="regular1" class="control-label">
-              <%= t 'Updated at' %>
-              <%= time_ago_in_words @review.updated_at %> <%= t 'ago' %>
+              <%= "Updated at" %>
+              <%= time_ago_in_words @review.updated_at %> <%= "ago" %>
             </label>
             <%= f.text_field :title, class: "form-control input-group-lg" %>
           </div>
@@ -19,23 +19,24 @@
           <div class="row">
             <div class="col-sm-8">
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                <label><%= t 'tag game you want' %></label>
-                <%= f.select :game_id, @review.game.map{|b| [b.title, b.id]},
-                             {selected: @review.game.pluck(:id)},
+                <label><%= "tag game you want" %></label>
+                <%= f.select :game_id, options_from_collection_for_select(Game.all, :id, :name),
+                             {selected: @review.game.id},
                              {class: "tags-form form-control pmd-select2-tags", multiple: false} %>
               </div>
             </div>
             <div class="col-sm-4">
               <br>
               <button class="btn btn-primary pmd-btn-raised pull-right btn-lg btn-publish">
-                <%= t 'Post' %>
+                <%= "Post" %>
               </button>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-12">
               <br><br>
-              <%= f.text_area :content, id: "editor" %>
+              <%= f.cktext_area :content, id: :review_content, value: "" %>
+
             </div>
           </div>
       <% end %>

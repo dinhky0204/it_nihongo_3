@@ -1,29 +1,46 @@
-<p id="notice"><%= notice %></p>
+<% provide :title, @review.title %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @review.title %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @review.user_id %>
-</p>
-
-<p>
-  <strong>Game:</strong>
-  <%= @review.game_id %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @review.content %>
-</p>
-
-<p>
-  <strong>Photo:</strong>
-  <%= @review.photo %>
-</p>
-
-<%= link_to 'Edit', edit_review_path(@review) %> |
-<%= link_to 'Back', reviews_path %>
+<div class="container post-show">
+  <div class="row">
+    <div class="col-sm-9 post-header">
+      <h1><%= @review.title %></h1>
+      <% if @review.game.present? %>
+          <div>
+                <%= link_to @review.game, "data-turbolinks": false do %>
+                    <div class="pmd-chip pmd-chip-no-icon">
+                      <%= @review.game.name %>
+                    </div>
+                <% end %>
+          </div>
+      <% end %>
+      <h2>
+        <small>
+          <i class="fa fa-fw fa-user"></i>
+          <%= "Writer" %>
+          <%= link_to @review.user.email, "#" %>
+        </small>
+        <% if user_signed_in? && current_user.id == @review.user.id %>
+          <span class="pull-right">
+            <%= link_to edit_review_path(@review), "data-turbolinks": false do %>
+              <i class="fa fa-fw fa-pencil"></i>
+                <%= "Edit" %>
+            <% end %>
+          </span>
+        <% end %>
+      </h2>
+      <h2>
+        <small>
+          <i class="fa fa-fw fa-clock-o"></i>
+          <%= "Update at" %>
+          <%= time_ago_in_words @review.updated_at %>
+          <%= "ago" %>
+        </small>
+      </h2>
+      <hr>
+      <div class="body">
+        <%= markdown(@review.content).html_safe %>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>

@@ -42,6 +42,11 @@ gem 'ckeditor'
 gem 'paperclip'
 gem 'materialize-sass'
 gem 'jquery-turbolinks'
+gem "kaminari"
+gem "bootstrap-kaminari-views"
+gem "redcarpet"
+gem "font-awesome-sass"
+gem "font-awesome-rails"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

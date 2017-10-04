@@ -1,5 +1,11 @@
-<h1>New Review</h1>
+<% provide :title, "My reviews" %>
 
-<%= render 'form', review: @review %>
-
-<%= link_to 'Back', reviews_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+    </div>
+    <div class="col-sm-3">
+      <%= render "new_review_form" %>
+    </div>
+  </div>
+</div>
