@@ -1,0 +1,5 @@
+search:
+  autocomplete:
+    limit: 10
+review:
+  limit: 10

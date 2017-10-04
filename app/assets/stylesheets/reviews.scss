@@ -1,3 +1,75 @@
-// Place all the styles related to the Reviews controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.dashboard-header {
+
+  margin-top: -20px;
+
+  .btn-create {
+    margin-top: 13px;
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      float: left;
+      height: 60px;
+      line-height: 65px;
+      padding-right: 30px;
+
+      a {
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bolder;
+        text-transform: uppercase;
+        transition: .25s;
+      }
+    }
+
+    li:hover {
+      a {
+        border-bottom: 2px solid #ffffff;
+      }
+    }
+  }
+}
+
+.blog-post {
+  padding-top: 25px;
+
+  .avatar {
+    align-items: center;
+    display: flex;
+
+    img {
+      border-radius: 100%;
+      margin: 10px auto;
+    }
+  }
+
+  hr {
+    margin-top: 5px;
+  }
+}
+
+.edit-blog {
+  .title {
+    font-size: 25px;
+    height: 50px;
+  }
+
+  .btn-default {
+    margin-right: 15px;
+  }
+}
+
+.post-show {
+  .post-header {
+    h1 {
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    h2 {
+      margin-top: 10px;
+    }
+  }
+}
