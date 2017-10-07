@@ -23,6 +23,46 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def update
+    # required for settings form to submit when password is left blank
+    @user = User.find(current_user.id);
+    current_password = params[:user][:current_password];
+    params[:user].delete("current_password");
+    if params[:user][:password].blank?
+      params[:user].delete("password");
+      params[:user].delete("password_confirmation");
+    end
+    #if params[:user][:avatar].blank?
+        if !@user.my_valid_password?(current_password)
+          if @user.errors.full_messages.any?
+            if flash[:error].blank?
+              flash[:error] = @user.errors.full_messages;
+            else
+              flash[:error] += @user.errors.full_messages;
+            end
+          end
+          return redirect_to after_update_path_for(@user)
+        end
+    #end
+
+    if @user.update_attributes(params[:user].permit(:name, :email, :password, :password_confirmation,:avatar, :avatar_cache, :remove_avatar))
+      set_flash_message :notice, :updated
+      # Sign in the user bypassing validation in case his password changed
+      sign_in @user, :bypass => true
+      redirect_to after_update_path_for(@user)
+    else
+      if @user.errors.full_messages.any?
+        if flash[:error].blank?
+          flash[:error] = @user.errors.full_messages;
+        else
+          flash[:error] += @user.errors.full_messages;
+        end
+      end
+      redirect_to after_update_path_for(@user)
+    end
+ end
+
+
   # DELETE /resource
   # def destroy
   #   super
@@ -46,7 +86,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_account_update_params
-     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name, :password, :password_confirmation, :current_password])
+     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name, :password, :password_confirmation, :current_password, :avatar, :avatar_cache, :remove_avatar])
    end
 
   #The path used after sign up.
@@ -54,6 +94,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
      user_path(resource)
    end
 
+  def after_update_path_for(resource)
+    user_path(resource)
+  end
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)

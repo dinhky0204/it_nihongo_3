@@ -21,4 +21,3 @@
 //= require materialize-sprockets
 //= require materialize
 //= require materialize/extras/nouislider
-//= require game

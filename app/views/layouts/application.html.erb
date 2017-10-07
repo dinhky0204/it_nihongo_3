@@ -9,9 +9,10 @@
     <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'devise/sessions' %>
     <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'devise/confirmations' %>
     <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'devise/passwords' %>
-    <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'users/registrations' %>
+    <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' if (params[:controller] == 'users/registrations' && (params[:action] == "new" || params[:action] == "create")) %>
+    <%= stylesheet_link_tag 'profile', media: 'all', 'data-turbolinks-track': 'reload' if (params[:controller] == 'users' && params[:action] == "show") %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'game' if params[:controller]== "games" %>
+    <%= javascript_include_tag 'profile', 'data-turbolinks-track': 'reload' if (params[:controller] == 'users' && params[:action] == "show")%>
     <%= stylesheet_link_tag 'static_pages', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'static_pages' %>
   </head>
   <body class="body">
@@ -33,7 +34,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %>
                     <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#"><%= link_to('My Profile', edit_user_registration_path) %></a></li>
+                    <li><a href="#"><%= link_to('My Profile', user_path(current_user.id)) %></a></li>
                     <li><a href="#"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></a></li>
                   </ul>
               </li>
@@ -44,7 +45,13 @@
       </div>
     </nav>
     <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key == "alert"? "danger":(key == "notice"? "info": key)  %>"><%= value %></div>
+        <% if value.is_a?(Array) %>
+            <% value.each do |error| %>
+                <div class="<%= flash_class(key)%>"><%= error %></div>
+            <% end %>
+          <% else %>
+            <div class="<%= flash_class(key)%>"><%= value %></div>
+        <% end %>
     <% end %>
     <%= yield %>
   </div>

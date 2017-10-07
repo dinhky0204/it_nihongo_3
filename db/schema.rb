@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171002084023) do
+ActiveRecord::Schema.define(version: 20171007103124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 20171002084023) do
     t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_follows_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
+  end
+
   create_table "game_genres", force: :cascade do |t|
     t.integer "game_id"
     t.integer "genre_id"
@@ -40,8 +50,8 @@ ActiveRecord::Schema.define(version: 20171002084023) do
     t.text "story"
     t.text "description"
     t.text "guide"
-    t.string "photo"
     t.integer "publisher_id"
+    t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,6 +64,16 @@ ActiveRecord::Schema.define(version: 20171002084023) do
 
   create_table "publishers", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "user_id", null: false
+    t.integer "game_id", null: false
+    t.text "content", null: false
+    t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
