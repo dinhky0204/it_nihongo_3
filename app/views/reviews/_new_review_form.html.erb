@@ -1,0 +1,7 @@
+<%= form_with model: Review.new, url: reviews_path, local: true do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <button class="btn btn-primary pmd-btn-raised pmd-ripple-effect btn-create" type="submit">
+      <i class="fa fa-fw fa-pencil"></i>
+      <%= "Create Review" %>
+    </button>
+<% end %>

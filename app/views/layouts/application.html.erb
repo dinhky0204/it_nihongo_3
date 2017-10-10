@@ -3,7 +3,6 @@
   <head>
     <title>MovieReview</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag  'games', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller]== "games" %>
     <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'devise/sessions' %>
@@ -13,6 +12,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'game' if params[:controller]== "games" %>
     <%= stylesheet_link_tag 'static_pages', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'static_pages' %>
+    <%= stylesheet_link_tag 'reviews', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'reviews' %>
+    <%= javascript_include_tag 'reviews' if params[:controller]== "reviews" %>
+
   </head>
   <body class="body">
   <div class="overlay">

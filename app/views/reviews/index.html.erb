@@ -1,35 +1,65 @@
-<p id="notice"><%= notice %></p>
+<% provide :title, "Review" %>
 
-<h1>Reviews</h1>
+<div class="container-fluid dashboard-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9">
+      </div>
+      <div class="col-sm-3">
+        <% if user_signed_in? %>
+            <%= form_with model: Review.new, url: reviews_path, local: true do |f| %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <button class="btn btn-primary pmd-btn-raised pmd-ripple-effect btn-create" type="submit">
+                  <i class="fa fa-fw fa-pencil"></i>
+                  <%= "Create Review" %>
+                </button>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="col-sm-12">
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>User</th>
-      <th>Game</th>
-      <th>Content</th>
-      <th>Photo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        </div>
+      </div>
+      <% if @reviews.empty? %>
+          <h2 class="text-center">
+            <%= "You have no review entries yet" %>
+          </h2>
+      <% end %>
 
-  <tbody>
-    <% @reviews.each do |review| %>
-      <tr>
-        <td><%= review.title %></td>
-        <td><%= review.user_id %></td>
-        <td><%= review.game_id %></td>
-        <td><%= review.content %></td>
-        <td><%= review.photo %></td>
-        <td><%= link_to 'Show', review %></td>
-        <td><%= link_to 'Edit', edit_review_path(review) %></td>
-        <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Review', new_review_path %>
+      <% @reviews.each do |review| %>
+          <div class="row blog-post">
+            <div class="col-sm-1 avatar">
+              <img src="<%= review.user.avatar %>" alt="" class="img-responsive">
+            </div>
+            <div class="col-sm-11">
+              <div class="post-header">
+                <h4>
+                  <%= link_to review.user.email, "#" %>
+                  <small><%= time_ago_in_words review.created_at %></small>
+                </h4>
+              </div>
+              <div class="post-body">
+                <%= link_to review.title, review_path(review) %>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <hr>
+            </div>
+          </div>
+      <% end %>
+      <div class="col-sm-12">
+        <%= paginate @reviews, theme: "twitter-bootstrap-3" %>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <h3>Hot Author</h3>
+    </div>
+  </div>
+</div>
