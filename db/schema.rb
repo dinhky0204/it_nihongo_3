@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20171009075557) do
+=======
+ActiveRecord::Schema.define(version: 20171002185639) do
+>>>>>>> ce963654a20f30b8145f7633642e9eaec043b0ba
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +62,7 @@ ActiveRecord::Schema.define(version: 20171009075557) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "rate_tables", force: :cascade do |t|
     t.integer "user_id"
     t.integer "game_id"
@@ -67,6 +72,8 @@ ActiveRecord::Schema.define(version: 20171009075557) do
     t.text "message"
   end
 
+=======
+>>>>>>> ce963654a20f30b8145f7633642e9eaec043b0ba
   create_table "reviews", force: :cascade do |t|
     t.string "title", null: false
     t.integer "user_id", null: false

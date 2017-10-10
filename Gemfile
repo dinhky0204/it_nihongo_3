@@ -44,6 +44,11 @@ gem 'materialize-sass'
 gem 'jquery-turbolinks'
 gem 'font-awesome-rails'
 gem 'bxslider-rails'
+gem "kaminari"
+gem "bootstrap-kaminari-views"
+gem "redcarpet"
+gem "font-awesome-sass"
+gem "font-awesome-rails"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
