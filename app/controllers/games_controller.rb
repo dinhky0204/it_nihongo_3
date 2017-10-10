@@ -13,6 +13,30 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    @total = RateTable.where(game_id: params[:id]).count
+
+    @star_1 = RateTable.where(game_id: params[:id], point: 1).count
+    @star_2 = RateTable.where(game_id: params[:id], point: 2).count
+    @star_3 = RateTable.where(game_id: params[:id], point: 3).count
+    @star_4 = RateTable.where(game_id: params[:id], point: 4).count
+    @star_5 = RateTable.where(game_id: params[:id], point: 5).count
+    total_point = @star_1 + 2*@star_2 + 3*@star_3 + 4*@star_4 + 5*@star_5
+    if @total==0
+      @point_avg
+      gon.point1 = 0
+      gon.point2 = 0
+      gon.point3 = 0
+      gon.point4 = 0
+      gon.point5 = 0
+    else
+      @point_avg = (100*total_point/@total).round / 100.0
+      gon.point1 = (100*@star_1/@total).to_s + "%"
+      gon.point2 = (100*@star_2/@total).to_s + "%"
+      gon.point3 = (100*@star_3/@total).to_s + "%"
+      gon.point4 = (100*@star_4/@total).to_s + "%"
+      gon.point5 = (100*@star_5/@total).to_s + "%"
+    end
+
   end
 
   # GET /games/new
@@ -33,9 +57,6 @@ class GamesController < ApplicationController
   def create
     list_genre_id = []
     list_genre = JSON.parse(params[:list_genre])
-    puts "================>"
-    # puts list_genre[0].class
-    # puts list_genre[0]['tag']
 
     @game = Game.new(game_params)
 

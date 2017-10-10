@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171002084023) do
+ActiveRecord::Schema.define(version: 20171009075557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20171002084023) do
     t.text "story"
     t.text "description"
     t.text "guide"
-    t.string "photo"
     t.integer "publisher_id"
+    t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,6 +54,25 @@ ActiveRecord::Schema.define(version: 20171002084023) do
 
   create_table "publishers", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rate_tables", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "point"
+    t.text "message"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "user_id", null: false
+    t.integer "game_id", null: false
+    t.text "content", null: false
+    t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -85,4 +104,6 @@ ActiveRecord::Schema.define(version: 20171002084023) do
   add_foreign_key "game_genres", "games"
   add_foreign_key "game_genres", "genres"
   add_foreign_key "games", "publishers"
+  add_foreign_key "rate_tables", "games"
+  add_foreign_key "rate_tables", "users"
 end
