@@ -1,0 +1,19 @@
+<h1>Genres</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th colspan="3">game id</th>
+    <th colspan="3">user id</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @rates.each do |rate| %>
+      <tr>
+        <td><%= rate.game_id %></td>
+        <td><%= rate.user_id %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

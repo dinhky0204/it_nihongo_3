@@ -1,29 +1,213 @@
-<p id="notice"><%= notice %></p>
+<%= include_gon %>
+<div class="show-game-container">
+  <div class="game-show-title">
+    <div class="col-md-2 col-md-offset-5 show-game-name">
+      <span class="game-title">GAME</span>
+    </div>
+    <div class="col-md-6 col-md-offset-3 game-name-box">
+      <span class="game-name">
+        <%= @game.name %>
+      </span>
+    </div>
+    <div class="col-md-8 col-md-offset-2 release-date-box">
+      <span class="release-game">
+        Released
+        <%= @game.created_at %>
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="show-game-info">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="show-game-image col-md-4">
+          <% if @game.photo %>
+              <img src="<%= @game.photo %>" alt="Game photo">
+          <% else %>
+              <img src="yasuo.jpg" alt="Game photo">
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <div class="show-game-story">
+            <div>
+              <span class="strong-title">Story:</span>
+              <span class="show-content">
+              <%= @game.story %>
+            </span>
+            </div>
+          </div>
+          <div class="list-genre">
+            <div class="title-genre">
+              <span class="strong-title">Genres:  </span>
+            </div>
+            <% if @game.genres.count != 0 %>
+                <% @game.genres.each do |genre| %>
+                    <a class="waves-effect waves-light"><%= genre.name %></a>
+                <% end %>
+            <% end %>
+          </div>
+          <div class="show-game-publisher">
+            <div>
+              <span class="strong-title">Publisher:</span>
+              <span class="show-content">
+              <%= @game.publisher.name %>
+            </span>
+            </div>
+          </div>
+          <div class="show-game-publisher">
+            <span class="strong-title">Guide:</span>
+            <span>
+            <%= @game.guide %>
+          </span>
+          </div>
+        </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @game.name %>
-</p>
+        <div class="col-md-4">
+          <div class="inner">
+            <div class="rating">
+              <span class="rating-num" id="point_avg"><%=@point_avg %></span>
+              <div class="rating-stars">
+                <span><i class="active icon-star"></i></span>
+                <span><i class="active icon-star"></i></span>
+                <span><i class="active icon-star"></i></span>
+                <span><i class="active icon-star"></i></span>
+                <span><i class="icon-star"></i></span>
+              </div>
+              <div class="rating-users">
+                <i class="icon-user"></i>
+                <span id="total-rating">
+                  <%= @total %> total
+                </span>
 
-<p>
-  <strong>Story:</strong>
-  <%= @game.story %>
-</p>
+              </div>
+            </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= raw @game.description %>
-</p>
+            <div class="histo">
+              <div class="five histo-rate">
+                <span class="histo-star">
+                  <i class="active icon-star"></i>
+                  5
+                </span>
+                <span class="bar-block">
+                  <span id="bar-five" class="bar">
+                    <span id="star-5"><%= @star_5%></span>&nbsp;
+                  </span>
+                </span>
+              </div>
 
-<p>
-  <strong>Guide:</strong>
-  <%= @game.guide %>
-</p>
+              <div class="four histo-rate">
+                <span class="histo-star">
+                  <i class="active icon-star"></i> 4
+                </span>
+                <span class="bar-block">
+                  <span id="bar-four" class="bar">
+                    <span id="star-4"><%= @star_4%></span>&nbsp;
+                  </span>
+                </span>
+              </div>
 
-<p>
-  <strong>Publisher:</strong>
-  <%= @game.publisher_id %>
-</p>
+              <div class="three histo-rate">
+                <span class="histo-star">
+                  <i class="active icon-star"></i> 3
+                </span>
+                <span class="bar-block">
+                  <span id="bar-three" class="bar">
+                    <span id="star-3"><%= @star_3%></span>&nbsp;
+                  </span>
+                </span>
+              </div>
 
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+              <div class="two histo-rate">
+                <span class="histo-star">
+                  <i class="active icon-star"></i> 2
+                </span>
+                <span class="bar-block">
+                  <span id="bar-two" class="bar">
+                    <span id="star-2"><%= @star_2%></span>&nbsp;
+                  </span>
+                </span>
+              </div>
+
+              <div class="one histo-rate">
+                <span class="histo-star">
+                  <i class="active icon-star"></i> 1
+                </span>
+                <span class="bar-block">
+                  <span id="bar-one" class="bar">
+                    <span id="star-1"><%= @star_1%></span>&nbsp;
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row ">
+        <a class="btn btn-floating btn-large pulse modal-trigger write-comment-game" href="#modal1"><i class="material-icons">mode_comment</i></a>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal col-md-4">
+          <div class="modal-title">
+            <h4>Write comment this game</h4>
+          </div>
+          <div>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mode_edit</i>
+              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+              <label for="icon_prefix2">Write comment</label>
+            </div>
+            <section class='rating-widget'>
+
+              <!-- Rating Stars Box -->
+              <div class='rating-stars text-center'>
+                <ul id='stars'>
+                  <li class='star' title='Poor' data-value='1'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' title='Fair' data-value='2'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' title='Good' data-value='3'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' title='Excellent' data-value='4'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' title='WOW!!!' data-value='5'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                </ul>
+              </div>
+              <input id="rate-point" type="hidden" value="0">
+            </section>
+        <div class="rate-button">
+          <a class="modal-close waves-effect waves-green btn"  id="rate">Agree</a>
+        </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="show-list-review col-md-offset-2">
+        <div class="slider4">
+          <div class="slide"><img src="http://placehold.it/300x250&text=Review1"></div>
+          <div class="slide"><img src="http://placehold.it/300x250&text=Review2"></div>
+          <div class="slide"><img src="http://placehold.it/300x250&text=Review3"></div>
+          <div class="slide"><img src="http://placehold.it/300x250&text=Review4"></div>
+          <div class="slide"><img src="http://placehold.it/300x250&text=Review5"></div>
+          <div class="slide"><img src="http://placehold.it/300x250&text=Review6"></div>
+          <div class="slide"><img src="http://placehold.it/300x250&text=Review7"></div>
+          <div class="slide"><img src="http://placehold.it/300x250&text=Review8"></div>
+          <div class="slide"><img src="http://placehold.it/300x250&text=Review9"></div>
+          <div class="slide"><img src="http://placehold.it/300x250&text=Review10"></div>
+        </div>
+      </div>
+      <p>
+        <strong>Description:</strong>
+        <%= raw @game.description %>
+      </p>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+
+</script>

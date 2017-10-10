@@ -21,3 +21,5 @@
 //= require materialize-sprockets
 //= require materialize
 //= require materialize/extras/nouislider
+//= require bxslider
+//= require game

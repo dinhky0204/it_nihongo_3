@@ -50,6 +50,7 @@ GEM
       sass (>= 3.3.4)
     bootstrap_tokenfield_rails (0.12.1)
     builder (3.2.3)
+    bxslider-rails (4.2.5.1)
     byebug (9.1.0)
     capybara (2.13.0)
       addressable
@@ -88,6 +89,8 @@ GEM
     erubi (1.6.1)
     execjs (2.7.0)
     ffi (1.9.18)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     gon (6.1.0)
@@ -234,12 +237,14 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   bootstrap_tokenfield_rails
+  bxslider-rails
   byebug
   capybara (~> 2.13.0)
   carrierwave (~> 1.0)
   ckeditor
   coffee-rails (~> 4.2)
   devise
+  font-awesome-rails
   gon
   jbuilder (~> 2.5)
   jquery-rails

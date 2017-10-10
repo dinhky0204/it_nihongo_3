@@ -42,6 +42,8 @@ gem 'ckeditor'
 gem 'paperclip'
 gem 'materialize-sass'
 gem 'jquery-turbolinks'
+gem 'font-awesome-rails'
+gem 'bxslider-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
