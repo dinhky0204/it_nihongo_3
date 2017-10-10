@@ -1,0 +1,173 @@
+/* line 1, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.glyphicon {
+  margin-right: 5px;
+}
+
+/* line 2, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.top-hr hr {
+  width: 90%;
+  align: center;
+}
+
+/* line 3, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.section-box h2 {
+  margin-top: 20px;
+  color: #27ae60;
+}
+
+/* line 7, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.panel-body {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+/* line 11, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.section-box h3 {
+  color: #27ae60;
+}
+
+/* line 15, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.section-box h2 a {
+  font-size: 15px;
+}
+
+/* line 17, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.glyphicon-comment {
+  color: #27ae60;
+}
+
+/* line 18, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.separator {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+/* line 19, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.section-box hr {
+  margin-top: 0;
+  margin-bottom: 5px;
+  border: 0;
+  border-top: 1px solid #c7c7c7;
+}
+
+/* line 21, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.panel.panel-horizontal {
+  display: table;
+  width: 100%;
+}
+
+/* line 25, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.panel.panel-horizontal > .panel-heading, .panel.panel-horizontal > .panel-body, .panel.panel-horizontal > .panel-footer {
+  display: table-cell;
+}
+
+/* line 28, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.panel.panel-horizontal > .panel-heading, .panel.panel-horizontal > .panel-footer {
+  width: 25%;
+  border: 0;
+  vertical-align: middle;
+}
+
+/* line 33, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.panel.panel-horizontal > .panel-heading {
+  border-right: 1px solid #ddd;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 4px;
+}
+
+/* line 39, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.panel.panel-horizontal > .panel-footer {
+  border-left: 1px solid #ddd;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 4px;
+}
+
+/* line 45, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.email {
+  padding-bottom: 10px;
+  font-size: 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* line 55, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.circle {
+  border-radius: 50%;
+  background: #27ae60;
+  color: #FFF;
+}
+
+/* line 61, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.circle-big {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  line-height: 50px;
+}
+
+/* line 67, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.circle-small {
+  width: 35px;
+  height: 35px;
+  font-size: 15px;
+  line-height: 35px;
+}
+
+/* line 74, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.display-center {
+  display: block;
+  margin: auto;
+  width: 100%;
+}
+
+/* line 81, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.display-full {
+  display: block;
+  margin: 0 0 0 0;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 90, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.pod-header {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-style: normal;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-left: 5px solid #27ae60;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+
+/* line 102, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.pod-title {
+  font-weight: normal !important;
+  font-style: normal;
+  padding: 0 0 0 15px;
+  margin: 0;
+  position: relative;
+  color: #333;
+  float: none;
+  font-size: 1rem;
+  line-height: 1.3rem;
+}
+
+/* line 114, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.media {
+  overflow: hidden;
+  display: block;
+  position: relative;
+}
+
+/* line 120, /var/www/html/it_nihongo_3/app/assets/stylesheets/static_pages.scss */
+.slide-item-game {
+  margin-left: -15px;
+  margin-right: 15px;
+}
