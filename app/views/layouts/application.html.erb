@@ -3,7 +3,6 @@
   <head>
     <title>MovieReview</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag  'games', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller]== "games" %>
     <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'devise/sessions' %>
@@ -14,6 +13,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'profile', 'data-turbolinks-track': 'reload' if (params[:controller] == 'users' && params[:action] == "show")%>
     <%= stylesheet_link_tag 'static_pages', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'static_pages' %>
+    <%= stylesheet_link_tag 'reviews', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'reviews' %>
+    <%= javascript_include_tag 'reviews' if params[:controller]== "reviews" %>
+
   </head>
   <body class="body">
   <div class="overlay">
@@ -28,7 +30,6 @@
           <li><a href="#">Page 2</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li> <%= link_to "Sign up", new_user_registration_path %><br /></li>
           <% if current_user.present? %>
               <li>
                 <a class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %>
@@ -39,6 +40,7 @@
                   </ul>
               </li>
           <%else%>
+              <li> <%= link_to "Sign up", new_user_registration_path %><br /></li>
               <li> <%= link_to "Log in", new_user_session_path %></li>
           <% end %>
         </ul>

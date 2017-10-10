@@ -11,21 +11,22 @@ module ApplicationHelper
   def current_user?(user)
     return user == current_user;
   end
-=begin
-  def resource_name
-    :user
-  end
+  def markdown content
+    options = {
+        autolink: true,
+        no_intra_emphasis: true,
+        disable_indented_code_blocks: true,
+        fenced_code_blocks: true,
+        lax_html_blocks: true,
+        strikethrough: true,
+        superscript: true,
+        quote: true,
+        highlight: true,
+        tables: true,
+        emoji: true
+    }
 
-  def resource
-    @resource ||= User.new
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML, options)
+        .render content
   end
-
-  def devise_mapping
-    @devise_mapping ||= Devise.mappings[:user]
-  end
-
-  def resource_class
-    User
-  end
-=end
 end
