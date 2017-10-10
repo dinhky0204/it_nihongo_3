@@ -40,25 +40,26 @@
             <label for="last_name">Story</label>
           </div>
           <div class="input-field col s6">
-            <%= form.select(:publisher_id) do %>
-                <% @publishers.each do |publisher| -%>
+            <%= form.select(:publisher_id, class: "caret") do %>
+                <% @publishers.each do |publisher| %>
                     <%= content_tag(:option, publisher.name, value: publisher.id) %>
                 <% end %>
             <% end %>
             <label>Publisher</label>
           </div>
-
         </div>
         <div class="row">
-          <div class="input-field col s6">
-            <i class="material-icons prefix">mode_edit</i>
-            <%= form.text_area :guide, id: 'icon_prefix2', class: "materialize-textarea" %>
-            <label for="icon_prefix2">Guide</label>
-          </div>
-          <div class="col-md-4">
+          <div class="col-md-6 col-md-offset-4">
             <span class="genre">Genres</span>
             <div class="chips chips-autocomplete"></div>
             <input type="hidden" name="list_genre" id="test_genre">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s10">
+            <i class="material-icons prefix">mode_edit</i>
+            <%= form.text_area :guide, id: 'icon_prefix2', class: "materialize-textarea" %>
+            <label for="icon_prefix2">Guide</label>
           </div>
         </div>
         <div class="field">
