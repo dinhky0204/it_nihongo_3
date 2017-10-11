@@ -8,21 +8,24 @@
     <div class="col-sm-12">
       <%= form_with model: @review,url: review_path, method: :patch do |f| %>
           <br>
+          <label for="regular1" class="control-label">TITLE</label>
           <div class="form-group pmd-textfield form-group-lg">
-            <label for="regular1" class="control-label">
+            <a>
               <%= "Updated at" %>
               <%= time_ago_in_words @review.updated_at %> <%= "ago" %>
-            </label>
+            </a>
             <%= f.text_field :title, class: "form-control input-group-lg" %>
           </div>
           <br>
           <div class="row">
             <div class="col-sm-8">
-              <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                <label><%= "tag game you want" %></label>
-                <%= f.select :game_id, options_from_collection_for_select(Game.all, :id, :name),
-                             {selected: @review.game.id},
-                             {class: "tags-form form-control pmd-select2-tags", multiple: false} %>
+              <div class="input-field">
+                <%= f.select(:publisher_id, class: "caret") do %>
+                    <% Game.all.each do |game| %>
+                        <%= content_tag(:option, game.name, value: game.id) %>
+                    <% end %>
+                <% end %>
+                <label>Publisher</label>
               </div>
             </div>
             <div class="col-sm-4">
@@ -35,7 +38,7 @@
           <div class="row">
             <div class="col-sm-12">
               <br><br>
-              <%= f.cktext_area :content, id: :review_content, value: "" %>
+              <%= f.cktext_area :content, id: :review_content, value: @review.content %>
 
             </div>
           </div>
