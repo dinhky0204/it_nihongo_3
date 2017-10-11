@@ -113,21 +113,24 @@ $(document).ready(function(){
 });
 
 $(document).ready(function() {
-    $('.bar span').hide();
-    $('#bar-five').animate({
-        width: gon.point5}, 1000);
-    $('#bar-four').animate({
-        width: gon.point4}, 1000);
-    $('#bar-three').animate({
-        width: gon.point3}, 1000);
-    $('#bar-two').animate({
-        width: gon.point2}, 1000);
-    $('#bar-one').animate({
-        width: gon.point1}, 1000);
+    var path_name = window.location.pathname.split("/");
+    if (path_name[1]=="games") {
+        $('.bar span').hide();
+        $('#bar-five').animate({
+            width: gon.point5}, 1000);
+        $('#bar-four').animate({
+            width: gon.point4}, 1000);
+        $('#bar-three').animate({
+            width: gon.point3}, 1000);
+        $('#bar-two').animate({
+            width: gon.point2}, 1000);
+        $('#bar-one').animate({
+            width: gon.point1}, 1000);
 
-    setTimeout(function() {
-        $('.bar span').fadeIn('slow');
-    }, 1000);
+        setTimeout(function() {
+            $('.bar span').fadeIn('slow');
+        }, 1000);
+    }
 
 });
 
