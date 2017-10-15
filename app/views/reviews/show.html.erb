@@ -2,7 +2,7 @@
 <div class="review-show">
 <div class="container post-show">
   <div class="row">
-    <div class="col-sm-9 post-header">
+    <div class="col-sm-10 post-header">
       <h1><%= @review.title %></h1>
       <% if @review.game.present? %>
           <div>
@@ -41,7 +41,46 @@
         <%= markdown(@review.content).html_safe %>
         <hr>
       </div>
+      <h2>Comment</h2>
+      <%= form_for(@review_comment) do |f| %>
+          <div class= "field">
+            <%= f.text_field :content %>
+            <%= f.hidden_field :review_id, :value => @review.id %>
+          </div>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+      <% end %>
+
+      <h2>List comment</h2>
+      <ul>
+        <% @review.review_comments.each do |review_comment|%>
+            <div class="row">
+              <div class="col-sm-1">
+                <div class="thumbnail">
+                  <img class="img-responsive user-photo" src="<%= review_comment.user.avatar.url %>">
+                </div><!-- /thumbnail -->
+              </div><!-- /col-sm-1 -->
+
+              <div class="col-sm-10">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <strong><%= review_comment.user.name %></strong> <span class="text-muted">commented <%= time_ago_in_words review_comment.created_at %> ago</span>
+                    <% if user_signed_in? && current_user.id == review_comment.user.id %>
+                          <i class="edit-comment fa fa-edit" style="margin-left: 20px"></i>
+                          <i class="delete-comment fa fa-trash" ></i>
+                    <% end %>
+                  </div>
+                  <div class="panel-body" style="margin: 10px 0 10px 0">
+                    <%= review_comment.content%>
+                  </div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->
+              </div><!-- /col-sm-5 -->
+            </div>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
 </div>
+

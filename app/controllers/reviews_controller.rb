@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.json
   def show
+    @review_comment = ReviewComment.new
   end
 
   # GET /reviews/new

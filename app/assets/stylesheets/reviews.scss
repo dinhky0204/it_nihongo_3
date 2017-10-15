@@ -6,7 +6,8 @@
 
 body {
   background: image-url('background_game.jpg');
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   padding: 0;
   margin: 0;
 }
@@ -130,7 +131,7 @@ body {
       }
 
       h2 {
-        margin-top: 10px;
+        margin-top: 30px;
       }
     }
   }
@@ -288,4 +289,39 @@ h2 {
 
 .btn {
   padding: 0 1rem;
+}
+
+ul:not(.browser-default) {
+  padding-left: 0;
+  list-style-type: none;
+  margin-top: 30px;
+}
+
+.thumbnail {
+  padding:0px;
+}
+.panel {
+  position:relative;
+}
+.panel>.panel-heading:after,.panel>.panel-heading:before{
+  position:absolute;
+  top:11px;left:-16px;
+  right:100%;
+  width:0;
+  height:0;
+  display:block;
+  content:" ";
+  border-color:transparent;
+  border-style:solid solid outset;
+  pointer-events:none;
+}
+.panel>.panel-heading:after{
+  border-width:7px;
+  border-right-color:#f7f7f7;
+  margin-top:1px;
+  margin-left:2px;
+}
+.panel>.panel-heading:before{
+  border-right-color:#ddd;
+  border-width:8px;
 }
