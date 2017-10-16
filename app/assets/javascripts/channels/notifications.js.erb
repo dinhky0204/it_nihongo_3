@@ -1,0 +1,44 @@
+/**
+ * Created by manhnd on 14/10/2017.
+ */
+App.notifications = App.cable.subscriptions.create("NotificationsChannel", {
+    connected: function() {
+        // Called when the subscription is ready for use on the server
+    },
+
+    disconnected: function() {
+        // Called when the subscription has been terminated by the server
+    },
+
+    received: function(data) {
+        // Called when there's incoming data on the websocket for this channel
+        if(typeof data.message === 'undefined') data.message = "";
+
+        $(".notifications .counter").html(data.counter);
+        $(".notifications .list-detail").html(data.list_notifications_html);
+        if(data.counter == 0) {
+            $(".notifications .counter").css({'display': 'none'});
+        } else {
+            $(".notifications .counter").css({'display': 'block'});
+        }
+
+        var notification = new Notification('', {
+            icon: '<%= asset_path('icon-notification.png') %>',
+            body: data.message
+        });
+
+        setTimeout(function() { notification.close() }, 5000);
+
+        if(typeof data.url !== 'undefined') {
+            notification.onclick = function(){
+                notification.close();
+                event.preventDefault();
+                window.open(data.url, function(){
+                    var btnGrVtc = $('.btn-group-vertical a');
+                    console.log(btnGrVtc);
+                    alert("abc")
+                });
+            }
+        }
+    }
+});

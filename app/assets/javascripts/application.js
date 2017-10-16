@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require jquery-ui
 //= require rails-ujs
 //= require turbolinks
@@ -23,3 +22,42 @@
 //= require materialize/extras/nouislider
 //= require bxslider
 //= require game
+
+// app/assets/javascripts/cable.js
+//= require action_cable
+//= require_self
+//= require_tree ./channels
+
+(function() {
+    this.App || (this.App = {});
+
+    App.cable = ActionCable.createConsumer();
+}).call(this);
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (!Notification) {
+        alert('Desktop notifications not available in your browser. Try Chromium.');
+        return;
+    }
+
+    if (Notification.permission !== "granted")
+        Notification.requestPermission();
+});
+
+$(document).ready(function(){
+    $('a.notifications-icon').click(function(event){
+        event.preventDefault();
+        $('.notifications .counter').html('').css({'display': 'none'});
+        if($('.notifications .box').css('display') == 'block') {
+            $('.notifications .box').css({'display': 'none'});
+        } else {
+            $('.notifications .box').css({'display': 'block'})
+        }
+
+        $('body').click(function(e){
+            if(!$(e.target).closest('a.notifications-icon').length) {
+                $('.notifications .box').css({'display': 'none'});
+            }
+        });
+    });
+})

@@ -1,0 +1,14 @@
+if($('.list-following').length) {
+    $('.list-following').empty();
+    $('.list-following').append(`<%= render("relationships/list_following", user: current_user)%>`);
+    $('.number-followers').text('<%= current_user.followers.count%>');
+    $('.number-following').text('<%= current_user.following.count%>');
+} else if($('.form-follow').length) {
+    $('.form-follow').empty();
+    $('.form-follow').append(`<%= render("relationships/form_follow", user: @user)%>`);
+    $('.number-followers').text('<%= @user.followers.count%>');
+    $('.number-following').text('<%= @user.following.count%>');
+}
+
+
+

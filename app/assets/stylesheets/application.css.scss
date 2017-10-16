@@ -2,6 +2,10 @@
 @import "bootstrap";
 @import "bootstrap-tokenfield";
 @import "bxslider";
+@import "font-awesome";
+
+$list-notifications-bg: white;
+$line-color: #C4C4C4;
 a {
   font-size: 14px !important;
 }
@@ -28,4 +32,79 @@ a:hover {
 
 .dropdown-toggle {
   cursor: pointer;
+}
+
+.notifications {
+  position: relative;
+  i {
+    font-size: 20px;
+  }
+  .counter {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin: -10px 0px 0px 0px;
+    background: red;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+  }
+
+  .box {
+    position: absolute;
+    display: none;
+    top: 50px;
+    right: 5px;
+    z-index: 100;
+    background-color: $list-notifications-bg;
+    box-shadow: 1px 2px 3px gray;
+    .header {
+      border-bottom: 1px solid $line-color;
+      p {
+        font-weight: bold;
+      }
+      padding: 5px 10px 0px 5px;
+    }
+    .list-detail {
+      max-height: 150px;
+      overflow-y: scroll;
+      padding-left: 0px!important;
+      list-style-type: none;
+      :before {
+        content: "";
+        position:absolute;
+        top: -20px;
+        right: 10px;
+        border:10px solid transparent;
+        border-bottom-color: $list-notifications-bg;
+        z-index: 100;
+      }
+
+      li {
+        border-bottom: 1px solid $line-color;
+        width: 400px;
+        color: black;
+        padding: 10px 15px;
+        display: flex;
+        justify-content: flex-start;
+        align-content: space-between;
+        img.avatar {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          margin-right: 20px;
+        }
+
+        .icon-action {
+          color: #00C853;
+        }
+        .time-ago {
+          color: darkgray;
+        }
+      }
+    }
+  }
+
 }
