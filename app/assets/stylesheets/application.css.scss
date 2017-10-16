@@ -29,3 +29,8 @@ a:hover {
 .dropdown-toggle {
   cursor: pointer;
 }
+
+nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    height: 0 !important;
+    line-height: 0 !important
+  }

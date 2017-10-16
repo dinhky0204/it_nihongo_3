@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+  get 'admin/dashboard'
+  get 'admin/genres'
+  post 'admin/genre_delete'
+  post 'admin/genre_add'
+  post 'admin/genre_update'
+  get 'admin/publishers'
+
   get 'static_pages/home'
   get 'static_pages/help'
+  get 'static_pages/genre_top'
   
   resources :reviews, only: [:index, :show, :create, :edit, :update, :destroy]
   
