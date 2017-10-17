@@ -7,9 +7,9 @@
       <div class="row coralbg white infos">
         <div class="col-md-6 no-pad">
           <div class="user-pad">
-            <h3>Welcome back, <%= @user.name %></h3>
-            <h4 class="white"><i class="fa fa-check-circle-o"></i> Hedspi, HANOI UNIVERSITY </h4>
-            <h4 class="white"><i class="fa fa-twitter"></i> iamadeveloper</h4>
+            <h3>Welcome back, <%= @user.name %> <i class="fa fa-<%= @user.gender == 0? 'mars':'venus'%>"></i></h3>
+            <h4 class="white"><i class="fa fa-map-marker"></i><%= @user.address%></h4>
+            <h4 class="white"><i class="fa fa-birthday-cake" aria-hidden="true"></i><%= @user.birthday.to_s%></h4>
             <% if !current_user?(@user) %>
               <% if current_user.following?(@user) %>
                 <%= render "unfollow" %>
@@ -83,41 +83,7 @@
       <% if (@user == current_user)%>
         <div class="user-menu-content active">
         <h2 class="text-center">Edit Profile</h2>
-        <%= form_for(@user, as: @user, url: registration_path(@user), html: { class:"edit-profile", method: :put }) do |f| %>
-            <% if @user.errors.any? %>
-                <ul>
-                  <% @user.errors.full_messages.each do |msg| %>
-                      <li><%= msg %></li>
-                  <% end %>
-                </ul>
-            <% end %>
-            <div class="field">
-              <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
-            </div>
-
-            <div class="field">
-              <%= f.text_field :name, autofocus: true, placeholder: "Username" %>
-            </div>
-
-            <div class="field">
-              <%= f.password_field :password, autocomplete: "off", placeholder: "Password"  %>
-              <% if @minimum_password_length %>
-                  <br />
-                  <em><%= @minimum_password_length %> characters minimum</em>
-              <% end %>
-            </div>
-
-            <div class="field">
-              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation" %>
-            </div>
-
-            <div class="field">
-              <%= f.password_field :current_password, autocomplete: "off", placeholder: "Current password" %>
-            </div>
-            <a class="btn btn-labeled btn-update-profile btn-info" href="">
-              <span class="btn-label"><i class="fa fa-floppy-o" aria-hidden="true"></i></span>Save Profile
-            </a>
-        <% end %>
+        <%= render "users/form", user: @user%>
       </div>
         <div class="user-menu-content ">
             <h3>
