@@ -12,6 +12,8 @@ User.create! email: "linh.haenie.bk@gmail.com",
              password: "linh123456",
              is_admin: 1, name: "Tao Xanh", avatar: "https://scontent.fhan2-2.fna.fbcdn.net/v/t1.0-9/18300964_1340195982712830_7376374535615802746_n.jpg?oh=1c2e33ae9bf0db25e61ba07bff15d791&oe=5A4C74EF"
 Publisher.create! name: "ABC"
+Genre.create! name: "AAABC"
+Genre.create! name: "vbcd"
 Game.create! name: "Dota",
              story: "abcduowjfw awmflwjf",
              description: "Dota la mot game rat hay, khien nhieu anh em vo cung hung thu",
@@ -24,6 +26,11 @@ Game.create! name: "Half life",
              guide: "jalfwnwhfon anflwhf",
              photo: "http://cdn.ndtv.com/tech/gadgets/valve_dota2_.jpg",
              publisher_id: 1
+GameGenre.create!([
+                      {game_id: 1, genre_id: 1},
+                      {game_id: 2, genre_id: 1},
+                      {game_id: 1, genre_id: 2}
+                  ])
 Review.create!([
                  {user_id: 1,
                   content: "KIRKUS REVIEW

@@ -1,0 +1,189 @@
+
+$maincolor: #6acd79;
+$secondarycolor: #2a2b39;
+
+::selection {color:#fff;background:$secondarycolor;}
+::-moz-selection {color:#fff;background:$secondarycolor;}
+body,html{
+    font-family: 'Raleway', sans-serif;
+    background: url(https://unsplash.imgix.net/uploads/141310026617203b5980d/c86b8baa?q=75&fm=jpg&s=be8d1e8254844f53e56583bd49cf5e77);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:9;
+}
+.bgtint{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba($secondarycolor, .7);
+}
+p{
+    padding:0;
+    margin:0;
+    display: inline-block
+}
+a{
+    color: $secondarycolor;
+    text-decoration: none;
+@include transition(all .2s ease-in-out);
+&:hover{
+     color: $maincolor;
+ }
+}
+.bussinesscard{
+    height:320px;
+    width:428px;
+    overflow: hidden;
+    box-shadow: 0px 0px 43px -10px black;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+@include translate(-50%,-50%);
+.flip{
+@include transition(all .5s ease);
+}
+.front{
+    z-index: 11;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    background: #fff;
+    box-shadow: 0px 0px 33px -1px rgba(0, 0, 0, 0.45);
+@include scale(1);
+@include transition(all .6s ease);
+.top{
+    height: 50%;
+    background: $secondarycolor;
+&:after{
+     position: absolute;
+     content: '';
+     pointer-events: none;
+ }
+&:after{
+     left: 50%;
+     width: 2em;
+     height: 2em;
+ @include transform(translateX(-50%) rotate(45deg));
+     bottom: 9em;
+     z-index: 10;
+     background: inherit;
+ }
+.logo{
+    display: inline-block;
+    background: $maincolor;
+    color: #fff;
+    z-index: 11;
+    padding: .16em;
+    border: 8px solid #fff;
+    position: relative;
+    pointer-events: none;
+@include translateX(-50%);
+    left: 50%;
+    margin-top: .4em;
+    font-size: 4em;
+.fat{
+    font-weight: 800;
+}
+.skinny{
+    font-weight: 100;
+}
+}
+}
+.nametroduction{
+    margin-top: 2.4em;
+@include translateY(0);
+    z-index: 8;
+}
+.name{
+    color: $secondarycolor;
+    font-weight: 400;
+    font-size: 3.2em;
+    text-align: center;
+    position: relative;
+    margin-bottom: .35em;
+&:after{
+     content: '';
+     position: absolute;
+     top: 1.3em;
+     width: 20%;
+     left: 40%;
+     right: 40%;
+     height: 1px;
+     background: $secondarycolor;
+ }
+}
+.introduction{
+    text-align: center;
+    color: $secondarycolor;
+    font-family: 'Old Standard TT', serif;
+    font-style: italic;
+}
+.contact{
+    color: $secondarycolor;
+    margin-left: 1.7em;
+    font-weight: 300;
+    font-size: 1.6em;
+@include translateY(400%);
+span{
+    color: #2D3244;
+    font-size: 1.7em;
+    width: 1.3em;
+    display: inline-block;
+}
+a{
+    position: relative;
+    bottom: .24em;
+}
+}
+}
+.back{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    backface-visibility: hidden;
+    position: absolute;
+}
+}
+
+.tooltip{
+    position: absolute;
+    left: 1em;
+    bottom: 1em;
+    color:#fff;
+    font-weight: 300;
+    padding: .4em;
+    background: $maincolor;
+}
+/* HOVER ANIMATIONS */
+
+.front .top .logo, .front .top, .front .top:after, .front .nametroduction, .front .contact{
+@include transition(.7s all ease-in-out);
+}
+.flip:hover .front .top .logo{
+    margin-top: .28em;
+    font-size: 1.3em;
+    border: 3px solid #fff;
+    margin-left: .15em;
+@include translateX(0);
+    left:0;
+}
+.flip:hover .front .top{
+    height: 15%;
+&:after{
+     width: 1.5em;
+     height: 1.5em;
+     bottom: 16.3em;
+ }
+}
+.flip:hover .front .nametroduction{
+@include translateY(400%);
+}
+.flip:hover .front .contact{
+@include translateY(-52%);
+}

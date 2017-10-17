@@ -56,30 +56,34 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     list_genre_id = []
-    list_genre = JSON.parse(params[:list_genre])
-
     @game = Game.new(game_params)
+    if params[:list_genre] == ''
+      redirect_back fallback_location: { action: "games/new" }
+    else
+      list_genre = JSON.parse(params[:list_genre])
 
-    list_genre.each_with_index do |element, index|
-      genre = Genre.find_by(name: list_genre[index]['tag'])
-      list_genre_id.push(genre.id)
-    end
-    puts list_genre_id
-    list_genre_id = list_genre_id.uniq
-    respond_to do |format|
-      if @game.save
-        list_genre_id.each do |element|
-          GameGenre.create(game_id: @game.id, genre_id: element)
+
+      list_genre.each_with_index do |element, index|
+        genre = Genre.find_by(name: list_genre[index]['tag'])
+        list_genre_id.push(genre.id)
+      end
+      puts list_genre_id
+      list_genre_id = list_genre_id.uniq
+      respond_to do |format|
+        if @game.save
+          list_genre_id.each do |element|
+            GameGenre.create(game_id: @game.id, genre_id: element)
+          end
+          format.html { redirect_to @game, notice: 'Game was successfully created.' }
+          format.json { render :show, status: :created, location: @game }
+        else
+          format.html { render :new }
+          format.json { render json: @game.errors, status: :unprocessable_entity }
         end
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
-        format.json { render :show, status: :created, location: @game }
-      else
-        format.html { render :new }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
       end
     end
-  end
 
+  end
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
