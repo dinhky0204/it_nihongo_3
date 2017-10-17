@@ -61,10 +61,10 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="s4">
           <div class="inner">
             <div class="rating">
-              <span class="rating-num" id="point_avg"><%=@point_avg %></span>
+              <span class="rating-num" id="point_avg"><%=@point_avg/1 %></span>
               <div class="rating-stars">
                 <span><i class="active icon-star"></i></span>
                 <span><i class="active icon-star"></i></span>
@@ -180,17 +180,31 @@
               <input id="rate-point" type="hidden" value="0">
             </section>
         <div class="rate-button">
-          <a class="modal-close waves-effect waves-green btn"  id="rate">Agree</a>
+          <a class="modal-close waves-effect waves-green btn"  id="rate">Rate</a>
         </div>
 
           </div>
         </div>
       </div>
 
-      <div class="show-list-review col-md-offset-2">
+      <div class="show-list-review col-md-offset-2 col-md-8">
         <div class="slider4">
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review1"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review2"></div>
+          <div class="slide" id="review-3">
+            <div class="card darken-1">
+              <div class="card-content white-text review-image">
+                <span class="card-title">Card Title</span>
+                <p>I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+                <a href="#">This is a link</a>
+              </div>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="http://placehold.it/300x250&text=Review2">
+          </div>
           <div class="slide"><img src="http://placehold.it/300x250&text=Review3"></div>
           <div class="slide"><img src="http://placehold.it/300x250&text=Review4"></div>
           <div class="slide"><img src="http://placehold.it/300x250&text=Review5"></div>
@@ -201,13 +215,51 @@
           <div class="slide"><img src="http://placehold.it/300x250&text=Review10"></div>
         </div>
       </div>
-      <p>
+      <div class="row" style="background-color: #ffffff">
+        <div class="col-md-offset-2 col-md-8">
         <strong>Description:</strong>
         <%= raw @game.description %>
-      </p>
+      </div>  
+      </div>
+      
     </div>
   </div>
 </div>
-<script type="text/javascript" charset="utf-8">
-
-</script>
+<div class="bgtint"></div>
+<section class="bussinesscard">
+  <div class="flip">
+    <div class="front">
+      <div class="top">
+        <div class="logo"><span class="fat">E</span><span class="skinny">K</span></div>
+      </div>
+      <div class="nametroduction">
+        <div class="name">Eduard Kosicky</div>
+        <div class="introduction">A Front End Developer</div>
+      </div>
+      <div class="contact">
+        <div class="website">
+          <span class="ion-earth"></span>
+          <a href="#">www.eduardkosicky.me</a>
+        </div>
+        <div class="twitter">
+          <span class="ion-social-twitter"></span>
+          <a href="#">@eduardkosicky</a>
+        </div>
+        <div class="phone ">
+          <span class="ion-ios7-telephone"></span>
+          <a href="#">0118 999 7253</a>
+        </div>
+        <div class="email ">
+          <span class="ion-paper-airplane"></span>
+          <a href="#">eduard@kosicky.me</a>
+        </div>
+      </div>
+    </div>
+    <div class="back"></div> <!--FIXES FONT RENDERING -->
+  </div>
+</section>
+<section class="tooltip">
+  <p>
+    Hover over the card to see the back.
+  </p>
+</section>

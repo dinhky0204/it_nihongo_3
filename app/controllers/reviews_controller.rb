@@ -10,12 +10,13 @@ class ReviewsController < ApplicationController
   # GET /reviews.json
   def index
     @reviews = Review.all.page(params[:page])
-                            .per 10
+                            .per 4
   end
 
   # GET /reviews/1
   # GET /reviews/1.json
   def show
+    @review_comment = ReviewComment.new
   end
 
   # GET /reviews/new

@@ -1,0 +1,32 @@
+<%= form_with(model: review_comment, local: true) do |form| %>
+  <% if review_comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review_comment.errors.count, "error") %> prohibited this review_comment from being saved:</h2>
+
+      <ul>
+      <% review_comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :review_comment_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :review_id %>
+    <%= form.number_field :review_id, id: :review_comment_review_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content, id: :review_comment_content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

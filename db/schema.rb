@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009075557) do
+ActiveRecord::Schema.define(version: 20171015181912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 20171009075557) do
     t.text "story"
     t.text "description"
     t.text "guide"
-    t.integer "publisher_id"
     t.string "photo"
+    t.integer "publisher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(version: 20171009075557) do
     t.datetime "updated_at", null: false
     t.integer "point"
     t.text "message"
+  end
+
+  create_table "review_comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "review_id"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
