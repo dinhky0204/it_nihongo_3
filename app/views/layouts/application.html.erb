@@ -11,6 +11,7 @@
     <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' if (params[:controller] == 'users/registrations' && (params[:action] == "new" || params[:action] == "create")) %>
     <%= stylesheet_link_tag 'profile', media: 'all', 'data-turbolinks-track': 'reload' if (params[:controller] == 'users' && params[:action] == "show") %>
     <%= stylesheet_link_tag 'show_game', media: 'all', 'data-turbolinks-track': 'reload' if (params[:controller] == 'games' && params[:action] == "show") %>
+    <%= stylesheet_link_tag 'show_listreview', media: 'all', 'data-turbolinks-track': 'reload' if (params[:controller] == 'games' && params[:action] == "show") %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'profile', 'data-turbolinks-track': 'reload' if (params[:controller] == 'users' && params[:action] == "show")%>
     <%= stylesheet_link_tag 'static_pages', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'static_pages' %>
