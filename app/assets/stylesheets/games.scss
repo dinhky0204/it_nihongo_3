@@ -93,7 +93,6 @@ body {
     .show-game-image {
       margin-top: 2%;
       img {
-        max-height: 100%;
         max-width: 100%;
         border-radius: 2px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.24);
@@ -357,4 +356,6 @@ pre {
 .rating-stars ul > li.star.selected > i.fa {
   color:#FF912C;
 }
-
+.review-image {
+  background: image-url('background_game.jpg');
+}
