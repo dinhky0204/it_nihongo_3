@@ -36,6 +36,7 @@ class GamesController < ApplicationController
       gon.point4 = (100*@star_4/@total).to_s + "%"
       gon.point5 = (100*@star_5/@total).to_s + "%"
     end
+    @list_rate = RateTable.where(game_id: params[:id])
 
   end
 
