@@ -72,7 +72,7 @@
     <% end %>
       <ul>
         <% @review.review_comments.each do |review_comment|%>
-            <div class="row">
+            <div class="row custom-ul">
               <div class="col-sm-1">
                 <div class="thumbnail">
                   <img class="img-responsive user-photo" src="<%= review_comment.user.avatar.url %>">

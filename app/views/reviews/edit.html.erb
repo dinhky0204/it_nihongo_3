@@ -20,7 +20,7 @@
           <div class="row">
             <div class="col-sm-8">
               <div class="input-field">
-                <%= f.select(:publisher_id, class: "caret") do %>
+                <%= f.select(:game_id, class: "caret") do %>
                     <% Game.all.each do |game| %>
                         <%= content_tag(:option, game.name, value: game.id) %>
                     <% end %>
@@ -39,6 +39,7 @@
             <div class="col-sm-12">
               <br><br>
               <%= f.cktext_area :content, id: :review_content, value: @review.content %>
+              <%= f.text_field :status, value: 1, class: 'hidden' %>
 
             </div>
           </div>
