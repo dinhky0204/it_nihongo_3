@@ -15,6 +15,8 @@ class User < ApplicationRecord
   end
 
   mount_uploader :avatar, GameUploader
+
+  #enum gender: [:male, :female]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,

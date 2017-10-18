@@ -77,42 +77,8 @@
     <div class="col-md-12 user-menu user-pad">
       <% if (@user == current_user)%>
         <div class="user-menu-content active">
-        <h3>Edit Profile</h3>
-        <%= form_for(@user, as: @user, url: registration_path(@user), html: { class:"edit-profile", method: :put }) do |f| %>
-            <% if @user.errors.any? %>
-                <ul>
-                  <% @user.errors.full_messages.each do |msg| %>
-                      <li><%= msg %></li>
-                  <% end %>
-                </ul>
-            <% end %>
-            <div class="field">
-              <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
-            </div>
-
-            <div class="field">
-              <%= f.text_field :name, autofocus: true, placeholder: "Username" %>
-            </div>
-
-            <div class="field">
-              <%= f.password_field :password, autocomplete: "off", placeholder: "Password"  %>
-              <% if @minimum_password_length %>
-                  <br />
-                  <em><%= @minimum_password_length %> characters minimum</em>
-              <% end %>
-            </div>
-
-            <div class="field">
-              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation" %>
-            </div>
-
-            <div class="field">
-              <%= f.password_field :current_password, autocomplete: "off", placeholder: "Current password" %>
-            </div>
-            <a class="btn btn-labeled btn-update-profile btn-info" href="">
-              <span class="btn-label"><i class="fa fa-floppy-o" aria-hidden="true"></i></span>Save Profile
-            </a>
-        <% end %>
+        <h2 class="text-center">Edit Profile</h2>
+        <%= render "users/form", user: @user%>
       </div>
         <div class="user-menu-content ">
             <h3>

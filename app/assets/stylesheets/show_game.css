@@ -141,6 +141,10 @@ a:hover {
 }
 .show-list-review {
     margin-top: 2%;
+    .review-image {
+        background: image-url('background_game.jpg');
+        background-color: rgba(0,0,0,0.6)!important;
+    }
 }
 .write-comment-game {
     margin-top: 20px;
@@ -167,6 +171,12 @@ i {
 }
 }
 
+}
+#review-3 {
+    transition: width 1.5s;
+}
+#review-3:hover {
+    width: 200px;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400);
@@ -205,7 +215,7 @@ body {
 
 .rating-num {
     color: #333333;
-    font-size: 72px;
+    font-size: 500%;
     font-weight: 100;
     line-height: 1em;
 }

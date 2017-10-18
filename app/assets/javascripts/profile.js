@@ -49,7 +49,9 @@ $( document ).ready(function() {
     });
     $('form.edit-profile .btn-update-profile').click(function () {
        $inputs =  $('form.edit-profile input[type!="hidden"]');
+       $selects = $('form.edit-profile select');
        $('form#form-edit-avatar .other-info').append($inputs);
+       $('form#form-edit-avatar .other-info').append($selects);
         $('form#form-edit-avatar').submit();
     });
 });
