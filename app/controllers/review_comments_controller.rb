@@ -1,4 +1,5 @@
 class ReviewCommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
   before_action :set_review_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /review_comments

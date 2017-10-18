@@ -6,7 +6,7 @@ almond@~0.3.1:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/almond/-/almond-0.3.3.tgz#a0e7c95ac7624d6417b4494b1e68bff693168a20"
 
-bootstrap@^3.3.7:
+bootstrap@^3.0.0, bootstrap@^3.3.7:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
 
@@ -14,15 +14,34 @@ jquery-mousewheel@~3.1.13:
   version "3.1.13"
   resolved "https://registry.yarnpkg.com/jquery-mousewheel/-/jquery-mousewheel-3.1.13.tgz#06f0335f16e353a695e7206bf50503cb523a6ee5"
 
+jquery@^1.9.0:
+  version "1.12.4"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.12.4.tgz#01e1dfba290fe73deba77ceeacb0f9ba2fec9e0c"
+
 jquery@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
-select2-bootstrap-theme@^0.1.0-beta.10:
+propellerkit-select2@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/propellerkit-select2/-/propellerkit-select2-1.1.0.tgz#2e2305fc6e14b6b5563b017884098df003f72bd1"
+  dependencies:
+    propellerkit "*.*.*"
+    select2 "^4.0.2"
+    select2-bootstrap-theme "^0.1.0-beta.4"
+
+propellerkit@*.*.*, propellerkit@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/propellerkit/-/propellerkit-1.1.0.tgz#dc86c58dab494b54db9fe0e4a22f75206a13909d"
+  dependencies:
+    bootstrap "^3.0.0"
+    jquery "^1.9.0"
+
+select2-bootstrap-theme@^0.1.0-beta.10, select2-bootstrap-theme@^0.1.0-beta.4:
   version "0.1.0-beta.10"
   resolved "https://registry.yarnpkg.com/select2-bootstrap-theme/-/select2-bootstrap-theme-0.1.0-beta.10.tgz#b9426ecfc03bf4a235e76a132377574310469ac0"
 
-select2@^4.0.4:
+select2@^4.0.2, select2@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/select2/-/select2-4.0.4.tgz#a18a628785f98d13999971ae95d8d7e57268076b"
   dependencies:
