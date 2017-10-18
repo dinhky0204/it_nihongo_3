@@ -51,20 +51,20 @@
     <div class="col-md-12 user-menu-btns">
       <div class="btn-group-vertical square" id="responsive">
         <% if (@user == current_user)%>
-        <a href="#" class="btn btn-block active">
+        <a class="btn btn-block active">
           <i class="fa fa-user fa-3x"></i>
           <div class="overlay">
             <div class="text">My Profile</div>
           </div>
         </a>
-        <a href="#" class="btn btn-default">
+        <a class="btn btn-default">
           <i class="fa fa-users fa-3x"></i>
           <div class="overlay">
             <div class="text">List Following</div>
           </div>
         </a>
         <% end %>
-        <a href="#" class="btn btn-default <%= "active" if @user != current_user%>">
+        <a class="btn btn-default <%= "active" if @user != current_user%>">
           <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
           <div class="overlay">
             <div class="text">List Reviews</div>
@@ -82,7 +82,7 @@
       </div>
         <div class="user-menu-content ">
             <h3>
-              Followers List
+              List Following
             </h3>
             <%= render "relationships/list_following", user: current_user if current_user?(@user)%>
           </div>
@@ -91,7 +91,7 @@
 
       <div class="user-menu-content <%= "active" if @user != current_user%>">
         <h3>
-          Trending
+          Reviews
         </h3>
         <div class="row">
           <div class="col-md-4">

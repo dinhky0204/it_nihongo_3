@@ -49,6 +49,7 @@ gem "bootstrap-kaminari-views"
 gem "redcarpet"
 gem "font-awesome-sass"
 gem "font-awesome-rails"
+gem "react-rails"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

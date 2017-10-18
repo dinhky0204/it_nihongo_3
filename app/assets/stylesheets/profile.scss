@@ -360,6 +360,31 @@ form.edit-profile
     background-color: #00aede;
     color: white;
   }
+  .birthday {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    .date-select {
+      display: inline-block;
+      width: 30%;
+      margin-top: 15px;
+    }
+  }
+
+  .gender-select {
+    width: 30%;
+    margin-top: 15px;
+  }
+
+  select {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    border-radius: 0;
+    border-bottom: 1px solid #00aede;
+  }
+
+}
 
 .list-following {
   list-style-type: none;
@@ -389,31 +414,7 @@ form.edit-profile
     }
   }
 }
-  .birthday {
-    display: flex;
-    justify-content: space-between;
-    align-content: space-between;
-    .date-select {
-      display: inline-block;
-      width: 30%;
-      margin-top: 15px;
-    }
-  }
 
-  .gender-select {
-    width: 30%;
-    margin-top: 15px;
-  }
-
-  select {
-    border: none;
-    box-shadow: none;
-    outline: none;
-    border-radius: 0;
-    border-bottom: 1px solid #00aede;
-  }
-
-}
 /* -- media query for user profile image -- */
 @media (max-width: 767px) {
   .user-image {

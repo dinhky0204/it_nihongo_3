@@ -12,7 +12,7 @@
     <%= stylesheet_link_tag 'profile', media: 'all', 'data-turbolinks-track': 'reload' if (params[:controller] == 'users' && params[:action] == "show") %>
     <%= stylesheet_link_tag 'show_game', media: 'all', 'data-turbolinks-track': 'reload' if (params[:controller] == 'games' && params[:action] == "show") %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'profile', 'data-turbolinks-track': 'reload' if (params[:controller] == 'users' && params[:action] == "show")%>
+    <%= javascript_include_tag 'profile' if (params[:controller] == 'users' && params[:action] == "show")%>
     <%= stylesheet_link_tag 'static_pages', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'static_pages' %>
     <%= stylesheet_link_tag 'reviews', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'reviews' %>
     <%= javascript_include_tag 'reviews' if params[:controller]== "reviews" %>
@@ -51,7 +51,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown"><%= image_tag current_user.avatar.thumb.url || "default-user.jpg", class: "avatar-user"%><%= current_user.name %>
                     <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#"><%= link_to('My Profile', user_path(current_user.id)) %></a></li>
+                    <li data-no-turbolink><a href="#"><%= link_to('My Profile', user_path(current_user), method: :get) %></a></li>
                     <li><a href="#"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></a></li>
                   </ul>
               </li>
