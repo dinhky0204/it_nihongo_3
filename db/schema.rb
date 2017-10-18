@@ -62,17 +62,6 @@ ActiveRecord::Schema.define(version: 20171017052312) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "notifications", force: :cascade do |t|
-    t.integer "from_user_id"
-    t.integer "to_user_id"
-    t.integer "review_id"
-    t.integer "type"
-    t.string "text"
-    t.integer "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "publishers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false

@@ -181,7 +181,7 @@ i {
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400);
 @import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-
+ <%= react_component("HelloWorld") %>
 body {
     font-family: 'Roboto', Helvetica;
     color: #737373;
