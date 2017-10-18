@@ -1,0 +1,6 @@
+<% followings = user.following %>
+<ul class="list-following">
+  <% followings.each do |following| %>
+    <%= render "relationships/form_following", following: following%>
+  <% end %>
+</ul>

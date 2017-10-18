@@ -12,7 +12,7 @@
     <%= stylesheet_link_tag 'profile', media: 'all', 'data-turbolinks-track': 'reload' if (params[:controller] == 'users' && params[:action] == "show") %>
     <%= stylesheet_link_tag 'show_game', media: 'all', 'data-turbolinks-track': 'reload' if (params[:controller] == 'games' && params[:action] == "show") %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'profile', 'data-turbolinks-track': 'reload' if (params[:controller] == 'users' && params[:action] == "show")%>
+    <%= javascript_include_tag 'profile' if (params[:controller] == 'users' && params[:action] == "show")%>
     <%= stylesheet_link_tag 'static_pages', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'static_pages' %>
     <%= stylesheet_link_tag 'reviews', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'reviews' %>
     <%= javascript_include_tag 'reviews' if params[:controller]== "reviews" %>
@@ -32,11 +32,26 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if current_user.present? %>
+              <li class="notifications">
+                <%= link_to notifications_path, class: "notifications-icon", method: :put, remote: true do %>
+                  <i class="fa fa-bell"></i>
+                  <% counter = current_user.notifications.filter_not_seen.count %>
+                  <div class="counter" style="display: <%= counter == 0? 'none': 'block'%>"><%= counter%></div>
+                <% end %>
+                <div class="box">
+                  <div class="header">
+                    <p>Notification</p>
+                  </div>
+                  <ul class="list-detail">
+                    <%= render "notifications/list_in_top", user: current_user%>
+                  </ul>
+                </div>
+              </li>
               <li>
                 <a class="dropdown-toggle" data-toggle="dropdown"><%= image_tag current_user.avatar.thumb.url || "default-user.jpg", class: "avatar-user"%><%= current_user.name %>
                     <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#"><%= link_to('My Profile', user_path(current_user.id)) %></a></li>
+                    <li data-no-turbolink><a href="#"><%= link_to('My Profile', user_path(current_user), method: :get) %></a></li>
                     <li><a href="#"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></a></li>
                   </ul>
               </li>

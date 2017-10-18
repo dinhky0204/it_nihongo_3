@@ -1,0 +1,8 @@
+<li>
+  <%= image_tag notification.to_user.avatar.thumb.url || "default-user.jpg", class: "avatar" %>
+  <% from_user_url = link_to notification.from_user.name, user_path(notification.from_user), target: "_blank" %>
+  <div>
+    <p><%= "#{from_user_url} has followed you".html_safe%></p>
+    <p><i class="icon-action fa fa-user-plus"></i><span class="time-ago">  <%= time_ago_in_words notification.updated_at%></span></p>
+  </div>
+</li>

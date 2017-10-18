@@ -1,0 +1,11 @@
+<li class="following-item">
+  <div class="box-info">
+    <%= image_tag following.avatar.url || "default-user.jpg", class: "avatar flex-item"%>
+    <%= link_to user_path(following) do %>
+      <h4 class="username"><%= following.name%></h4>
+    <% end %>
+  </div>
+  <div class="flex-item">
+    <%= render "relationships/form_follow", user: following%>
+  </div>
+</li>

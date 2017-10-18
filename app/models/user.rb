@@ -8,6 +8,12 @@ class User < ApplicationRecord
            dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :notifications, -> { order(updated_at: :desc) }, foreign_key: "to_user_id" do
+    def filter_not_seen()
+      where({:status => Notification.statuses[:not_seen]})
+    end
+  end
+
   mount_uploader :avatar, GameUploader
 
   #enum gender: [:male, :female]

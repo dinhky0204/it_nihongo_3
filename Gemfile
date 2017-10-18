@@ -78,3 +78,6 @@ gem "bootstrap-sass", "~> 3.3.6"
 
 # use jquery
 gem "jquery-rails"
+
+# user font awesome
+gem "font-awesome-rails"

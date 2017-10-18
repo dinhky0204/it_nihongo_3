@@ -2,8 +2,10 @@
  * Created by manhnd on 05/10/2017.
  */
 $(document).ready(function() {
-    var $btnSets = $('#responsive'),
-        $btnLinks = $btnSets.find('a');
+    var $btnSets = $('#responsive');
+    var $btnLinks = $btnSets.find('a');
+    console.log($btnSets);
+    console.log($btnLinks);
     $btnLinks.click(function(e) {
         e.preventDefault();
         $(this).siblings('a.active').removeClass("active");

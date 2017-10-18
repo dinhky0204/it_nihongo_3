@@ -1,0 +1,5 @@
+<% if notification.follow?
+     from_user_url = link_to notification.from_user.name, user_path(notification.from_user), target: "_blank"
+%>
+    <%= "<li><h4><i class='fa fa-user coral'></i> #{from_user_url} followed you</h4></li>".html_safe %>
+<% end %>
