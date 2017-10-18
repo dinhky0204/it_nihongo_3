@@ -27,6 +27,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # required for settings form to submit when password is left blank
     @user = User.find(current_user.id);
     current_password = params[:user][:current_password];
+    puts params[:user];
     params[:user].delete("current_password");
     if params[:user][:password].blank?
       params[:user].delete("password");
@@ -45,7 +46,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         end
     #end
 
-    if @user.update_attributes(params[:user].permit(:name, :email, :password, :password_confirmation,:avatar, :avatar_cache, :remove_avatar))
+    if @user.update_attributes(params[:user].permit(:name, :email, :gender, :address, :birthday, :password, :password_confirmation,:avatar, :avatar_cache, :remove_avatar))
       set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case his password changed
       sign_in @user, :bypass => true
@@ -86,7 +87,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_account_update_params
-     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name, :password, :password_confirmation, :current_password, :avatar, :avatar_cache, :remove_avatar])
+     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name, :gender, :address, :birthday, :password, :password_confirmation, :current_password, :avatar, :avatar_cache, :remove_avatar])
    end
 
   #The path used after sign up.
