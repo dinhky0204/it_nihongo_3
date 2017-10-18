@@ -1,0 +1,61 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <h1>Dashboard</h1>
+	<div class="row col-md-12">
+      <div class="col-md-4 col-md-offset-1">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-6">
+                <i class="fa fa-tags fa-5x"></i>
+              </div>
+              <div class="col-xs-6 text-right">
+                <p class="announcement-heading"><%= @count_genres %></p>
+                <p class="announcement-text">Genres</p>
+              </div>
+            </div>
+          </div>
+          <a href="#">
+            <div class="panel-footer announcement-bottom">
+              <div class="row">
+                <div class="col-xs-6">
+                  <%= link_to "More info", admin_genres_path %>
+                </div>
+                <div class="col-xs-6 text-right">
+                  <i class="fa fa-arrow-circle-right"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-6">
+                <i class="fa fa-list-alt fa-5x"></i>
+              </div>
+              <div class="col-xs-6 text-right">
+                <p class="announcement-heading"><%= @count_puplishers %></p>
+                <p class="announcement-text"> Publishers</p>
+              </div>
+            </div>
+          </div>
+          <a href="#">
+            <div class="panel-footer announcement-bottom">
+              <div class="row">
+                <div class="col-xs-6">
+                 <%= link_to "More info", admin_publishers_path %>
+                </div>
+                <div class="col-xs-6 text-right">
+                  <i class="fa fa-arrow-circle-right"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div><!-- /.row -->
+    </div>

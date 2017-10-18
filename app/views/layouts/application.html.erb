@@ -16,8 +16,12 @@
     <%= stylesheet_link_tag 'static_pages', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'static_pages' %>
     <%= stylesheet_link_tag 'reviews', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'reviews' %>
     <%= javascript_include_tag 'reviews' if params[:controller]== "reviews" %>
-
+    <%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'admin' %>
   </head>
+  <% if current_user.present? && current_user.is_admin? && params[:controller]== "admin" %>
+     <%= render 'admin/navigation' %>
+  <% else %> 
+   
   <body class="body">
   <div class="overlay">
     <nav class="navbar navbar-inverse">
@@ -26,6 +30,9 @@
           <%= link_to "ゲームセンター", root_path, :class => "navbar-brand" %>
         </div>
         <ul class="nav navbar-nav">
+          <% if current_user.present? && current_user.is_admin? %>
+          <li><%= link_to('Admin', admin_dashboard_path) %></li>
+          <% end %>
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">Page 1</a></li>
           <li><a href="#">Page 2</a></li>
@@ -74,4 +81,5 @@
     <%= yield %>
   </div>
   </body>
+   <% end %> 
 </html>

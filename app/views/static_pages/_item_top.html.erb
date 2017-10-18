@@ -1,13 +1,14 @@
-<div class="input-field col s6">
+<div class="input-field col-md-12">
   <%= form_tag do %>
       <div id="select-genre-top">
-        <%= select_tag :genre, options_for_select(@genres.collect{|g| [g.name, g.id]}, selected: params[:genre]), prompt: "Select country", class: "form-control", id: "genre-select" %>
+        <%= select_tag :genre, options_for_select(@genres.collect{|g| [g.name, g.id]}, selected: params[:genre]), prompt: "Select country", id: "genre-select" %>
       </div>
   <% end %>
+  
 <div id="games-genre-top">
   <div class="row" id="game-top-display">
     <% if @game_tops.any? %>
-        <%= @game_tops.each do |game_top| %>
+        <% @game_tops.each do |game_top| %>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
               <div class="panel panel-default">
                 <a href=""><img class="display-center"

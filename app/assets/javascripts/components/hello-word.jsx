@@ -1,5 +1,9 @@
 class HelloWorld extends React.Component {
+
     render() {
-        return <h1>Hello World</h1>
+        var total = this.props.total
+        return <div>Hello World
+            {total}
+        </div>
     }
 }

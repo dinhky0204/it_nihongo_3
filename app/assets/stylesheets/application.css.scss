@@ -120,3 +120,8 @@ a:hover {
   height: 45px;
   margin-right: 15px;
 }
+
+nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    height: 0 !important;
+    line-height: 0 !important
+  }
