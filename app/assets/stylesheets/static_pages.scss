@@ -1,3 +1,14 @@
+@import "materialize/components/color";
+@import 'materialize';
+@import "materialize/extras/nouislider";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "font-awesome";
+.container {
+    width: 90%;
+}
+h5 {font-size: 15px;}
+h4 {font-size: 24px;}
+h2 {font-size: 30px;}
 .glyphicon { margin-right:5px;}
 .top-hr hr {width: 90%; align:center;}
 .section-box h2 {
@@ -44,7 +55,6 @@
 
 .email {
     padding-bottom: 10px;
-    font-size: 1em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
