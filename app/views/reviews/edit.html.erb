@@ -31,15 +31,18 @@
             <div class="col-sm-4">
               <br>
               <button class="btn btn-primary pmd-btn-raised pull-right btn-lg btn-publish">
-                <%= "Post" %>
+                Post
               </button>
+              <button class="btn btn-default pmd-btn-raised pull-right btn-lg btn-draft" style="margin-right: 10px">
+                Draft
+              </button>
+              <%= f.hidden_field :status, class: "status" %>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-12">
               <br><br>
               <%= f.cktext_area :content, id: :review_content, value: @review.content %>
-              <%= f.text_field :status, value: 1, class: 'hidden' %>
 
             </div>
           </div>
