@@ -6,8 +6,9 @@ class RateController < ApplicationController
   end
   def update
     @status = 2
+    puts "=================================>"
     @rate = RateTable.where(game_id: params['game_id'].to_i, user_id: current_user.id).first
-    puts "===========>"
+
     if @rate!= nil
       if params['comment']!=''
         @rate.message = params['comment']
@@ -19,7 +20,7 @@ class RateController < ApplicationController
       end
       @rate.save
     else
-      RateTable.create(game_id: params['game_id'].to_i, user_id: current_user.id, point: params['point'], message: params['comment'])
+      @rate = RateTable.create(game_id: params['game_id'].to_i, user_id: current_user.id, point: params['point'], message: params['comment'])
       @status = 0
     end
     @total = RateTable.where(game_id: params['game_id'].to_i).count
@@ -60,7 +61,9 @@ class RateController < ApplicationController
             point2: @point2,
             point3: @point3,
             point4: @point4,
-            point5: @point5
+            point5: @point5,
+            rate_comment: @rate.message,
+            rate_number: @rate.point.to_i
         }].to_json
       end
     end
