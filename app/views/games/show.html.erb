@@ -152,7 +152,11 @@
           <div>
             <div class="input-field col s12">
               <i class="material-icons prefix">mode_edit</i>
-              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+              <% if @current_rate %>
+                <textarea id="icon_prefix2" class="materialize-textarea"><%= @current_rate.message %></textarea>
+              <% else %>
+                  <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+              <% end %>
               <label for="icon_prefix2">Write comment</label>
             </div>
             <section class='rating-widget'>
@@ -217,12 +221,78 @@
       </div>
       <div class="row" style="background-color: #ffffff">
         <div class="col-md-offset-2 col-md-8">
-        <strong>Description:</strong>
-        <%= raw @game.description %>
-      </div>  
+         <strong>Description:</strong>
+          <%= raw @game.description %>
+        </div>
+      </div>
+      <div class="show-rate-container row">
+        <div class="col-md-offset-2 col-md-8 rate-title">
+          <span>Comments</span>
+        </div>
+        <div class="show-rate-box col-md-offset-2 col-md-8">
+          <% @list_rate.each do |rate_item| %>
+            <div class="show-rate-item-box">
+              <div class="row rate-item" >
+                <div class="user-img col-md-2">
+                  <%= image_tag rate_item.user.avatar.thumb.url || "default-user.jpg", class: "avatar-user"%>
+                  <br>
+                  <span>
+                    <%= rate_item.user.name %>
+                  </span>
+                </div>
+                <div class="rate-content col-md-6">
+                  <% if rate_item.user.id == current_user.id %>
+                    <div id="current-rate-star-number">
+                      <% rate_item.point.times do |rate_star| %>
+                          <span><i class="rated-star icon-star"></i></span>
+                      <% end %>
+                    </div>
+                    <div class="rate-message">
+                        <span id="current_comment">
+                          <%= rate_item.message %>
+                        </span>
+                    </div>
+                      <% else %>
+                      <div class="rate-star-number">
+                        <% rate_item.point.times do |rate_star| %>
+                            <span><i class="rated-star icon-star"></i></span>
+                        <% end %>
+                      </div>
+                        <span>
+                          <%= rate_item.message %>
+                        </span>
+                  <% end %>
+                  </div>
+                </div>
+            </div>
+              <hr>
+          <% end %>
+
+          <% if !@current_rate %>
+            <div class="show-rate-item-box current-rate-box">
+              <div class="row rate-item">
+                <div class="user-img col-md-2">
+                  <%= image_tag current_user.avatar.thumb.url || "default-user.jpg", class: "avatar-user"%>
+                  <%= current_user.name %>
+                </div>
+                <div class="rate-content col-md-6">
+                  <div id="current-rate-star-number">
+                    <% 5.times do |rate_star| %>
+                        <span><i class="rated-star icon-star"></i></span>
+                    <% end %>
+                  </div>
+                  <div class="rate-message">
+                      <span id="current_comment">
+                      </span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
       
     </div>
   </div>
-  <%= react_component("HelloWorld", {total: @total}) %>
 </div>

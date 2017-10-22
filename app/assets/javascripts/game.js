@@ -46,14 +46,13 @@ $(document).ready(function () {
                 limit: Infinity
             }
         })
-        $("#rate").off("click");;
         $("#rate").on('click', function () {
             var get_url = window.location.pathname.split("/")
             var comment = $("#icon_prefix2").val()
             var respon_value
             Materialize.toast('You Rated', 4000);
-            console.log('okok');
             game_id = get_url[2]
+
             $.ajax({
                 url: "/rate",
                 type: "POST",
@@ -86,6 +85,14 @@ $(document).ready(function () {
                         $("#star-3").text(respon_value[0].star3);
                         $("#star-4").text(respon_value[0].star4);
                         $("#star-5").text(respon_value[0].star5);
+                        $("#current_comment").text(respon_value[0].rate);
+                        $("#current-rate-star-number>span>i.rated-star").removeAttr("class");
+
+                        for(var i = 0; i < parseInt(respon_value[0].rate_number) ; i++) {
+                            $("#current-rate-star-number").append('<span><i class="rated-star icon-star"></i></span>')
+                        }
+                        $("#current_comment").text(respon_value[0].rate_comment);
+                        $(".current-rate-box").show()
                     }
                 }
             });
