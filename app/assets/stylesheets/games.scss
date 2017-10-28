@@ -359,3 +359,25 @@ pre {
 .review-image {
   background: image-url('background_game.jpg');
 }
+.rate-content {
+  border-left: 3px solid orange;
+  font-size: 18px;
+  padding-bottom: 8px;
+}
+.rated-star {
+  color: #91b2ff;
+}
+.current-rate-box {
+  display: none;
+}
+.show-rate-item-box {
+  margin-top: 5px;
+}
+.rate-title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid yellowgreen;
+  span {
+    font-size: 22px;
+  }
+}
