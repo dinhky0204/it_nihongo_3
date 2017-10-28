@@ -16,7 +16,6 @@ class RelationshipsController < ApplicationController
             status: Notification.statuses[:not_seen]
         );
       end
-      puts @notification
       @notification.save
     end
     respond_to do |format|
