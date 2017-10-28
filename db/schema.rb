@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 20171018140652) do
     t.text "story"
     t.text "description"
     t.text "guide"
-    t.string "photo"
     t.integer "publisher_id"
+    t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

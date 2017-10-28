@@ -1,5 +1,3 @@
 <% user.notifications.each do |notification| %>
-  <% if notification.follow? %>
     <%= render "notifications/follow_type_in_top_list", notification: notification %>
-  <% end %>
 <% end %>
