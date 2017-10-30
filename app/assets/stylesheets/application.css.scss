@@ -154,3 +154,104 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
     height: 0 !important;
     line-height: 0 !important
   }
+#search-form {
+
+  #search-input {
+    margin-top: 10px;
+    max-height: 30px;
+    height: 25px;
+  }
+
+  input {
+    outline: none;
+    margin: 0;
+    color: black;
+  }
+  input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    font-family: inherit;
+    font-size: 100%;
+  }
+  input::-webkit-search-decoration,
+  input::-webkit-search-cancel-button {
+    display: none;
+  }
+
+
+  input[type=search] {
+    background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    border: solid 1px #ccc;
+    padding: 0px 0px 0px 30px;
+    width: 55px;
+
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+  }
+  input[type=search]:focus {
+    width: 130px;
+    background-color: #fff;
+    border-color: #66CC75;
+
+    -webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+    -moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+    box-shadow: 0 0 5px rgba(109,207,246,.5);
+  }
+
+
+  input:-moz-placeholder {
+    color: #999;
+  }
+  input::-webkit-input-placeholder {
+    color: #999;
+  }
+
+}
+.search-result {
+  height: auto;
+  display: none;
+  color: black;
+  position: absolute;
+  height: auto;
+  background: white;
+  min-width: 100%;
+  overflow: hidden;
+  border: 1px solid #bdc3c7;
+  box-shadow: 1px 2px 3px grey;
+  .search-header {
+    padding: 15px 0 10px 15px;
+  }
+  ul {
+    padding: 0;
+    min-height: 50px;
+    height: auto;
+    li {
+      margin: 0;
+      background-color: red;
+      width: 100%;
+      display: block;
+      position: relative!important;
+      padding: 10px 10px;
+      line-height: 10px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      background: #ecf0f1;
+      a {
+        color: #3498db;
+      }
+      a:hover {
+        text-decoration: none!important;
+      }
+      a:active {
+        text-decoration: none!important;
+      }
+      a:visited {
+        text-decoration: none!important;
+      }
+    }
+  }
+}

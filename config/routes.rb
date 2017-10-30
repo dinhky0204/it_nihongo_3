@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'rates' => 'rate#index'
   post 'rate' => 'rate#update'
+  post 'search' => 'search#search'
 
   # for notifications
   mount ActionCable.server => '/cable'
