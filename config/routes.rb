@@ -28,7 +28,9 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships,       only: [:create, :destroy]
-  resource  :notifications, only: [:update]
+  resource  :notifications, only: [:update] do
+    post "seen_notification"
+  end
   root :to => "static_pages#home"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'rates' => 'rate#index'

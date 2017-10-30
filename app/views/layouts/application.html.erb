@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MovieReview</title>
+    <title>GameReview</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag  'games', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller]== "games" %>
@@ -45,6 +45,9 @@
               </form>
             </div>
             <div class="search-result">
+              <div class="search-header">
+                <p>Search result</p>
+              </div>
               <ul id="list-item-result">
                 <li class="row"><span>Result</span></li>
               </ul>

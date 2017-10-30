@@ -14,13 +14,8 @@ App.notifications = App.cable.subscriptions.create("NotificationsChannel", {
         // Called when there's incoming data on the websocket for this channel
         if(typeof data.message === 'undefined') data.message = "";
 
-        $(".notifications .counter").html(data.counter);
         $(".notifications .list-detail").html(data.list_notifications_html);
-        if(data.counter == 0) {
-            $(".notifications .counter").css({'display': 'none'});
-        } else {
-            $(".notifications .counter").css({'display': 'block'});
-        }
+        this.checkCounter(data.counter);
 
         var notification = new Notification('', {
             icon: '<%= asset_path('icon-notification.png') %>',
@@ -28,17 +23,37 @@ App.notifications = App.cable.subscriptions.create("NotificationsChannel", {
         });
 
         setTimeout(function() { notification.close() }, 5000);
-
+        var that = this;
         if(typeof data.url !== 'undefined') {
             notification.onclick = function(){
                 notification.close();
                 event.preventDefault();
-                window.open(data.url, function(){
-                    var btnGrVtc = $('.btn-group-vertical a');
-                    console.log(btnGrVtc);
-                    alert("abc")
+                data.counter -= 1;
+                console.log(data.counter);
+                that.checkCounter(data.counter);
+                $.ajax({
+                    data: {notification_id: data.notification_id},
+                    type: 'POST',
+                    url: '<%= Rails.application.routes.url_helpers.seen_notification_notifications_path%>',
+                    dataType: 'json',
+                    success: function() {
+                        console.log("ok");
+                    },
+                    error: function(){
+                        console.log("error")
+                    }
                 });
+                window.location = data.url;
             }
+        }
+    },
+
+    checkCounter: function(counter){
+        $(".notifications .counter").html(counter);
+        if(counter == 0) {
+            $(".notifications .counter").css({'display': 'none'});
+        } else {
+            $(".notifications .counter").css({'display': 'block'});
         }
     }
 });

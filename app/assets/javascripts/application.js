@@ -63,9 +63,12 @@ $(document).ready(function(){
             }
         });
     });
-    // $("#search-container").focusout(function () {
-    //     $(".search-result").hide()
-    // })
+    $("#search-container").focusout(function () {
+        $(".search-result").hide()
+    })
+    $(".search-result").hover(function () {
+        $(".search-result").show()
+    })
     $("#search-input").keyup(function (e) {
         $(".search-result").show();
         var respon_value

@@ -14,9 +14,8 @@ class RelationshipsController < ApplicationController
             type: Notification.types[:follow],
             review_id: -1,
             status: Notification.statuses[:not_seen]
-        );
+        )
       end
-      puts @notification
       @notification.save
     end
     respond_to do |format|

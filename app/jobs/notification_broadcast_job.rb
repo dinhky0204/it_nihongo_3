@@ -2,9 +2,14 @@ class NotificationBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(notification)
-    message = " has followed you"
-    @from_user = User.find_by(id: notification.from_user_id)
-    @to_user =  User.find_by(id: notification.to_user_id)
+    message = notification.get_message()
+    url = notification.get_url();
+    puts "===============================================\n"
+    puts message;
+    puts "===============================================\n"
+    @from_user = notification.from_user
+    @to_user =  notification.to_user
+
     counter = @to_user.notifications.filter_not_seen.count
 
     # fix error Devise could not find the Warden::Proxy
@@ -14,13 +19,10 @@ class NotificationBroadcastJob < ApplicationJob
         warden: proxy
     )
     list_notifications_html = renderer.render(partial: "notifications/list_in_top.html.erb", locals: { user: @to_user })
-    if @from_user
-      message = @from_user.name + message
-    end
-    if @to_user
-      url = Rails.application.routes.url_helpers.user_url(@to_user);
-    end
+
+
     ActionCable.server.broadcast "notification_channel:#{notification.to_user_id}",
+                                 notification_id: notification.id,
                                  counter: counter,
                                  notification: notification,
                                  message: message,
