@@ -22,6 +22,7 @@ class NotificationBroadcastJob < ApplicationJob
 
 
     ActionCable.server.broadcast "notification_channel:#{notification.to_user_id}",
+                                 notification_id: notification.id,
                                  counter: counter,
                                  notification: notification,
                                  message: message,

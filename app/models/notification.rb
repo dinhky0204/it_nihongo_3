@@ -3,17 +3,25 @@ class Notification < ApplicationRecord
 
   belongs_to :from_user, class_name: "User"
   belongs_to :to_user, class_name: "User"
-  belongs_to :review, class_name: "Review"
+  belongs_to :review, optional: true
+
+  validates_uniqueness_of :to_user_id, :if => :check_review_exits_and_new_reviews?, scope: [:review_id, :from_user_id]
   enum type: [:follow, :like, :comment, :new_review]
   enum status: [:not_seen, :seen]
-
 
   after_create_commit {
     NotificationBroadcastJob.perform_later(self)}
 
-
+  after_update_commit {
+    if self.status_previously_changed? && self.not_seen?
+      NotificationBroadcastJob.perform_later(self)
+    end
+  }
   self.inheritance_column = :_type_disabled
 
+  def check_review_exits_and_new_reviews?
+    self.review_id != -1 && self.new_review?
+  end
 
   def get_message
     if self.follow?
