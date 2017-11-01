@@ -91,13 +91,25 @@
                       <strong style="font: italic bold 15px/30px Georgia, serif;"><%= review_comment.user.name %></strong>
                       <span class="text-muted">commented <%= time_ago_in_words review_comment.created_at %> ago</span>
                       <% if user_signed_in? && current_user.id == review_comment.user.id %>
-                          <i class="edit-comment fa fa-edit" style="margin-left: 20px"></i>
-                          <i class="delete-comment fa fa-trash"></i>
+                          <i class="edit-comment fa fa-edit" style="margin-left: 20px" data-commentid="<%= review_comment.id %>"></i>
+                          <%= link_to review_comment_path(review_comment),data: {confirm: "Are you sure?"},
+                                      method: :delete do %>
+                              <i class="delete-comment fa fa-trash"></i>
+                          <% end %>
                       <% end %>
                     </div>
                     <div class="panel-body" style="margin: 10px 0 10px 0">
                       <%= review_comment.content %>
                     </div><!-- /panel-body -->
+
+                    <!--Edit comment-->
+                    <div class="edit-comment-content field" style="display: none">
+                      <input type="hidden" name="review-id" value="<%= @review.id %>">
+                      <input name="comment" class="edit-text"></input>
+                      <button class="btn btn-custom btn-edit-comment" type="submit">
+                        <%= "Edit" %>
+                      </button>
+                    </div>
                   </div><!-- /panel panel-default -->
                 </div><!-- /col-sm-5 -->
               </div>
