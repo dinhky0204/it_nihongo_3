@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   get 'static_pages/help'
   get 'static_pages/genre_top'
+  
+  get 'home_page/index'
+  get 'home_page/genre_top'
 
   resources :review_comments
 

@@ -17,6 +17,7 @@
     <%= stylesheet_link_tag 'reviews', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'reviews' %>
     <%= javascript_include_tag 'reviews' if params[:controller]== "reviews" %>
     <%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'admin' %>
+     <%= stylesheet_link_tag 'home_page', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'home_page' %>
   </head>
   <% if current_user.present? && current_user.is_admin? && params[:controller]== "admin" %>
      <%= render 'admin/navigation' %>

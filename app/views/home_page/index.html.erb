@@ -1,0 +1,168 @@
+<div class="container">
+    <div class="container row span12 promo--header"><h1>Reviews</h1></div>
+  <section class="promo--container container row span12  js-impression-tracking " data-impression-tracking="">
+      <a  href=https://www.gamespot.com/reviews/super-mario-odyssey-review/1900-6416795/
+          class="promo--object promo-type--single  js-event-tracking">
+      <div class="promo--image promo--wide promo--offset-wide">
+                      <div class="content">
+                          <img src="https://static.gamespot.com/uploads/screen_kubrick/1197/11970954/3307360-super-mario-odyssey-review-promo1-2.jpg" alt="Super Mario Odyssey Review">
+                          </div>
+                          </div>
+                          <div class="promo--offset-square promo--square promo--single-metadata">
+                              <div class="content">
+                              <div class="promo--media-type ">
+                              <div class="content">
+                                  <div class="promo--review-score circle circle-big text-center">10</div>
+                                  </div>
+                                  </div>
+                                  <summary class="promo--metadata">
+                                      <h2 class="text-bold text-color-primary">Super Mario Odyssey Review</h2>
+                                      <span class="text-simple">Super Mario Odyssey is a massive and magnificent celebration of Nintendo&#039;s most iconic hero.</span>
+                                      </summary>
+                                      </div>
+                                      </div>
+                                      </a>
+                                      </section>
+                                      
+                                      
+                                      
+         
+                                    <div class="row promo-strip-list">
+   
+        <% (0..3).each do |i| %>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 slide-item-game">
+            <a href="#">
+                <div class="panel panel-default">
+        <img class="display-center"
+                        src="https://static.gamespot.com/uploads/screen_small/1579/15794034/3292649-project-cars-2-review-promo1-2.jpg"></img>
+    </div>
+    <div class="circle circle-small text-center col-md-3">8</div>
+    <h4 class="col-md-9 text-bold hover-primary">Title title</h4>
+    </a>
+</div>
+        <% end %>
+    </div>  
+                     
+                     
+    <div class="row">
+        <div class="col-md-8 content-latest">
+            <div class="pod-header">
+                <div class="pod-header-item col-md-4">
+                    <div class="pod-title">
+                        <h4 class="text-bold"><span class="glyphicon glyphicon-fire"></span> Latest Reviews</h4>
+                        
+                    </div>
+                </div>
+                <span class="col-md-8"><hr></hr></span>
+            </div>
+            <div class="media-game-list">
+                <% @last_reviews.each do |last_review| %>
+            
+            <div class="media-game">
+                <a class="media-game-item">
+                    <div class="col-md-4 media-figure media-figure--medium">
+                       <div class="media-img imgflare--boxart">
+                           <%if last_review.game.photo==nil %>
+                           <%= image_tag("<%=last_review.game.photo") %>
+                           <% else %>
+                           <img src="<%=last_review.game.image%>"></img>
+                           <% end %>
+                       </div>  
+                    </div>
+                    <div class="col-md-7 media-content">
+                        <a href="<%= review_url(last_review) %>" class="text-bold media-content-title"><%=last_review.title%></a>
+                        <div><span class="media-content-pre">Game: </span><a href="#" class="media-content-des"><%=last_review.game.name%></a></div>
+                        <div><span class="media-content-pre">Review by: </span><a href="#" class="media-content-des"><%=last_review.user.name%></a></div>
+                        <div class="media-content-detail"><span><%= truncate(last_review.content, length: 400)%></span></div>
+                        <small class="time-ago"><%= time_ago_in_words last_review.created_at %></small>
+                    </div>
+                    
+                    <div class="circle circle-small text-center col-md-1">
+                           <%= @points[last_review.game.id] %>
+                        </div>
+                </a>
+            </div>
+            <div class="site-hr"><hr></hr></div>
+            <% end %>
+            </div>
+        </div>
+        
+        
+        <div class="col-md-4">
+            <div class="pod-header">
+                <div class="pod-header-item col-md-8">
+                    <div class="pod-title">
+                        <h4 class="text-bold"><span class="glyphicon glyphicon-heart"></span> Top Reviews</h4>
+                        
+                    </div>
+                </div>
+                <span class="col-md-4"><hr></hr></span>
+            </div>
+            <div class="pod-body">
+                <article class="media media-is-top"></article>
+                <div class="input-field col-md-12">
+  <%= form_tag do %>
+      <div id="select-genre-top">
+        <%= select_tag :genre, options_for_select(@genres.collect{|g| [g.name, g.id]}, selected: params[:genre]), id: "genre-select", class: "form-control" %>
+      </div>
+  <% end %>
+  
+<div id="games-genre-top">
+  <div class="row" id="game-top-display">
+    <% if @genre_review_tops.any? %>
+        <% @genre_review_tops.each do |top| %>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <div class="panel panel-default">
+                <a href="">
+                    <%if top.photo==nil %>
+                           <%= image_tag("<%=top.photo", class: "display-center") %>
+                           <% else %>
+                           <img class="display-center" src="<%=top.image%>"></img>
+                           <% end %>
+                                </a>
+              </div>
+            </div>
+            <div class="col-md-6"><%= top.name %></div>
+  <div class="top-hr"><hr/></div>
+        <% end %>
+    <% end %>
+</div>
+</div>
+</div>
+            </div>
+        </div>
+    </div>                       
+    
+    <script>
+        $(document).on("change", "#genre-select", function () {
+            var genre = $(this).val();
+            $.ajax({
+                url: "/home_page/genre_top",
+                method: "GET",
+                dataType: "json",
+                data: {genre: genre},
+                error: function (xhr, status, error) {
+                    console.error('AJAX Error: ' + status + error);
+                },
+                success: function (response) {
+                    console.log(response);
+                    var games = response["games"];
+                    $('#games-genre-top').html("");
+                    if(games.length > 0){
+                        for (var i = 0; i < games.length; i++) {
+                            $("#games-genre-top").append(
+                                '<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">' +
+                                  '<div class="panel panel-default">' +
+                                    '<a href=""><img class="display-center" src="https://static.gamespot.com/uploads/screen_small/1579/15794034/3292649-project-cars-2-review-promo1-2.jpg"></img></a>' +
+                                  '</div>' +
+                                '</div>' +
+                                '<div class="col-md-6">' + games[i]["name"] + '</div>' +
+                                '<div class="top-hr"><hr/></div>');
+                        }    
+                    }
+                    
+
+                }
+            });
+        });
+    </script>
