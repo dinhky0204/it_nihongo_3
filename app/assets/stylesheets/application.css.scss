@@ -223,6 +223,7 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
   overflow: hidden;
   border: 1px solid #bdc3c7;
   box-shadow: 1px 2px 3px grey;
+  z-index: 100;
   .search-header {
     padding: 15px 0 10px 15px;
   }
@@ -231,6 +232,11 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
     min-height: 50px;
     height: auto;
     li {
+      img {
+        float: left;
+        width: 40px;
+        height: 40px;
+      }
       margin: 0;
       background-color: red;
       width: 100%;
@@ -241,15 +247,12 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
       border-top: 1px solid rgba(0, 0, 0, 0.1);
       background: #ecf0f1;
       a {
-        color: #3498db;
+        margin-left: 10px;
+        color: #000000;
+        font-size: 18px;
+        top: 20px;
       }
       a:hover {
-        text-decoration: none!important;
-      }
-      a:active {
-        text-decoration: none!important;
-      }
-      a:visited {
         text-decoration: none!important;
       }
     }
