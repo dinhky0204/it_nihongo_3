@@ -86,7 +86,12 @@ $(document).ready(function(){
                 $("#list-item-result").html('')
 
                 for (var i = 0; i<respon_value[0].list_game.length; i++ ) {
-                    $("#list-item-result").append('<li class="row"><a href="/games/' + respon_value[0].list_game[i].id + '">' + respon_value[0].list_game[i].name + '</a></li>')
+                    console.log(respon_value[0].list_game[i].photo)
+                    $("#list-item-result").append('<li class="row">'
+                        + '<img src="'+ respon_value[0].list_game[i].photo.url + '" alt="">'
+                        + '<a href="/games/' + respon_value[0].list_game[i].id + '">' +
+                        respon_value[0].list_game[i].name +
+                        '</a></li>')
                 }
 
             }
