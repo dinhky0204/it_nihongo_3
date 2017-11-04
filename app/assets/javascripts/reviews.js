@@ -48,4 +48,94 @@ $(document).ready(function () {
             }
         });
     });
+
+    //like
+    var review_id = $('#icon').data('reviewid');
+    var status = $('#icon').data('status');
+    var user = $('#icon').data('user');
+    var like_id = $('#icon').data('likeid');
+    $('#icon').on('click', function () {
+        // var $like_button = $(this).closest('.container-like');
+        if (!user) {
+            alert("You must login!");
+            return;
+        }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name = "csrf-token"]').attr('content')
+            }
+        });
+        if (status=="like"){
+            alert("them");
+            $.ajax({
+                url: '/likes',
+                method: 'POST',
+                data: {
+                    like: { review_id: review_id }
+                },
+                success: function (response) {
+                    document.getElementById("like").classList.remove('btn-unlike');
+                    document.getElementById("like").classList.add('btn-like');
+                    document.getElementById("icon").classList.remove('icon-unlike','text-primary-unlike');
+                    document.getElementById("icon").classList.add('icon-like','text-primary-like');
+                    $('.like-value').html(String(response.like_count) + " Like");
+                    like_id = response.like.id;
+                    status = "unlike";
+                },
+                error: function () {
+                }
+            });
+        }else {
+            alert("xoas");
+            $.ajax({
+                url: '/likes/check_delete',
+                method: 'POST',
+                data: {like_id:like_id,review_id:review_id},
+                success: function (response) {
+                    document.getElementById("like").classList.remove('btn-like');
+                    document.getElementById("like").classList.add('btn-unlike');
+                    document.getElementById("icon").classList.remove('icon-like','text-primary-like');
+                    document.getElementById("icon").classList.add('icon-unlike','text-primary-unlike');
+                    $('.like-value').html(String(response) + " Like");
+                    status = "like";
+                    like_id= null;
+                },
+                error: function () {
+                }
+            });
+        }
+
+    });
+
+    //unlike
+    // $(document).on('click', '.icon-like', function () {
+    //     var $like_button = $(this).closest('.container-like');
+    //     var like_id = $(this).data('likeid');
+    //     var user = $(this).data('user')
+    //     if (!user) {
+    //         alert("You must login!");
+    //         return;
+    //     }
+    //     $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name = "csrf-token"]').attr('content')
+    //         }
+    //     });
+    //
+    //     $.ajax({
+    //         url: '/likes/'+like_id,
+    //         method: 'DELETE',
+    //
+    //         success: function (response) {
+    //             document.getElementById("like").classList.remove('btn-like');
+    //             document.getElementById("like").classList.add('btn-unlike');
+    //             document.getElementById("icon").classList.remove('icon-like','text-primary-like');
+    //             document.getElementById("icon").classList.add('icon-unlike','text-primary-unlike');
+    //             $('.like-value').html(String(response) + " Like");
+    //         },
+    //         error: function () {
+    //         }
+    //     });
+    //
+    // });
 });

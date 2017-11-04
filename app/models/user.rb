@@ -13,6 +13,7 @@ class User < ApplicationRecord
       where({:status => Notification.statuses[:not_seen]})
     end
   end
+  has_many :likes
 
   mount_uploader :avatar, GameUploader
 
