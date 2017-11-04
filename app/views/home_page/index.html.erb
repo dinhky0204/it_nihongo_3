@@ -4,9 +4,21 @@
       <a  href=https://www.gamespot.com/reviews/super-mario-odyssey-review/1900-6416795/
           class="promo--object promo-type--single  js-event-tracking">
       <div class="promo--image promo--wide promo--offset-wide">
-                      <div class="content">
-                          <img src="https://static.gamespot.com/uploads/screen_kubrick/1197/11970954/3307360-super-mario-odyssey-review-promo1-2.jpg" alt="Super Mario Odyssey Review">
-                          </div>
+          <div class="section-box-1st">
+                    <figure>
+                    </figure>
+                    
+                    <%if @review_1st.game.photo==nil %>
+                           <%= image_tag("<%=@review_1st.game.photo", class:"img-responsive") %>
+                           <% else %>
+                           <img src="<%=@review_1st.game.image%>" class="img-responsive"></img>
+                           <% end %>
+                           
+                    <!--<img src="https://static.gamespot.com/uploads/screen_kubrick/1197/11970954/3307360-super-mario-odyssey-review-promo1-2.jpg" class="img-responsive"/>-->
+                </div>
+                      <!--<div class="content">-->
+                      <!--    <img class="section-box-hot-1st" src="" alt="Super Mario Odyssey Review">-->
+                      <!--    </div>-->
                           </div>
                           <div class="promo--offset-square promo--square promo--single-metadata">
                               <div class="content">
@@ -84,6 +96,10 @@
             </div>
             <div class="site-hr"><hr></hr></div>
             <% end %>
+            <%= @points %>
+            <% @review_4ths.each do |r| %>
+            <%= r.title %>  <%= r.id %> <hr></hr>
+            <% end %>
             </div>
         </div>
         
@@ -113,7 +129,7 @@
         <% @genre_review_tops.each do |top| %>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
               <div class="panel panel-default">
-                <a href="">
+                <a>
                     <%if top.photo==nil %>
                            <%= image_tag("<%=top.photo", class: "display-center") %>
                            <% else %>
@@ -122,7 +138,7 @@
                                 </a>
               </div>
             </div>
-            <div class="col-md-6"><%= top.name %></div>
+            <div class="col-md-6 genre-top-name text-bold"><a><%= top.name %></a></div>
   <div class="top-hr"><hr/></div>
         <% end %>
     <% end %>
@@ -153,11 +169,14 @@
                             $("#games-genre-top").append(
                                 '<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">' +
                                   '<div class="panel panel-default">' +
-                                    '<a href=""><img class="display-center" src="https://static.gamespot.com/uploads/screen_small/1579/15794034/3292649-project-cars-2-review-promo1-2.jpg"></img></a>' +
+                                    '<a><img class="display-center" src="https://static.gamespot.com/uploads/screen_small/1579/15794034/3292649-project-cars-2-review-promo1-2.jpg"></img></a>' +
                                   '</div>' +
                                 '</div>' +
                                 '<div class="col-md-6">' + games[i]["name"] + '</div>' +
                                 '<div class="top-hr"><hr/></div>');
+                                
+                                
+                                
                         }    
                     }
                     

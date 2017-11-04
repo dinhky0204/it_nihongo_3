@@ -88,7 +88,11 @@ img {
     vertical-align: middle;
     max-width: 100%;
 }
-
+img:hover {
+    filter: none;
+    -webkit-filter: grayscale(0);
+    -webkit-transform: scale(1.05);
+}
 .promo-type--single .promo--single-metadata {
     background: #e5e5e5;
     border: 1px solid #e6e6e6;
@@ -96,6 +100,26 @@ img {
     z-index: 0;
     padding: 1.3rem;
     margin-left: 1.3rem;
+}
+
+.section-box-1st{
+    position: relative;
+    overflow:hidden;
+}
+.section-box-1st figure {
+    position: absolute;
+    text-align: center;
+    padding: 10px 19px 19px 19px;
+    width: 100%;
+    height: 100%;
+    transition: ease-in-out .5s;
+    opacity: 0;
+    transform: scale(2);
+}
+.section-box-1st:hover figure {
+    opacity: 1;
+    transform: scale(1);
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .circle {
@@ -190,7 +214,8 @@ img {
 }
 
 .media-game-list {
-     border-right: 1px dashed #D3D3D3;
+    border-right: 1px dashed #D3D3D3;
+    margin-top: -60px;
 }
 
 .time-ago {

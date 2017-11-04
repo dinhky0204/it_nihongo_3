@@ -5,13 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-GameGenre.delete_all
-Game.delete_all
-Genre.delete_all
-Publisher.delete_all
-Game.delete_all
+RateTable.delete_all
 Review.delete_all 
-# Rate.delete_all 
+GameGenre.delete_all
+Genre.delete_all
+Game.delete_all
+Publisher.delete_all
+
 
 Publisher.create! id:1, name: "XYZ"
 Genre.create! id:1, name: "2D"
@@ -30,77 +30,77 @@ Game.create! id:2,
              story: "Golf Story story",
              description: "Fore!",
              guide: "No guide",
-             image: "https://static.gamespot.com/uploads/screen_small/1197/11970954/3306584-golf-story-review-promo1-2.jpg",
+             image: "https://i2.wp.com/www.fortressofsolitude.co.za/wp-content/uploads/2017/05/Golf-Story.jpg",
              publisher_id: 1
 Game.create! id:3,
              name: "Assassin's Creed Origins",
              story: "Assassin's Creed Origins story",
              description: "Fore!",
              guide: "No guide",
-             image: "https://static.gamespot.com/uploads/screen_small/1197/11970954/3307359-assassins_creed_origins-review-promo12.jpg",
+             image: "https://gpstatic.com/acache/33/17/1/uk/t620x300.jpg",
              publisher_id: 1
 Game.create! id:4,
              name: "Wolfenstein 2: The New Colossus",
              story: "Wolfenstein 2: The New Colossus story",
              description: "Fore!",
              guide: "No guide",
-             image: "https://static.gamespot.com/uploads/screen_small/172/1720905/3308120-wolfenstein-2-review-promo1-2.jpg",
+             image: "https://i.ytimg.com/vi/gk960WQpkXY/maxresdefault.jpg",
              publisher_id: 1
 Game.create! id:5,
              name: "WWE 2K18",
              story: "WWE 2K18 story",
              description: "Fore!",
              guide: "No guide",
-             image: "https://static.gamespot.com/uploads/screen_small/1197/11970954/3305493-wwe2k18-promo-1-2.jpg",
+             image: "http://mp1st.com/wp-content/uploads/2017/08/2k18.jpeg",
              publisher_id: 1
 Game.create! id:6,
              name: "Destiny 2",
              story: "Destiny 2 story",
              description: "Fore!",
              guide: "No guide",
-             image: "https://static.gamespot.com/uploads/scale_tiny/1574/15746725/3214089-destinysmallthumb.jpg",
+             image: "https://am23.akamaized.net/tms/cnt/uploads/2017/09/F83YpiMXCUkeyE6JQ4TXki.jpg",
              publisher_id: 1
 Game.create! id:7,
              name: "South Park",
              story: "South Park story",
              description: "Fore!",
              guide: "No guide",
-             image: "https://static.gamespot.com/uploads/scale_tiny/1197/11970954/3078723-66102.jpg",
+             image: "http://gametradersusa.com/wp-content/uploads/2017/02/South-Park.jpg",
              publisher_id: 1
 Game.create! id:8,
              name: "The Flame in the Flood",
              story: "WWE 2K18 story",
              description: "Fore!",
              guide: "No guide",
-             image: "https://static.gamespot.com/uploads/scale_tiny/536/5360430/2889979-untitled-1.jpg",
+             image: "https://static1.squarespace.com/static/535e8260e4b0c0f6c53c7208/t/56d20f645559860e35ebcb0f/1456607108210/FITF_Banner.png",
              publisher_id: 1
 Game.create! id:9,
              name: "FIFA 18",
              story: "FIFA 18 story",
              description: "Fore!",
              guide: "No guide",
-             image: "https://static.gamespot.com/uploads/scale_tiny/1197/11970954/3245560-fifa.jpg",
+             image: "https://pbs.twimg.com/media/DBkRdEJWsAEq8WN.jpg",
              publisher_id: 1
 Game.create! id:10,
              name: "Stardew Valley",
              story: "Stardew Valley story",
              description: "Fore!",
              guide: "No guide",
-             image: "https://static.gamespot.com/uploads/scale_tiny/536/5360430/3171182-stardew.jpg",
+             image: "https://www.jelly.deals/wp-content/uploads/2017/03/stardew-valley-750x422.jpg",
              publisher_id: 1   
 Game.create! id:11,
              name: "Dota",
              story: "Dota story",
              description: "Dota la mot game rat hay, khien nhieu anh em vo cung hung thu",
              guide: "jalfwnwhfon anflwhf",
-             image: "http://cdn.ndtv.com/tech/gadgets/valve_dota2_.jpg",
+             image: "http://photoservice.gamesao.vn/Resources/Upload/Images/Game/4cf35d11-19cc-43da-a3db-e089c7b787c7.jpg",
              publisher_id: 1
 Game.create! id:12,
              name: "Half life",
              story: "abcduowjfw awmflwjf",
              description: "Half life la mot game rat hay, khien nhieu anh em vo cung hung thu",
              guide: "jalfwnwhfon anflwhf",
-             image: "http://cdn.ndtv.com/tech/gadgets/valve_dota2_.jpg",
+             image: "https://4.bp.blogspot.com/-gdIV36x_RiA/VsZgs9uphhI/AAAAAAAAA5c/YO01PHg67o4/s640/HLSource_hero.jpg",
              publisher_id: 1             
 
 GameGenre.create!([
@@ -297,78 +297,72 @@ Review.create!([
                  },
              ])
 
+              
 RateTable.create!([
-    {
+                {
                     user_id: 1,
                     game_id: 1,
                     point: 5,
                     message: "Good!"
-    }])                 
-# Rate.create!([
-#                 {
-#                     user_id: 1,
-#                     game_id: 1,
-#                     point: 5,
-#                     message: "Good!"
-#                 },
-#                 {
-#                     user_id: 1,
-#                     game_id: 2,
-#                     point: 4,
-#                     message: "Good!"
-#                 },
-#                 {
-#                     user_id: 1,
-#                     game_id: 3,
-#                     point: 4,
-#                     message: "Good!"
-#                 },
-#                 {
-#                     user_id: 1,
-#                     game_id: 5,
-#                     point: 4,
-#                     message: "Good!"
-#                 },
-#                 {
-#                     user_id: 1,
-#                     game_id: 6,
-#                     point: 3,
-#                     message: "Good!"
-#                 },
-#                 {
-#                     user_id: 1,
-#                     game_id: 7,
-#                     point: 4,
-#                     message: "Good!"
-#                 },
-#                 {
-#                     user_id: 1,
-#                     game_id: 8,
-#                     point: 3,
-#                     message: "Good!"
-#                 },
-#                 {
-#                     user_id: 1,
-#                     game_id: 9,
-#                     point: 3,
-#                     message: "Good!"
-#                 },
-#                 {
-#                     user_id: 1,
-#                     game_id: 10,
-#                     point: 3,
-#                     message: "Good!"
-#                 },
-#                 {
-#                     user_id: 1,
-#                     game_id: 11,
-#                     point: 3,
-#                     message: "Good!"
-#                 },
-#                 {
-#                     user_id: 1,
-#                     game_id: 12,
-#                     point: 3,
-#                     message: "Good!"
-#                 },
-#             ])
+                },
+                {
+                    user_id: 1,
+                    game_id: 2,
+                    point: 4,
+                    message: "Good!"
+                },
+                {
+                    user_id: 1,
+                    game_id: 3,
+                    point: 4,
+                    message: "Good!"
+                },
+                {
+                    user_id: 1,
+                    game_id: 5,
+                    point: 4,
+                    message: "Good!"
+                },
+                {
+                    user_id: 1,
+                    game_id: 6,
+                    point: 3,
+                    message: "Good!"
+                },
+                {
+                    user_id: 1,
+                    game_id: 7,
+                    point: 4,
+                    message: "Good!"
+                },
+                {
+                    user_id: 1,
+                    game_id: 8,
+                    point: 3,
+                    message: "Good!"
+                },
+                {
+                    user_id: 1,
+                    game_id: 9,
+                    point: 3,
+                    message: "Good!"
+                },
+                {
+                    user_id: 1,
+                    game_id: 10,
+                    point: 3,
+                    message: "Good!"
+                },
+                {
+                    user_id: 1,
+                    game_id: 11,
+                    point: 3,
+                    message: "Good!"
+                },
+                {
+                    user_id: 1,
+                    game_id: 12,
+                    point: 3,
+                    message: "Good!"
+                },
+            ])
