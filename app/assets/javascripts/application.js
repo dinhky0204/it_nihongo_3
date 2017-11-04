@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 $(document).ready(function(){
+    var key_input = ""
     $('a.notifications-icon').click(function(event){
         event.preventDefault();
         $('.notifications .counter').html('').css({'display': 'none'});
@@ -62,4 +63,39 @@ $(document).ready(function(){
             }
         });
     });
+    $("#search-container").focusout(function () {
+        $(".search-result").hide()
+    })
+    $(".search-result").hover(function () {
+        $(".search-result").show()
+    })
+    $("#search-input").keyup(function (e) {
+        $(".search-result").show();
+        var respon_value
+        // console.log($(this).val())
+        $.ajax({
+            url: "/search",
+            type: "POST",
+            data: {
+                text_search: $(this).val()
+            },
+            dataType: "script",
+            success: function(response) {
+                respon_value = JSON.parse(response)
+                console.log(respon_value[0].list_game)
+                $("#list-item-result").html('')
+
+                for (var i = 0; i<respon_value[0].list_game.length; i++ ) {
+                    console.log(respon_value[0].list_game[i].photo)
+                    $("#list-item-result").append('<li class="row">'
+                        + '<img src="'+ respon_value[0].list_game[i].photo.url + '" alt="">'
+                        + '<a href="/games/' + respon_value[0].list_game[i].id + '">' +
+                        respon_value[0].list_game[i].name +
+                        '</a></li>')
+                }
+
+            }
+        });
+    });
+
 })

@@ -39,6 +39,21 @@
           <li><a href="#">Page 2</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <li id="search-container">
+            <div id="search-form">
+              <form>
+                <input value="" id="search-input" type="search" placeholder="Search">
+              </form>
+            </div>
+            <div class="search-result">
+              <div class="search-header">
+                <p>Search result</p>
+              </div>
+              <ul id="list-item-result">
+                <li class="row"><span>Result</span></li>
+              </ul>
+            </div>
+          </li>
           <% if current_user.present? %>
               <li class="notifications">
                 <%= link_to notifications_path, class: "notifications-icon", method: :put, remote: true do %>

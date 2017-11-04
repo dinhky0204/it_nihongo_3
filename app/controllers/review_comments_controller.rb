@@ -44,15 +44,7 @@ class ReviewCommentsController < ApplicationController
   # PATCH/PUT /review_comments/1
   # PATCH/PUT /review_comments/1.json
   def update
-    respond_to do |format|
-      if @review_comment.update(review_comment_params)
-        format.html { redirect_to @review_comment, notice: 'Review comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @review_comment }
-      else
-        format.html { render :edit }
-        format.json { render json: @review_comment.errors, status: :unprocessable_entity }
-      end
-    end
+      @review_comment.update(review_comment_params)
   end
 
   # DELETE /review_comments/1
@@ -60,7 +52,8 @@ class ReviewCommentsController < ApplicationController
   def destroy
     @review_comment.destroy
     respond_to do |format|
-      format.html { redirect_to review_comments_url, notice: 'Review comment was successfully destroyed.' }
+      url = "/reviews/" + @review_comment.review_id.to_s
+      format.html { redirect_to url, notice: 'Review comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
