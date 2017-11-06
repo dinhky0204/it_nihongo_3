@@ -6,7 +6,7 @@ class Notification < ApplicationRecord
   belongs_to :review, optional: true
 
   validates_uniqueness_of :to_user_id, :if => :check_review_exits_and_new_reviews?, scope: [:review_id, :from_user_id]
-  enum type: [:follow, :like, :comment, :new_review]
+  enum type: [:follow, :like, :comment, :new_review, :comment_on_same_review]
   enum status: [:not_seen, :seen]
 
   after_create_commit {
@@ -32,6 +32,14 @@ class Notification < ApplicationRecord
       "#{self.from_user.name} liked your review"
     elsif self.comment?
       "#{self.from_user.name} commented on your review: \"#{self.text}\""
+    elsif self.comment_on_same_review?
+      if self.from_user_id != self.review.user.id
+        "#{self.from_user.name} also commented on #{self.review.user.name}'s review: \"#{self.text}\""
+      elsif self.review.user.gender == 0
+          "#{self.from_user.name} also commented on his review: \"#{self.text}\""
+      else
+          "#{self.from_user.name} also commented on her review: \"#{self.text}\""
+      end
     else
       ""
     end
