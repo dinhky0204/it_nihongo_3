@@ -37,14 +37,37 @@
               <strong style="color: #9e9d24">Draft</strong>
           <% end %>
           <small>
-            <%= "update at" %>
-            <%= time_ago_in_words @review.updated_at %>
-            <%= "ago" %>
+            updated at <%= time_ago_in_words @review.updated_at %> ago
           </small>
         </h2>
         <hr>
         <div class="body">
           <%= markdown(@review.content).html_safe %>
+          <div class="container-like">
+
+            <% if user_signed_in? %>
+                <% if !find_like(current_user.id, @review.id).first %>
+                    <div id="like" class="btn-btr icon-btn btn-unlike">
+                      <span id="icon" data-status="like" data-likeid="null" data-reviewid="<%= @review.id %>" data-user="<%= current_user %>" class="icon-unlike glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary-unlike"></span>
+                      <a class="like-value"><%= @review.likes.count %>
+                        Like</a>
+                    </div>
+                <% else %>
+                    <div id="like" class="btn-btr icon-btn btn-like">
+                      <span id="icon" data-status="unlike" data-likeid="<%= find_like(current_user.id, @review.id).first.id %>" data-reviewid="<%= @review.id %>" data-user="<%= current_user %>" class="icon-like glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary-like"></span>
+                      <a class="like-value"><%= @review.likes.count %>
+                        Like</a>
+                    </div>
+                <% end %>
+            <% else %>
+                <div id="like" class="btn-btr icon-btn btn-unlike">
+                  <span id="icon" data-user="<%= current_user %>" class="icon-unlike glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary-unlike"></span>
+                  <a class="like-value"><%= @review.likes.count %>
+                    Like</a>
+                </div>
+            <% end %>
+            <strong class="btn-btr icon-btn btn-danger"><span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>Delete</strong>
+          </div>
           <hr>
         </div>
 
@@ -89,10 +112,11 @@
                   <div class="panel panel-default">
                     <div class="panel-heading">
                       <strong style="font: italic bold 15px/30px Georgia, serif;"><%= review_comment.user.name %></strong>
-                      <span class="text-muted">commented <%= time_ago_in_words review_comment.created_at %> ago</span>
+                      <span class="text-muted">commented <%= time_ago_in_words review_comment.created_at %>
+                        ago</span>
                       <% if user_signed_in? && current_user.id == review_comment.user.id %>
                           <i class="edit-comment fa fa-edit" style="margin-left: 20px" data-commentid="<%= review_comment.id %>"></i>
-                          <%= link_to review_comment_path(review_comment),data: {confirm: "Are you sure?"},
+                          <%= link_to review_comment_path(review_comment), data: {confirm: "Are you sure?"},
                                       method: :delete do %>
                               <i class="delete-comment fa fa-trash"></i>
                           <% end %>
