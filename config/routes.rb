@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'admin/games'
   get 'admin/create_game'
   post 'admin/game_delete'
+  get 'admin/edit_game'
   
   get 'static_pages/home'
   get 'static_pages/help'

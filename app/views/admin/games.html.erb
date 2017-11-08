@@ -3,7 +3,7 @@
     <div class="row col-md-12 custyle">
     <table id="table-genre" class="table table-striped custab table-hover table-bordered table-list">
     <thead>
-    <a class="btn btn-primary pull-right genre-add" href="<%= admin_create_game_path %>"><b>+</b> Add new Games</a>
+    <a class="btn btn-primary pull-right genre-add" href="<%= new_game_path %>"><b>+</b> Add new Games</a>
         <tr>
             <th class="5-area">ID</th>
             <th class="20-area">Image</th>
@@ -40,7 +40,8 @@
                 <td><%= truncate(game.guide, length: 100)%></td>
                 <td><%= truncate(game.description, length: 100)%></td>
                 <td class="text-center genre-edit" value=<%= game.id%>>
-                    <a class='btn btn-info btn-xs genre-edit'><span class="glyphicon glyphicon-edit"></span></a>
+                    
+                    <a class='btn btn-info btn-xs genre-edit' href="<%= edit_game_path(game) %>"><span class="glyphicon glyphicon-edit"></span></a>
                     <a class='btn btn-danger btn-xs genre-delete'><span class="glyphicon glyphicon-remove"></span></a>
                 </td>
             </tr>

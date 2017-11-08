@@ -1,8 +1,8 @@
 require 'csv'
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
-
+  before_action :check_privileges!, only: [:new, :edit, :update, :destroy]
+  
   # GET /games
   # GET /games.json
   def index
@@ -127,5 +127,9 @@ class GamesController < ApplicationController
     end
     def genre_params
       params.require(:genre).permit(:list_genre)
+    end
+    
+    def check_privileges!
+      redirect_to "/", notice: 'You dont have enough permissions to be here' unless current_user.is_admin
     end
 end

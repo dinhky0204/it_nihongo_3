@@ -71,16 +71,33 @@ class AdminController < ApplicationController
   end
   
   def create_game
-    @game = Game.new
-    @publishers = Publisher.all
-    gon.genres = Genre.all
     @genres = Genre.where(deleted_at: nil).order(created_at: :desc).all
     @publishers = Publisher.all
     @game = Game.new
     gon.genres = Genre.all
   end
   
+  def edit_game
+    @publishers = Publisher.all()
+    gon.genres = Genre.all
+    puts params[:game]
+    respond_to do |format|
+      if @game.update(game_params)
+        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
+        format.json { render :show, status: :ok, location: @game }
+      else
+        format.html { render :edit }
+        format.json { render json: @game.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
   def check_privileges!
   redirect_to "/", notice: 'You dont have enough permissions to be here' unless current_user.is_admin
   end
+  
+  private
+    def game_params
+      params.require(:game).permit(:name, :story, :description, :guide, :publisher_id, :photo)
+    end
 end

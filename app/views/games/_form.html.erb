@@ -1,9 +1,8 @@
 
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <%= include_gon %>
-
 <!--<div class="container">-->
-  <div class="game-container  col-md-10 col-md-offset-1">
+  <div class="game-container  col-md-10 col-md-offset-1" style="background: #FFF !important">
     <%= form_with(model: game, local: true, html: {multipart: true}) do |form| %>
         <% if game.errors.any? %>
             <div id="error_explanation">
