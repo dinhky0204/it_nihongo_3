@@ -9,8 +9,8 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.where(status: 1).page(params[:page])
-                   .per 4
+    @reviews = Review.where(status: 1).page(params[:page]).per 4
+    @top_reviewers = User.includes(:reviews).top_reviewers
   end
 
   # GET /reviews/1

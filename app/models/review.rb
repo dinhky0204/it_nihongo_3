@@ -3,6 +3,7 @@ class Review < ApplicationRecord
   belongs_to :game
   has_many :review_comments, -> { order "created_at DESC"}
   has_many :likes
+  has_many :notifications
 
   after_update_commit {
     if self.status_previously_changed? && self.status_previous_change[0] == false && self.status_previous_change[1] == true

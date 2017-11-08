@@ -75,7 +75,11 @@
             <div class="row">
               <div class="col-sm-1">
                 <div class="thumbnail">
-                  <img class="img-responsive user-photo" src="<%= current_user.avatar.url %>">
+                  <% if current_user.avatar.url.nil? %>
+                      <img class="img-responsive user-photo" src="http://p3.pstatp.com/large/26ed000043b18dc6c0de">
+                  <% else %>
+                      <img class="img-responsive user-photo" src="<%= current_user.avatar.url %>">
+                  <% end %>
                 </div><!-- /thumbnail -->
               </div><!-- /col-sm-1 -->
 
@@ -104,7 +108,11 @@
               <div class="row custom-ul">
                 <div class="col-sm-1">
                   <div class="thumbnail">
-                    <img class="img-responsive user-photo" src="<%= review_comment.user.avatar.url %>">
+                    <% if review_comment.user.avatar.url.nil? %>
+                        <img class="img-responsive user-photo" src="http://p3.pstatp.com/large/26ed000043b18dc6c0de">
+                    <% else %>
+                        <img class="img-responsive user-photo" src="<%= review_comment.user.avatar.url %>">
+                    <% end %>
                   </div><!-- /thumbnail -->
                 </div><!-- /col-sm-1 -->
 

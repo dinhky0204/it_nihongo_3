@@ -66,7 +66,6 @@ $(document).ready(function () {
             }
         });
         if (status=="like"){
-            alert("them");
             $.ajax({
                 url: '/likes',
                 method: 'POST',
@@ -86,7 +85,6 @@ $(document).ready(function () {
                 }
             });
         }else {
-            alert("xoas");
             $.ajax({
                 url: '/likes/check_delete',
                 method: 'POST',
