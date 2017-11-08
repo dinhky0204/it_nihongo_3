@@ -268,7 +268,7 @@
               <hr>
           <% end %>
 
-          <% if !@current_rate %>
+          <% if !@current_rate && current_user.present? %>
             <div class="show-rate-item-box current-rate-box">
               <div class="row rate-item">
                 <div class="user-img col-md-2">
