@@ -1,15 +1,15 @@
 <% provide :title, "Review" %>
 <div class="show-review-container">
-<div class="review-show-title">
-  <div class="col-md-2 col-md-offset-5 show-review-name">
-    <span class="review-title">Review</span>
-  </div>
-  <div class="col-md-6 col-md-offset-3 review-name-box">
+  <div class="review-show-title">
+    <div class="col-md-2 col-md-offset-5 show-review-name">
+      <span class="review-title">Review</span>
+    </div>
+    <div class="col-md-6 col-md-offset-3 review-name-box">
       <span class="review-name">
         ALL REVIEW
       </span>
+    </div>
   </div>
-</div>
 </div>
 <div class="review-show">
   <div class="container-fluid dashboard-header">
@@ -39,59 +39,90 @@
               <%= "You have no review entries yet" %>
             </h2>
         <% end %>
-        <% @reviews.each do |review| %>
         <div class="row">
-          <div class="col-md-12">
-            <!--div class="well well-sm"-->
-            <div class="row">
-              <div class="panel panel-default panel-horizontal">
-                <div class="panel-heading display-center">
+          <div class="col-md-9">
+            <% @reviews.each do |review| %>
+                <!--div class="well well-sm"-->
+                <div class="row">
+                  <div class="panel panel-default panel-horizontal">
+                    <div class="panel-heading display-center">
+                      <div class="avatar">
+                        <% if review.game.photo.url.nil? %>
+                            <% if review.user.avatar.url.nil? %>
+                                <img src="http://m5.gamevui.com/data/image/2017/07/06/ben-10-cuu-nguoi-600-size-854x480-znd.jpg" alt="" class="img-responsive">
+                            <% else %>
+                                <img src="<%= review.user.avatar.url %>" alt="" class="img-responsive">
+                            <% end %>
+                        <% else %>
+                            <img src="<%= review.game.photo.url %>" alt="" class="img-responsive">
+                        <% end %>
+
+                      </div>
+                    </div>
+
+                    <div class="panel-body">
+                      <div class="col-xs-12 col-md-12 section-box">
+                        <h2><%= link_to review.title, review_path(review), method: :get, class: "h2-custom" %></h2>
+                        <h5>
+                          <div class="email">Review by: <%= review.user.name %></div>
+                          <%= link_to review.user.email, "#" %>
+                          <small><%= time_ago_in_words review.created_at %></small>
+                        </h5>
+                        <div class="post-body">
+                          <%= review.game.name.upcase %>
+                        </div>
+                        <hr/>
+                        <div class="row rating-desc">
+                          <span class="glyphicon glyphicon-comment"></span><%= review.review_comments.count %> Comments
+                          <span class="separator"> | </span>
+                          <span class="fa fa-fw fa-thumbs-up"></span>
+                          <span><%= review.likes.count %> Likes</span>
+                        </div>
+                      </div>
+
+                    </div>
+                    <% if user_signed_in? && current_user.id == review.user.id %>
+                        <div class="panel-footer text-center" style="width:4em; padding-bottom:5px;">
+
+                          <%= link_to edit_review_path(review), "data-turbolinks": false,
+                                      class: "blue darken-2 btn btn-primary btn-sm btn-block" do %>
+                              <i class="fa fa-fw fa-edit"></i>
+                          <% end %>
+                          <%= link_to review_path(review), data: {confirm: "Are you sure?"},
+                                      class: "red darken-4 btn btn-danger btn-sm btn-block", method: :delete do %>
+                              <i class="fa fa-fw fa-trash"></i>
+                          <% end %>
+                        </div>
+                    <% end %>
+                  </div>
+                </div>
+                <!--/div-->
+            <% end %>
+          </div>
+
+          <div class="col-sm-3" style="background-color: #ffffff">
+            <h2 class="hot-author-text">HOT AUTHOR</h2>
+            <% @top_reviewers.each do |user| %>
+                <div class="hot-author">
                   <div class="avatar">
-                    <img src="<%= review.game.photo.url %>" alt="" class="img-responsive">
+                    <% if user.avatar.url.nil? %>
+                        <img alt="" src="https://pbs.twimg.com/media/BMj-KfjCMAAbIlG.jpg">
+                    <% else %>
+                        <img alt="" src="<%= user.avatar.url %>">
+                    <% end %>
+                  </div>
+                  <div class="author-name">
+                    <div class="title">
+                      <%= link_to user.name, user_path(user), method: :get, class: "a-custom" %>
+                    </div>
+                    <div class="desc"><%= user.email %></div>
+                    <div class="desc"><%= user.reviews.count %> reviews</div>
                   </div>
                 </div>
-
-                <div class="panel-body">
-                  <div class="col-xs-12 col-md-12 section-box">
-                    <h2><%= review.game.name.upcase %></h2>
-                    <h5>
-                      <div class="email">Review by: <%= review.user.name %></div>
-                      <%= link_to review.user.email, "#" %>
-                      <small><%= time_ago_in_words review.created_at %></small>
-                    </h5>
-                    <div class="post-body">
-                      <%= link_to review.title, review_path(review) %>
-                    </div>
-                    <hr/>
-                    <div class="row rating-desc">
-                      <span class="glyphicon glyphicon-comment"></span>(100 Comments)<span
-                    class="separator">|</span>
-                    </div>
-                  </div>
-
-                </div>
-                <% if user_signed_in? && current_user.id == review.user.id %>
-                <div class="panel-footer text-center" style="width:4em; padding-bottom:5px;">
-
-                  <%= link_to edit_review_path(review), "data-turbolinks": false,
-                              class: "blue darken-2 btn btn-primary btn-sm btn-block" do %>
-                      <i class="fa fa-fw fa-cog"></i>
-                      Edit
-                  <% end %>
-                  <%= link_to review_path(review),data: {confirm: "Are you sure?"},
-                              class: "red darken-4 btn btn-danger btn-sm btn-block", method: :delete do %>
-                      <i class="fa fa-fw fa-trash"></i>Delete
-                  <% end %>
-
-                </div>
-                <% end %>
-              </div>
-
-            </div>
-            <!--/div-->
+            <% end %>
           </div>
         </div>
-        <% end %>
+
         <div class="col-sm-12">
           <%= paginate @reviews, theme: "twitter-bootstrap-3" %>
         </div>

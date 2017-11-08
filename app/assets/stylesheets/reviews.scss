@@ -125,7 +125,7 @@ body {
   .post-show {
     .post-header {
       h1 {
-        color: #22958a;
+        color: #e03800;
         font-size: 40px;
         font-weight: bold;
       }
@@ -350,7 +350,7 @@ transition: all 0.3s;
 }
 
 a {
-  color: #286192;
+  color: #26a69a;
 }
 
 .edit-text{
@@ -438,3 +438,44 @@ a {
   color: #ffffff;
 }
 
+h2 .h2-custom {
+  font-size: 22px!important;
+  color: #e03800!important;
+}
+
+.fa-thumbs-up {
+  color: #27ae60
+}
+
+.hot-author {
+  padding-top: 25px;
+
+  .avatar {
+    align-items: center;
+    display: flex;
+
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 10px auto;
+    }
+  }
+
+  .author-name {
+    text-align: center;
+  }
+}
+
+.a-custom {
+  font-size: 18px!important;
+}
+
+.col-sm-3 {
+  .hot-author-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px!important;
+    color: #e03800!important;
+  }
+}

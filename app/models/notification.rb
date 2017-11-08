@@ -3,7 +3,7 @@ class Notification < ApplicationRecord
 
   belongs_to :from_user, class_name: "User"
   belongs_to :to_user, class_name: "User"
-  belongs_to :review, optional: true
+  belongs_to :review, optional: true, dependent: :destroy
 
   validates_uniqueness_of :to_user_id, :if => :check_review_exits_and_new_reviews?, scope: [:review_id, :from_user_id]
   enum type: [:follow, :like, :comment, :new_review, :comment_on_same_review]
