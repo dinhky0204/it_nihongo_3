@@ -20,11 +20,7 @@
     <div class="show-game-info">
       <div class="col-md-10 col-md-offset-1">
         <div class="show-game-image col-md-4">
-          <% if @game.photo %>
-              <img src="<%= @game.photo %>" alt="Game photo">
-          <% else %>
-              <img src="yasuo.jpg" alt="Game photo">
-          <% end %>
+        <%= image_tag @game.photo.thumb.url || "yasuo.jpg"%>
         </div>
         <div class="col-md-4">
           <div class="show-game-story">
@@ -152,7 +148,11 @@
           <div>
             <div class="input-field col s12">
               <i class="material-icons prefix">mode_edit</i>
-              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+              <% if @current_rate %>
+                <textarea id="icon_prefix2" class="materialize-textarea"><%= @current_rate.message %></textarea>
+              <% else %>
+                  <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+              <% end %>
               <label for="icon_prefix2">Write comment</label>
             </div>
             <section class='rating-widget'>
@@ -187,42 +187,103 @@
         </div>
       </div>
 
+    <% if @list_review_of_game.count != 0 %>
       <div class="show-list-review col-md-offset-2 col-md-8">
         <div class="slider4">
-          <div class="slide" id="review-3">
-            <div class="card darken-1">
-              <div class="card-content white-text review-image">
-                <span class="card-title">Card Title</span>
-                <p>I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively.</p>
+            <% @list_review_of_game.each do |review| %>
+              <div class="single_course">
+                <div class="singCourse_imgarea">
+                  <%= image_tag review.photo || "yasuo.jpg"%>
+                  <div class="mask">
+                    <%= link_to "View More", review_path(review), class: "course_more"  %>
+                  </div>
+                </div>
+                <div class="singCourse_content">
+                  <h3 class="singCourse_title"><a href="#"> <%= review.title %>  </a></h3>
+                </div>
+                <div class="singCourse_author">
+                  <%= image_tag review.user.avatar.thumb.url || "default-user.jpg"%>
+                  <p><%= review.user.name %></p>
+                </div>
               </div>
-              <div class="card-action">
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
-              </div>
-            </div>
-          </div>
-          <div class="slide">
-            <img src="http://placehold.it/300x250&text=Review2">
-          </div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review3"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review4"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review5"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review6"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review7"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review8"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review9"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review10"></div>
+            <% end %>
         </div>
       </div>
+    <% end %>
       <div class="row" style="background-color: #ffffff">
         <div class="col-md-offset-2 col-md-8">
-        <strong>Description:</strong>
-        <%= raw @game.description %>
-      </div>  
+         <strong>Description:</strong>
+          <%= raw @game.description %>
+        </div>
+      </div>
+      <div class="show-rate-container row">
+        <div class="col-md-offset-2 col-md-8 rate-title">
+          <span>Comments</span>
+        </div>
+        <div class="show-rate-box col-md-offset-2 col-md-8">
+          <% @list_rate.each do |rate_item| %>
+            <div class="show-rate-item-box">
+              <div class="row rate-item" >
+                <div class="user-img col-md-2">
+                  <%= image_tag rate_item.user.avatar.thumb.url || "default-user.jpg", class: "avatar-user"%>
+                  <br>
+                  <span>
+                    <%= rate_item.user.name %>
+                  </span>
+                </div>
+                <div class="rate-content col-md-6">
+                  <% if rate_item.user.id == current_user.id %>
+                    <div id="current-rate-star-number">
+                      <% rate_item.point.times do |rate_star| %>
+                          <span><i class="rated-star icon-star"></i></span>
+                      <% end %>
+                    </div>
+                    <div class="rate-message">
+                        <span id="current_comment">
+                          <%= rate_item.message %>
+                        </span>
+                    </div>
+                      <% else %>
+                      <div class="rate-star-number">
+                        <% rate_item.point.times do |rate_star| %>
+                            <span><i class="rated-star icon-star"></i></span>
+                        <% end %>
+                      </div>
+                        <span>
+                          <%= rate_item.message %>
+                        </span>
+                  <% end %>
+                  </div>
+                </div>
+            </div>
+              <hr>
+          <% end %>
+
+          <% if !@current_rate && current_user.present? %>
+            <div class="show-rate-item-box current-rate-box">
+              <div class="row rate-item">
+                <div class="user-img col-md-2">
+                  <%= image_tag current_user.avatar.thumb.url || "default-user.jpg", class: "avatar-user"%>
+                  <%= current_user.name %>
+                </div>
+                <div class="rate-content col-md-6">
+                  <div id="current-rate-star-number">
+                    <% 5.times do |rate_star| %>
+                        <span><i class="rated-star icon-star"></i></span>
+                    <% end %>
+                  </div>
+                  <div class="rate-message">
+                      <span id="current_comment">
+                      </span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
       
     </div>
   </div>
-  <%= react_component("HelloWorld", {total: @total}) %>
 </div>

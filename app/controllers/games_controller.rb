@@ -1,7 +1,7 @@
 require 'csv'
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :new]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   # GET /games
   # GET /games.json
@@ -22,7 +22,7 @@ class GamesController < ApplicationController
     @star_5 = RateTable.where(game_id: params[:id], point: 5).count
     total_point = @star_1 + 2*@star_2 + 3*@star_3 + 4*@star_4 + 5*@star_5
     if @total==0
-      @point_avg
+      @point_avg = 0
       gon.point1 = 0
       gon.point2 = 0
       gon.point3 = 0
@@ -37,6 +37,13 @@ class GamesController < ApplicationController
       gon.point5 = (100*@star_5/@total).to_s + "%"
     end
     @list_rate = RateTable.where(game_id: params[:id])
+    if user_signed_in?
+      @current_rate = RateTable.where(game_id: params[:id], user_id: current_user.id).first
+    else
+      @current_rate = nil
+    end
+    current_game = Game.find_by(id: params[:id])
+    @list_review_of_game = current_game.reviews
 
   end
 

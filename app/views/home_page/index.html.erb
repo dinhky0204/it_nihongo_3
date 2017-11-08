@@ -1,0 +1,136 @@
+<div class="container">
+  <div class="container row span12 promo--header"><h1>Reviews</h1></div>
+  <section class="promo--container container row span12  js-impression-tracking " data-impression-tracking="">
+    <a  href=<%= review_url(@review_1st) %>
+            class="promo--object promo-type--single  js-event-tracking">
+    <div class="promo--image promo--wide promo--offset-wide">
+      <div class="content">
+        <%if @review_1st.game.photo==nil %>
+          <%= image_tag @review_1st.photo || "yasuo.jpg", class:"img-responsive"%>
+        <% else %>
+            <%= image_tag @review_1st.photo || "yasuo.jpg", class:"img-responsive"%>
+        <% end %>
+      </div>
+    </div>
+    <div class="promo--offset-square promo--square promo--single-metadata">
+      <div class="content">
+        <div class="promo--media-type ">
+          <div class="content">
+            <div class="promo--review-score circle circle-big text-center"><%= @points[@review_1st.id] %></div>
+          </div>
+        </div>
+        <summary class="promo--metadata">
+          <h2 class="text-bold text-color-primary"><%= @review_1st.title %></h2>
+          <span class="text-simple"><%= raw @review_1st.content.truncate(50)%></span>
+        </summary>
+      </div>
+    </div>
+    </a>
+  </section>
+  
+
+  <div class="row promo-strip-list">
+    <% @review_4ths.each do |r| %>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 slide-item-game">
+          <a href="#">
+            <div class="panel panel-default">
+              <%if r.game.photo==nil %>
+                  <%= image_tag("<%=r.game.photo", class:"display-center") %>
+              <% else %>
+                  <img src="<%=r.game.image%>" class="idisplay-center"></img>
+              <% end %>
+            </div>
+            <div class="circle circle-small text-center col-md-3"><%= @points[r.id] %></div>
+            <h4 class="col-md-9 text-bold hover-primary"><%=r.title%></h4>
+          </a>
+        </div>
+    <% end %>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-8 content-latest">
+      <div class="pod-header">
+        <div class="pod-header-item col-md-4">
+          <div class="pod-title">
+            <h4 class="text-bold"><span class="glyphicon glyphicon-fire"></span> Latest Reviews</h4>
+          </div>
+        </div>
+        <span class="col-md-8"><hr></hr></span>
+      </div>
+      <div class="media-game-list">
+        <% @last_reviews.each do |last_review| %>
+            <div class="media-game">
+              <a class="media-game-item">
+                <div class="col-md-4 media-figure media-figure--medium">
+                  <div class="media-img imgflare--boxart">
+                    <%if last_review.game.photo==nil %>
+                        <%= image_tag("<%=last_review.game.photo") %>
+                    <% else %>
+                        <img src="<%=last_review.game.image%>"></img>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="col-md-7 media-content">
+                  <a href="<%= review_url(last_review) %>" class="text-bold media-content-title"><%=last_review.title%></a>
+                  <div><span class="media-content-pre">Game: </span><a href=<%= game_url(last_review.game) %> class="media-content-des"><%=last_review.game.name%></a></div>
+                  <div><span class="media-content-pre">Review by: </span><a href=<%= user_url(last_review.user) %> class="media-content-des"><%=last_review.user.name%></a></div>
+                  <div class="media-content-detail"><span><%= truncate(last_review.content, length: 280)%></span></div>
+                  <small class="time-ago"><%= time_ago_in_words last_review.created_at %></small>
+                </div>
+                <div class="circle circle-big text-center col-md-1">
+                  <%= @points[last_review.game.id] %>
+                </div>
+              </a>
+            </div>
+            <div class="site-hr"><hr></hr></div>
+        <% end %>
+        <a class="more-info col-md-offset-10" href="<%= reviews_path %>">Read more ></a>
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="pod-header">
+        <div class="pod-header-item col-md-8">
+          <div class="pod-title">
+            <h4 class="text-bold"><span class="glyphicon glyphicon-heart"></span> Top Reviews</h4>
+          </div>
+        </div>
+        <span class="col-md-4"><hr></hr></span>
+      </div>
+      <div class="pod-body">
+        <article class="media media-is-top"></article>
+        <div class="input-field col-md-12">
+          <%= form_tag do %>
+              <div id="select-genre-top">
+                <%= select_tag :genre, options_for_select(@genres.collect{|g| [g.name, g.id]}, selected: params[:genre]), id: "genre-select", class: "form-control" %>
+              </div>
+          <% end %>
+          
+          <div id="games-genre-top">
+            <div class="row" id="game-top-display">
+              <% if @genre_review_tops.any? %>
+                  <% @genre_review_tops.each do |top| %>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="panel panel-default">
+                          <a href=<%= review_url(top) %>>
+                            <%if top.game.photo==nil %>
+                                <%= image_tag("<%=top.game.photo", class: "display-center") %>
+                            <% else %>
+                                <img class="display-center" src="<%=top.game.image%>"></img>
+                            <% end %>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-md-6 genre-top-name text-bold"><a href=<%= review_url(top) %>><%= top.title %></a></div>
+                      <div class="media-content-detail-small"><span><%= truncate(top.content, length: 100)%></span></div>
+                      <div class="top-hr"><hr/></div>
+                  <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

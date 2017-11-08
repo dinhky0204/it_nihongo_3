@@ -77,77 +77,45 @@
     <div class="col-md-12 user-menu user-pad">
       <% if (@user == current_user)%>
         <div class="user-menu-content active">
-        <h2 class="text-center">Edit Profile</h2>
-        <%= render "users/form", user: @user%>
-      </div>
+          <h2 class="text-center">Edit Profile</h2>
+          <%= render "users/form", user: @user%>
+        </div>
         <div class="user-menu-content ">
-            <h3>
-              List Following
-            </h3>
-            <%= render "relationships/list_following", user: current_user if current_user?(@user)%>
-          </div>
+          <h3>
+            List Following
+          </h3>
+          <%= render "relationships/list_following", user: current_user if current_user?(@user)%>
+        </div>
       <% end %>
-
-
       <div class="user-menu-content <%= "active" if @user != current_user%>">
         <h3>
           Reviews
         </h3>
         <div class="row">
-          <div class="col-md-4">
-            <div class="view">
-              <div class="caption">
-                <p>47LabsDesign</p>
-                <a href="" rel="tooltip" title="Appreciate"><span class="fa fa-heart-o fa-2x"></span></a>
-                <a href="" rel="tooltip" title="View"><span class="fa fa-search fa-2x"></span></a>
+          <% @user.reviews.each do |review|%>
+              <div class="col-md-4 review">
+                <div class="view">
+                  <div class="caption">
+                    <%= link_to review_path(review), title: "View" do %>
+                        <span class="fa fa-search fa-2x"></span></a>
+                    <% end %>
+                  </div>
+                  <% if review.game.photo.to_s.present? %>
+                      <%= image_tag(review.game.photo, class: "img-responsive")%>
+                  <% else %>
+                      <%= image_tag("default-review.jpg", class: "img-responsive")%>
+                  <% end %>
               </div>
-              <img src="" class="img-responsive">
-            </div>
-            <div class="info">
-              <p class="small" style="text-overflow: ellipsis">An Awesome Title</p>
-              <p class="small coral text-right"><i class="fa fa-clock-o"></i><small> Posted Today | 10:42 A.M.</small></p>
-            </div>
-            <div class="stats turqbg">
-              <span class="fa fa-heart-o"> <strong>47</strong></span>
-              <span class="fa fa-eye pull-right"> <strong>137</strong></span>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="view">
-              <div class="caption">
-                <p>47LabsDesign</p>
-                <a href="" rel="tooltip" title="Appreciate"><span class="fa fa-heart-o fa-2x"></span></a>
-                <a href="" rel="tooltip" title="View"><span class="fa fa-search fa-2x"></span></a>
+                <div class="info">
+                  <p class="small" style="text-overflow: ellipsis"><%= link_to review.title, review_path(review)%></p>
+                  <p class="small coral text-right"><i class="fa fa-clock-o"></i><small> Posted <%= review.created_at.strftime("%A, %d %b %Y %l:%M %p")%></small></p>
+                </div>
+                <div class="stats turqbg">
+                  <span class="fa fa-heart-o"> <strong><%= review.likes.count%></strong></span>
+                  <span class="fa  fa-comments-o pull-right"> <strong><%= review.review_comments.count%></strong></span>
+                </div>
               </div>
-              <img src="" class="img-responsive">
-            </div>
-            <div class="info">
-              <p class="small" style="text-overflow: ellipsis">An Awesome Title</p>
-              <p class="small coral text-right"><i class="fa fa-clock-o"></i><small> Posted Today | 10:42 A.M.</small></p>
-            </div>
-            <div class="stats turqbg">
-              <span class="fa fa-heart-o"> <strong>47</strong></span>
-              <span class="fa fa-eye pull-right"> <strong>137</strong></span>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="view">
-              <div class="caption">
-                <p>47 Love</p>
-                <a href="" rel="tooltip" title="Appreciate"><span class="fa fa-heart-o fa-2x"></span></a>
-                <a href="" rel="tooltip" title="View"><span class="fa fa-search fa-2x"></span></a>
-              </div>
-              <img src="" class="img-responsive">
-            </div>
-            <div class="info">
-              <p class="small" style="text-overflow: ellipsis">An Awesome Title</p>
-              <p class="small coral text-right"><i class="fa fa-clock-o"></i><small> Posted Today | 10:42 A.M.</small></p>
-            </div>
-            <div class="stats turqbg">
-              <span class="fa fa-heart-o"> <strong>47</strong></span>
-              <span class="fa fa-eye pull-right"> <strong>137</strong></span>
-            </div>
-          </div>
+        <% end%>
         </div>
       </div>
     </div>

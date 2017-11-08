@@ -13,9 +13,12 @@ class User < ApplicationRecord
       where({:status => Notification.statuses[:not_seen]})
     end
   end
+  has_many :likes
 
   mount_uploader :avatar, GameUploader
-
+  top_reviewers_query = where id: Review.where(status: true).group(:user_id).limit(1)
+                                    .pluck(:user_id)
+  scope :top_reviewers, ->{top_reviewers_query}
   #enum gender: [:male, :female]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
