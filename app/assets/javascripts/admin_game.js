@@ -1,9 +1,9 @@
 
 $(document).ready(function () {
-$("select").material_select()
-    var current_url = window.location.pathname.split("/")
-    if(current_url[2]=='create_game')
-    {
+var current_url = window.location.pathname.split("/")   
+if(current_url[2]=='create_game')
+{
+    $("select").material_select()
         if(window.location.pathname == "/admin/create_game") {
             var list_genre = {};
             var list = gon.genres;
