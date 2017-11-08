@@ -15,7 +15,7 @@
               </div>
             </div>
           </div>
-          <a href="#">
+          <a>
             <div class="panel-footer announcement-bottom">
               <div class="row">
                 <div class="col-xs-6">
@@ -43,11 +43,69 @@
               </div>
             </div>
           </div>
-          <a href="#">
+          <a>
             <div class="panel-footer announcement-bottom">
               <div class="row">
                 <div class="col-xs-6">
                  <%= link_to "More info", admin_publishers_path %>
+                </div>
+                <div class="col-xs-6 text-right">
+                  <i class="fa fa-arrow-circle-right"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div><!-- /.row -->
+    
+    <div class="row col-md-12">
+      <div class="col-md-4 col-md-offset-1">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-6">
+                <i class="fa fa-send fa-5x"></i>
+              </div>
+              <div class="col-xs-6 text-right">
+                <p class="announcement-heading"><%= @count_games %></p>
+                <p class="announcement-text">Games</p>
+              </div>
+            </div>
+          </div>
+          <a>
+            <div class="panel-footer announcement-bottom">
+              <div class="row">
+                <div class="col-xs-6">
+                  <%= link_to "More info", admin_games_path %>
+                </div>
+                <div class="col-xs-6 text-right">
+                  <i class="fa fa-arrow-circle-right"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-6">
+                <i class="fa fa-comments fa-5x"></i>
+              </div>
+              <div class="col-xs-6 text-right">
+                <p class="announcement-heading"><%= @count_reviews %></p>
+                <p class="announcement-text"> Reviews</p>
+              </div>
+            </div>
+          </div>
+          <a>
+            <div class="panel-footer announcement-bottom">
+              <div class="row">
+                <div class="col-xs-6">
+                 <%= link_to "More info", "" %>
                 </div>
                 <div class="col-xs-6 text-right">
                   <i class="fa fa-arrow-circle-right"></i>

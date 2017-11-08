@@ -1,6 +1,5 @@
-module ReviewCommentsHelper
+module RateHelper
     def self.point_avg(id)
-        @total = ReviewComment.find(id).size
         @total = RateTable.where(game_id: id).count
 
         @star_1 = RateTable.where(game_id: id, point: 1).count
