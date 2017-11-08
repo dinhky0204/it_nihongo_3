@@ -1,0 +1,145 @@
+
+<!--<div class="container">-->
+    <h1>Publishers</h1>
+    <div class="row col-md-12 custyle">
+    <table id="table-genre" class="table table-striped custab table-hover table-bordered table-list">
+    <thead>
+    <a class="btn btn-primary pull-right genre-add"><b>+</b> Add new Publishers</a>
+        <tr>
+            <th class="id-area">ID</th>
+            <th class="name-area">Name</th>
+            <th class="text-center edit-area">Edit</th>
+            <th class="text-center delete-area">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @publishers.each do |publisher| %>
+            <tr id="row-<%= publisher.id %>">
+                <td><%= publisher.id %></td>
+                <td class="genre-name-<%= publisher.id%>"><%= publisher.name%></td>
+                <td class="text-center genre-edit" value=<%= publisher.id%>><a class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Edit</a> </td>
+                <td class="text-center genre-delete" value=<%= publisher.id%>><a class='btn btn-danger btn-xs'><span class="glyphicon glyphicon-remove"></span> Delete</a> </td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    </div>
+<!--</div>-->
+
+<script>
+    $('#table-genre').on('click', '.genre-delete', function() {
+    // $(".genre-delete").click(function(event){
+        var publisher_id =  $(this).attr('value');
+        console.log(publisher_id);
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this data!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url: "/admin/publisher_delete",
+                    method: "POST",
+                    dataType: "json",
+                    data: {publisher_id: publisher_id},
+                    error: function (xhr, status, error) {
+                        console.error('AJAX Error: ' + status + error);
+                        swal("Can not delete!", {
+                            icon: "error",
+                        });
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        swal("Poof! Your data has been deleted!", {
+                            icon: "success",
+                    });
+                     $("#row-"+publisher_id).remove();
+                    }
+                });
+            }
+    });
+    });
+    
+    $(".genre-add").click(function(event){
+        swal({
+            text: 'Input a genre. e.g. "Action",...',
+            content: "input",
+            button: {
+                text: "Add to Genres",
+                closeModal: false,
+            },
+        }).then((value) => {
+            if (value) {
+                $.ajax({
+                    url: "/admin/publisher_add",
+                    method: "POST",
+                    dataType: "json",
+                    data: {publisher_name: value},
+                    error: function (xhr, status, error) {
+                        console.error('AJAX Error: ' + status + error);
+                        swal("Can not add!", {
+                            icon: "error",
+                        });
+                    },
+                    success: function (response) {
+                        var publisher = response["publisher"];
+                        console.log(publisher);
+                        swal("Genres has been added!", {
+                            icon: "success",
+                        });
+
+                        $('table > tbody > tr:first').before(
+                            '<tr id="row-'+ publisher["id"] + '">' +
+                            '<td>' + publisher["id"] + '</td>' +
+                            '<td>' + publisher["name"] + '</td>' +
+                            '<td class="text-center genre-edit" value=' + publisher["id"] +'><a class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a> </td>' +
+                            '<td class="text-center genre-delete" value=' + publisher["id"] +'><a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a> </td>' +
+                            '</tr>'
+                        );
+                    }
+                });
+
+            }
+        });
+    });
+
+    $('#table-genre').on('click', '.genre-edit', function() {
+    // $(".genre-edit").click(function(event){
+        var publisher_id =  $(this).attr('value');
+        swal({
+            text: 'Input a new name of genre. e.g. "Action",...',
+            content: "input",
+            button: {
+                text: "Edit Genre",
+                cancel: "Cancel",
+                closeModal: false,
+            },
+        }).then((value) => {
+            if (value) {
+                $.ajax({
+                    url: "/admin/genre_update",
+                    method: "POST",
+                    dataType: "json",
+                    data: {publisher_name: value, publisher: publisher_id},
+                    error: function (xhr, status, error) {
+                        console.error('AJAX Error: ' + status + error);
+                        swal("Can not add!", {
+                            icon: "error",
+                        });
+                    },
+                    success: function (response) {
+                        swal("Genres has been updated!", {
+                            icon: "success",
+                        });
+                        $(".genre-name-"+ gpublisher_id).text(value);
+                    }
+                });
+
+            }
+        });
+    });
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

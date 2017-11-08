@@ -5,7 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Notification.delete_all
 RateTable.delete_all
+ReviewComment.delete_all
 Review.delete_all 
 GameGenre.delete_all
 Genre.delete_all
@@ -37,7 +39,7 @@ Game.create! id:3,
              story: "Assassin's Creed Origins story",
              description: "Fore!",
              guide: "No guide",
-             image: "https://gpstatic.com/acache/33/17/1/uk/t620x300.jpg",
+             image: "http://download.gamezone.com/uploads/image/data/1220478/assassin-creed-origins-date-de-sortie-trailer-news_29174_wide.jpg",
              publisher_id: 1
 Game.create! id:4,
              name: "Wolfenstein 2: The New Colossus",
@@ -122,6 +124,7 @@ GameGenre.create!([
                       {game_id: 5, genre_id: 1},
                       {game_id: 6, genre_id: 1},
                       {game_id: 7, genre_id: 3},
+                      {game_id: 8, genre_id: 3},
                       {game_id: 9, genre_id: 3},
                       {game_id: 10, genre_id: 3},
                       {game_id: 11, genre_id: 3},
@@ -129,7 +132,8 @@ GameGenre.create!([
                   ])
                  
 Review.create!([
-                  {user_id: 1,
+                  {id: 1,
+                  user_id: 1,
                   content: "Super Mario Odyssey displays a clear understanding of what makes Mario tick,
                   and is neck and neck for top billing among its esteemed predecessors. 
                   It surprises you with not just inventive mechanics, of which there are many, 
@@ -151,7 +155,8 @@ Review.create!([
                   game_id: 1,
                   status: 1
                  },
-                 {user_id: 1,
+                 {id: 2,
+                  user_id: 1,
                   content: "Golf Story is zany, unexpectedly funny, and mechanically sound.
                   Those descriptors aren't overly exciting on their own, but then again, 
                   the same could be said of what constitutes contemporary RPGs; you fetch things, 
@@ -169,7 +174,8 @@ Review.create!([
                   game_id: 2,
                   status: 1
                  },
-                 {user_id: 1,
+                 {id: 3,
+                  user_id: 1,
                   content: "When you need to see the bigger picture, sometimes it's best to return to your roots. 
                   Assassin's Creed Origins takes this thinking to heart and steps into the seamless and dynamic 
                   open world of ancient Egypt. Although this move shows glimmers of a brighter future for the series,
@@ -188,7 +194,8 @@ Review.create!([
                   game_id: 3,
                   status: 1
                  },
-                 {user_id: 1,
+                 {id: 4,
+                  user_id: 1,
                   content: "Above all else, Wolfenstein II: The New Colossus takes a very hard stance on 
                   the righteousness of killing Nazis. It never falters, not once asking whether violent resistance is
                   the wrong way to fight back against oppression--and the game is stronger for it. 
@@ -207,7 +214,8 @@ Review.create!([
                   game_id: 4,
                   status: 1
                  },
-                 {user_id: 1,
+                 {id: 5,
+                  user_id: 1,
                   content: "Spectacle and showmanship are as vital to professional wrestling as its storylines and in-ring action.
                   Fans will fondly remember a Superstar's distinctive mannerisms, or the pageantry of a glorious entrance,
                   just as much as a five-star match. WWE 2K18 takes this aspect to heart with a substantial leap 
@@ -223,7 +231,8 @@ Review.create!([
                   game_id: 5,
                   status: 1
                  },
-                 {user_id: 1,
+                 {id: 6,
+                  user_id: 1,
                   content: "Destiny 2 is a lot more Destiny. The structure is largely the same, as is the mechanically
                   excellent shooting and satisfying loot grind. But there are a variety of changes both under 
                   the hood and throughout your activities that make it a significant improvement over the original 
@@ -237,9 +246,10 @@ Review.create!([
                   and PvP in the Crucible. For a newcomer to Destiny, it can be hard to decide what to do and when.",
                   title: "Destiny 2 Review",
                   game_id: 6,
-                  status: 0
+                  status: 1
                  },
-                 {user_id: 1,
+                 {id: 7,
+                  user_id: 1,
                   content: "In South Park: The Fractured But Whole, the fantasy theme of its predecessor gives way 
                   to the equally popular subject of superheroes, parodying the current state of comic book-to-film 
                   oversaturation we see today. This shift is complemented by the change in the combat system, 
@@ -249,9 +259,10 @@ Review.create!([
                   is a delightfully fart-tinged journey that delivers satisfying gameplay and surprising absurdity in equal measure.",
                   title: "South Park Review",
                   game_id: 7,
-                  status: 0
+                  status: 1
                  },
-                 {user_id: 1,
+                 {id: 8,
+                  user_id: 1,
                   content: "Survival games challenge you to gain control of treacherous worlds. You typically start with very little,
                   and need to scavenge for supplies and resources in order to craft the tools needed to help you avoid death. 
                   Success usually means having enough power to establish yourself in a higher place on the food chain, 
@@ -260,9 +271,10 @@ Review.create!([
                   experience as a result.",
                   title: "The Flame in the Flood Review",
                   game_id: 8,
-                  status: 0
+                  status: 1
                  },
-                 {user_id: 1,
+                 {id: 9,
+                  user_id: 1,
                   content: "FIFA 18 on Nintendo Switch is a tough game to categorize. When compared to the likes of
                   FIFA's past PS Vita, 3DS, and other mobile versions, it's easily the best portable FIFA ever made. 
                   But compared to its current console cousin--FIFA 18 on PS4 / Xbox One--it's lacking features and much of
@@ -276,9 +288,10 @@ Review.create!([
                   instructions is a frustrating and bizarre one. But playing a match of FIFA 18 on Switch is an enjoyable experience.",
                   title: "FIFA 18 Review",
                   game_id: 9,
-                  status: 0
+                  status: 1
                  },
-                 {user_id: 1,
+                 {id: 10,
+                  user_id: 1,
                   content: "On the surface, Stardew Valley is a game about farming, but there are more adventures 
                   awaiting curious players beyond cultivating a rich and bountiful garden. From mining and fishing
                   to making friends and falling in love, Stardew Valley's Pelican Town is stuffed with rewarding opportunities. 
@@ -293,7 +306,43 @@ Review.create!([
                   the best way to outfit your budding farm with new tools and equipment.",
                   title:"Stardew Valley Review",
                   game_id: 10,
-                  status: 0
+                  status: 1
+                 },
+                 {id: 11,
+                  user_id: 1,
+                  content: "On the surface, Stardew Valley is a game about farming, but there are more adventures 
+                  awaiting curious players beyond cultivating a rich and bountiful garden. From mining and fishing
+                  to making friends and falling in love, Stardew Valley's Pelican Town is stuffed with rewarding opportunities. 
+                  As modern day woes give way to pressing matters on the farm and within your newfound community,
+                  Stardew Valley's meditative activities often lead to personal reflection in the real world. 
+                  It’s a game that tugs at your curiousity as often as it does your heart. \n
+
+                  Your journey begins in the field, cleaning up a neglected and rundown farm. Plotting and planning
+                  your garden requires care and attention to detail. What fruits and vegetables do you grow? 
+                  How much room does each plant need? How do you protect your crops from nature's troublemakers?
+                  You learn through practice, and while the basics are easy to grasp, you quickly need to figure out 
+                  the best way to outfit your budding farm with new tools and equipment.",
+                  title:"Stardew Valley Review",
+                  game_id: 11,
+                  status: 1
+                 },
+                 {id: 12,
+                  user_id: 1,
+                  content: "On the surface, Stardew Valley is a game about farming, but there are more adventures 
+                  awaiting curious players beyond cultivating a rich and bountiful garden. From mining and fishing
+                  to making friends and falling in love, Stardew Valley's Pelican Town is stuffed with rewarding opportunities. 
+                  As modern day woes give way to pressing matters on the farm and within your newfound community,
+                  Stardew Valley's meditative activities often lead to personal reflection in the real world. 
+                  It’s a game that tugs at your curiousity as often as it does your heart. \n
+
+                  Your journey begins in the field, cleaning up a neglected and rundown farm. Plotting and planning
+                  your garden requires care and attention to detail. What fruits and vegetables do you grow? 
+                  How much room does each plant need? How do you protect your crops from nature's troublemakers?
+                  You learn through practice, and while the basics are easy to grasp, you quickly need to figure out 
+                  the best way to outfit your budding farm with new tools and equipment.",
+                  title:"Stardew Valley Review",
+                  game_id: 12,
+                  status: 1
                  },
              ])
 
@@ -366,3 +415,36 @@ RateTable.create!([
                     message: "Good!"
                 },
             ])
+
+ReviewComment.create! ([
+    {
+        user_id: 1,
+        review_id: 1,
+        content: "Very good!",
+    },
+    {
+        user_id: 1,
+        review_id: 1,
+        content: "Very good!",
+    },
+    {
+        user_id: 1,
+        review_id: 2,
+        content: "Very good!",
+    },
+    {
+        user_id: 1,
+        review_id: 3,
+        content: "Very good!",
+    },
+    {
+        user_id: 1,
+        review_id: 4,
+        content: "Very good!",
+    },
+    {
+        user_id: 1,
+        review_id: 4,
+        content: "Very good!",
+    }
+    ])

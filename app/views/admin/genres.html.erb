@@ -1,15 +1,15 @@
 
-<div class="container">
+<!--<div class="container">-->
     <h1>Genres</h1>
-    <div class="row col-md-10 col-md-offset-1 custyle">
+    <div class="row col-md-12 custyle">
     <table id="table-genre" class="table table-striped custab table-hover table-bordered table-list">
     <thead>
     <a class="btn btn-primary pull-right genre-add"><b>+</b> Add new Genres</a>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th class="text-center">Edit</th>
-            <th class="text-center">Delete</th>
+            <th class="id-area">ID</th>
+            <th class="name-area">Name</th>
+            <th class="text-center edit-area">Edit</th>
+            <th class="text-center delete-area">Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
         </tbody>
     </table>
     </div>
-</div>
+<!--</div>-->
 
 <script>
     $('#table-genre').on('click', '.genre-delete', function() {
@@ -85,18 +85,18 @@
                         });
                     },
                     success: function (response) {
-                        var game = response["game"];
-                        console.log(game);
+                        var genre = response["genre"];
+                        console.log(genre);
                         swal("Genres has been added!", {
                             icon: "success",
                         });
 
                         $('table > tbody > tr:first').before(
-                            '<tr id="row-'+ game["id"] + '">' +
-                            '<td>' + game["id"] + '</td>' +
-                            '<td>' + game["name"] + '</td>' +
-                            '<td class="text-center genre-edit" value=' + game["id"] +'><a class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a> </td>' +
-                            '<td class="text-center genre-delete" value=' + game["id"] +'><a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a> </td>' +
+                            '<tr id="row-'+ genre["id"] + '">' +
+                            '<td>' + genre["id"] + '</td>' +
+                            '<td>' + genre["name"] + '</td>' +
+                            '<td class="text-center genre-edit" value=' + genre["id"] +'><a class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a> </td>' +
+                            '<td class="text-center genre-delete" value=' + genre["id"] +'><a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a> </td>' +
                             '</tr>'
                         );
                     }

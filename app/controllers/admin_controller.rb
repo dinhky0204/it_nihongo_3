@@ -1,26 +1,30 @@
 class AdminController < ApplicationController
   before_action :check_privileges!, only: [:index]
   def dashboard
-    @count_genres = Genre.count
+    @count_genres = Genre.where(deleted_at: nil).count
     @count_puplishers = Publisher.count
+    @count_games = Game.count
+    @count_reviews = Review.count
      @genres = Genre.order(created_at: :desc).all
   end
   
   def genres
-    @genres = Genre.order(created_at: :desc).all
+    @genres = Genre.where(deleted_at: nil).order(created_at: :desc).all
   end
   
   def genre_delete
     @genre = Genre.find(params[:genre_id])
-    @genre.destroy
+    @genre.deleted_at = Time.now
+    @genre.save
+    # @genre.destroy
   end
   
   def genre_add
-    @game = Genre.create(name: params[:genre_name])
+    @genre = Genre.create(name: params[:genre_name])
     if request.xhr?
       respond_to do |format|
       format.json {
-        render json: {game: @game}
+        render json: {genre: @genre}
       }
     end
     end
@@ -31,6 +35,49 @@ class AdminController < ApplicationController
   end
   
   def publishers
+    @publishers = Publisher.where(deleted_at: nil).order(created_at: :desc).all
+  end
+  
+  def publisher_delete
+    @publisher = Publisher.find(params[:publisher_id])
+    @publisher.deleted_at = Time.now
+    @publisher.save
+  end
+  
+  def publisher_add
+    @publisher = Publisher.create(name: params[:publisher_name])
+    if request.xhr?
+      respond_to do |format|
+      format.json {
+        render json: {publisher: @publisher}
+      }
+    end
+    end
+  end
+  
+  def publisher_update
+    Publisher.update(params[:publisher_id], :name => params[:publisher_name])
+  end
+  
+  def games
+    @games = Game.where(deleted_at: nil).order(created_at: :desc).all
+  end
+  
+  def game_delete
+    @game = Game.find(params[:game_id])
+    @game.deleted_at = Time.now
+    @genre.save
+    # @genre.destroy
+  end
+  
+  def create_game
+    @game = Game.new
+    @publishers = Publisher.all
+    gon.genres = Genre.all
+    @genres = Genre.where(deleted_at: nil).order(created_at: :desc).all
+    @publishers = Publisher.all
+    @game = Game.new
+    gon.genres = Genre.all
   end
   
   def check_privileges!

@@ -5,7 +5,13 @@ Rails.application.routes.draw do
   post 'admin/genre_delete'
   post 'admin/genre_add'
   post 'admin/genre_update'
+  post 'admin/publisher_delete'
+  post 'admin/publisher_add'
+  post 'admin/publisher_update'
   get 'admin/publishers'
+  get 'admin/games'
+  get 'admin/create_game'
+  post 'admin/game_delete'
   
   get 'static_pages/home'
   get 'static_pages/help'
@@ -34,7 +40,7 @@ Rails.application.routes.draw do
   resource  :notifications, only: [:update] do
     post "seen_notification"
   end
-  root :to => "static_pages#home"
+  root :to => "home_page#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'rates' => 'rate#index'
   post 'rate' => 'rate#update'

@@ -213,6 +213,13 @@ img:hover {
     font-size: 14px;
 }
 
+.media-content-detail-small {
+    color: #323232;
+    // margin-top: 15px;
+    font-size: 12px;
+    font-style: italic;
+}
+
 .media-game-list {
     border-right: 1px dashed #D3D3D3;
     margin-top: -60px;
@@ -225,4 +232,15 @@ img:hover {
 
 #games-genre-top {
     margin-top: 15px;
+}
+
+.genre-top-name {
+    padding-left: unset;
+}
+
+.more-info {
+    font-style: italic;
+    color: #902400;
+    font-weight: bold;
+    font-size: 14px;
 }
