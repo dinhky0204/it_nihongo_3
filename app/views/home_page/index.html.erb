@@ -6,9 +6,9 @@
     <div class="promo--image promo--wide promo--offset-wide">
       <div class="content">
         <%if @review_1st.game.photo==nil %>
-            <%= image_tag("<%=@review_1st.game.photo", class:"img-responsive") %>
+          <%= image_tag @review_1st.photo || "yasuo.jpg", class:"img-responsive"%>
         <% else %>
-            <img src="<%=@review_1st.game.image%>" class="img-responsive"></img>
+            <%= image_tag @review_1st.photo || "yasuo.jpg", class:"img-responsive"%>
         <% end %>
       </div>
     </div>
@@ -21,7 +21,7 @@
         </div>
         <summary class="promo--metadata">
           <h2 class="text-bold text-color-primary"><%= @review_1st.title %></h2>
-          <span class="text-simple"><%= truncate(@review_1st.content, length: 120)%></span>
+          <span class="text-simple"><%= raw @review_1st.content.truncate(50)%></span>
         </summary>
       </div>
     </div>

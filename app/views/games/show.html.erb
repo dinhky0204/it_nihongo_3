@@ -20,11 +20,7 @@
     <div class="show-game-info">
       <div class="col-md-10 col-md-offset-1">
         <div class="show-game-image col-md-4">
-          <% if @game.photo %>
-              <img src="<%= @game.photo %>" alt="Game photo">
-          <% else %>
-              <img src="yasuo.jpg" alt="Game photo">
-          <% end %>
+        <%= image_tag @game.photo.thumb.url || "yasuo.jpg"%>
         </div>
         <div class="col-md-4">
           <div class="show-game-story">
@@ -191,34 +187,29 @@
         </div>
       </div>
 
+    <% if @list_review_of_game.count != 0 %>
       <div class="show-list-review col-md-offset-2 col-md-8">
         <div class="slider4">
-          <div class="slide" id="review-3">
-            <div class="card darken-1">
-              <div class="card-content white-text review-image">
-                <span class="card-title">Card Title</span>
-                <p>I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively.</p>
+            <% @list_review_of_game.each do |review| %>
+              <div class="single_course">
+                <div class="singCourse_imgarea">
+                  <%= image_tag review.photo || "yasuo.jpg"%>
+                  <div class="mask">
+                    <%= link_to "View More", review_path(review), class: "course_more"  %>
+                  </div>
+                </div>
+                <div class="singCourse_content">
+                  <h3 class="singCourse_title"><a href="#"> <%= review.title %>  </a></h3>
+                </div>
+                <div class="singCourse_author">
+                  <%= image_tag review.user.avatar.thumb.url || "default-user.jpg"%>
+                  <p><%= review.user.name %></p>
+                </div>
               </div>
-              <div class="card-action">
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
-              </div>
-            </div>
-          </div>
-          <div class="slide">
-            <img src="http://placehold.it/300x250&text=Review2">
-          </div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review3"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review4"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review5"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review6"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review7"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review8"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review9"></div>
-          <div class="slide"><img src="http://placehold.it/300x250&text=Review10"></div>
+            <% end %>
         </div>
       </div>
+    <% end %>
       <div class="row" style="background-color: #ffffff">
         <div class="col-md-offset-2 col-md-8">
          <strong>Description:</strong>
