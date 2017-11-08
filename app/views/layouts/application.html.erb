@@ -17,6 +17,10 @@
     <%= stylesheet_link_tag 'reviews', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'reviews' %>
     <%= javascript_include_tag 'reviews' if params[:controller]== "reviews" %>
     <%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'admin' %>
+    <%= stylesheet_link_tag 'admin_create_game', media: 'all', 'data-turbolinks-track': 'reload' if (params[:controller] == 'admin' && params[:action] == "create_game") %>
+    <%= javascript_include_tag 'admin_game' if params[:controller]== "admin" && params[:action] == "create_game" %>
+     <%= stylesheet_link_tag 'home_page', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'home_page' %>
+     <%= javascript_include_tag 'home_page' if (params[:controller] == 'home_page')%>
   </head>
   <% if current_user.present? && current_user.is_admin? && params[:controller]== "admin" %>
      <%= render 'admin/navigation' %>
@@ -33,9 +37,8 @@
           <% if current_user.present? && current_user.is_admin? %>
           <li><%= link_to('Admin', admin_dashboard_path) %></li>
           <% end %>
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Page 1</a></li>
-          <li><a href="#">Page 2</a></li>
+          <li><a href="<%= games_path %>">Game</a></li>
+          <li><a href="<%= reviews_path %>">Review</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li id="search-container">

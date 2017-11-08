@@ -1,0 +1,90 @@
+<!--<div class="container">-->
+    <h1>Games</h1>
+    <div class="row col-md-12 custyle">
+    <table id="table-genre" class="table table-striped custab table-hover table-bordered table-list">
+    <thead>
+    <a class="btn btn-primary pull-right genre-add" href="<%= admin_create_game_path %>"><b>+</b> Add new Games</a>
+        <tr>
+            <th class="5-area">ID</th>
+            <th class="20-area">Image</th>
+            <th class="10-area">Name</th>
+            <th class="10-area">Publishers</th>
+            <th class="10-area">Genres</th>
+            <th class="10-area">Story</th>
+            <th class="10-area">Guide</th>
+            <th class="15-area">Description</th>
+            <th class="text-center 10-area">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @games.each do |game| %>
+            <tr id="row-<%= game.id %>">
+                <td><%= game.id %></td>
+                <td><div class="image-game">
+                    <% if game.photo==nil%>
+                    <%= image_tag("yasuo.jpg", id: "new_photo") %>
+                    <% else %>
+                    <img id="new_photo" src="<%= game.image %>"></img>
+                    <% end %>
+                  </div>
+                </td>
+                <td class="genre-name-<%= game.id%>"><%= game.name%></td>
+                <td>
+                </td>
+                <td>
+                    <% game.genres.each do |g| %>
+                    <%= g.name%> ,
+                    <% end %>
+                </td>
+                <td><%= truncate(game.story, length: 100)%></td>
+                <td><%= truncate(game.guide, length: 100)%></td>
+                <td><%= truncate(game.description, length: 100)%></td>
+                <td class="text-center genre-edit" value=<%= game.id%>>
+                    <a class='btn btn-info btn-xs genre-edit'><span class="glyphicon glyphicon-edit"></span></a>
+                    <a class='btn btn-danger btn-xs genre-delete'><span class="glyphicon glyphicon-remove"></span></a>
+                </td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    </div>
+<!--</div>-->
+
+<script>
+    $('#table-genre').on('click', '.genre-delete', function() {
+    // $(".genre-delete").click(function(event){
+        var game_id =  $(this).attr('value');
+        console.log(game_id);
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this data!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url: "/admin/game_delete",
+                    method: "POST",
+                    dataType: "json",
+                    data: {game_id: game_id},
+                    error: function (xhr, status, error) {
+                        console.error('AJAX Error: ' + status + error);
+                        swal("Can not delete!", {
+                            icon: "error",
+                        });
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        swal("Poof! Your data has been deleted!", {
+                            icon: "success",
+                    });
+                     $("#row-"+game_id).remove();
+                    }
+                });
+            }
+    });
+    });
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
