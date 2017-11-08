@@ -42,6 +42,8 @@ class GamesController < ApplicationController
     else
       @current_rate = nil
     end
+    current_game = Game.find_by(id: params[:id])
+    @list_review_of_game = current_game.reviews
 
   end
 

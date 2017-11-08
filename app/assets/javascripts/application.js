@@ -22,6 +22,7 @@
 //= require materialize/extras/nouislider
 //= require bxslider
 //= require admin_game
+//= require game
 //= require react
 //= require react_ujs
 //= require components
