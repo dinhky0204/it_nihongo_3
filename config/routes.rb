@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :likes
+  post 'likes/check_delete'
   get 'admin/dashboard'
   get 'admin/genres'
   post 'admin/genre_delete'
