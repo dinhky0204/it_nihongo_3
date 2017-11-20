@@ -20,13 +20,10 @@
         <% @games.each do |game| %>
             <tr id="row-<%= game.id %>">
                 <td><%= game.id %></td>
-                <td><div class="image-game">
-                    <% if game.photo==nil%>
-                    <%= image_tag("yasuo.jpg", id: "new_photo") %>
-                    <% else %>
-                    <img id="new_photo" src="<%= game.image %>"></img>
-                    <% end %>
-                  </div>
+                <td>
+                    <div class="image-game">
+                        <%= image_tag game.photo || "yasuo.jpg" , id: "new_photo" %>
+                    </div>
                 </td>
                 <td class="genre-name-<%= game.id%>"><%= game.name%></td>
                 <td>
@@ -51,9 +48,9 @@
 <!--</div>-->
 
 <script>
-    $('#table-genre').on('click', '.genre-delete', function() {
+    $('.genre-delete').on('click', function() {
     // $(".genre-delete").click(function(event){
-        var game_id =  $(this).attr('value');
+        var game_id =  $(this).parent().attr('value');
         console.log(game_id);
         swal({
             title: "Are you sure?",
