@@ -4,11 +4,11 @@ class HomePageController < ApplicationController
     @c_review = Review.all.count
     @c_genre = Genre.all.count
     
-    # if 1 < @c_review < 10 
-    #   @last_reviews = Review.all
-    # else
-    #   @last_reviews = Review.last(10)
-    # end
+    if @c_review < 10 
+      @last_reviews = Review.all
+    else
+      @last_reviews = Review.last(10)
+    end
     @genres = Genre.all
     # @genre_review_tops = Genre.find(1).games
     #get point and review_id to hash @points

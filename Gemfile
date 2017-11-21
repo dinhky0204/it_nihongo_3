@@ -50,6 +50,7 @@ gem "redcarpet"
 gem "font-awesome-sass"
 gem "font-awesome-rails"
 gem "react-rails"
+gem 'rails_admin', '~> 1.2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

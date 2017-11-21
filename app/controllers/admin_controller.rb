@@ -64,9 +64,9 @@ class AdminController < ApplicationController
   end
   
   def game_delete
-    @game = Game.find(params[:game_id])
+    @game = Game.find(params[:game_id])    
     @game.deleted_at = Time.now
-    @genre.save
+    @game.save
     # @genre.destroy
   end
   
@@ -78,6 +78,10 @@ class AdminController < ApplicationController
     @publishers = Publisher.all
     @game = Game.new
     gon.genres = Genre.all
+  end
+
+  def users
+    @users = User.all()
   end
   
   def check_privileges!
