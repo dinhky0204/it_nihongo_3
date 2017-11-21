@@ -4,8 +4,8 @@
   <section class="promo--container container row span12  js-impression-tracking " data-impression-tracking="">
     <a  href=<%= review_url(@review_1st) %>
             class="promo--object promo-type--single  js-event-tracking">
-    <div class="promo--image promo--wide promo--offset-wide">
-      <div class="content">
+    <div class="col-md-8 promo--image promo--wide promo--offset-wide">
+      <div content">
         <%if @review_1st.game.photo==nil %>
           <%= image_tag @review_1st.photo || "yasuo.jpg", class:"img-responsive"%>
         <% else %>
@@ -13,7 +13,7 @@
         <% end %>
       </div>
     </div>
-    <div class="promo--offset-square promo--square promo--single-metadata">
+    <div class="col-md-4 promo--offset-square promo--square promo--single-metadata">
       <div class="content">
         <div class="promo--media-type ">
           <div class="content">
@@ -32,12 +32,12 @@
   <div class="row promo-strip-list">
     <% @review_4ths.each do |r| %>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 slide-item-game">
-          <a href="#">
+          <a href="/reviews/<%=r.id%>">
             <div class="panel panel-default">
               <%if r.game.photo==nil %>
-                  <%= image_tag("<%=r.game.photo", class:"display-center") %>
+                  <%= image_tag r.game.photo || "yasuo.jpg", class:"display-center"%>
               <% else %>
-                  <img src="<%=r.game.image%>" class="idisplay-center"></img>
+                  <%= image_tag r.game.photo || "yasuo.jpg", class:"display-center"%>
               <% end %>
             </div>
             <div class="circle circle-small text-center col-md-3"><%= @points[r.id] %></div>
@@ -66,9 +66,9 @@
                 <div class="col-md-4 media-figure media-figure--medium">
                   <div class="media-img imgflare--boxart">
                     <%if last_review.game.photo==nil %>
-                        <%= image_tag("<%=last_review.game.photo") %>
+                      <%= image_tag last_review.game.photo || "yasuo.jpg" %>
                     <% else %>
-                        <img src="<%=last_review.game.image%>"></img>
+                      <%= image_tag last_review.game.photo || "yasuo.jpg" %>
                     <% end %>
                   </div>
                 </div>
@@ -119,17 +119,21 @@
                   <% @genre_review_tops.each do |top| %>
                       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                         <div class="panel panel-default">
-                          <a href=<%= review_url(top) %>>
+                          <a href=<%= review_url(top) %> >
                             <%if top.game.photo==nil %>
-                                <%= image_tag("<%=top.game.photo", class: "display-center") %>
+                                <%= image_tag top.game.photo || "yasuo.jpg", class: "display-center" %>
                             <% else %>
-                                <img class="display-center" src="<%=top.game.image%>"></img>
+                              <%= image_tag top.game.photo || "yasuo.jpg", class: "display-center" %>
                             <% end %>
                           </a>
                         </div>
                       </div>
                       <div class="col-md-6 genre-top-name text-bold"><a href=<%= review_url(top) %>><%= top.title %></a></div>
-                      <div class="media-content-detail-small"><span><%= truncate(top.content, length: 100)%></span></div>
+                      <div class="media-content-detail-small">
+                      <span>
+                        <%= raw top.content.truncate(150)%>
+                      </span>
+                      </div>
                       <div class="top-hr"><hr/></div>
                   <% end %>
               <% end %>

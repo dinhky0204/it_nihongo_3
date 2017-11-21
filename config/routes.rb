@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :likes
   post 'likes/check_delete'
-  get 'admin/dashboard'
   get 'admin/genres'
   post 'admin/genre_delete'
   post 'admin/genre_add'
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'admin/games'
   get 'admin/create_game'
   post 'admin/game_delete'
+  get 'admin/users'
   
   get 'static_pages/home'
   get 'static_pages/help'

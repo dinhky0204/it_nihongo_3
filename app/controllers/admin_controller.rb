@@ -79,6 +79,10 @@ class AdminController < ApplicationController
     @game = Game.new
     gon.genres = Genre.all
   end
+
+  def users
+    @users = User.all()
+  end
   
   def check_privileges!
   redirect_to "/", notice: 'You dont have enough permissions to be here' unless current_user.is_admin

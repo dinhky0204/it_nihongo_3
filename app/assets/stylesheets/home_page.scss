@@ -4,8 +4,8 @@
 }
 
 .promo-type--single {
-    display: flex;
-    flex-basis: 100%;
+    /*display: flex;
+    flex-basis: 100%;*/
     // flex-wrap: no-wrap;
 }
 
@@ -70,16 +70,11 @@ a:hover {
     color: #f68a66 !important;
 }
 .promo--image {
-    background: #000;
-    width: 100%;
+    background: #ffffff;
 }
 
 .promo--image:hover {
-//   backface-visibility: hidden;
-//   transform: scale(1.1, 1.1);
-  
   transform: scale(1);
-  background: rgba(0, 0, 0, 0.71);
   opacity: 1;
 }
 
@@ -88,6 +83,7 @@ img {
     -ms-interpolation-mode: bicubic;
     vertical-align: middle;
     max-width: 100%;
+    transition: 1s;
 }
 img:hover {
     filter: none;
