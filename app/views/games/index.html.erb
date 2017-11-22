@@ -1,36 +1,196 @@
-<p id="notice"><%= notice %></p>
-<h1>Games</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Story</th>
-      <th>Description</th>
-      <th>Guide</th>
-      <th>Publisher</th>
-      <th>Photo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @games.each do |game| %>
-      <tr>
-        <td><%= game.name %></td>
-        <td><%= game.story %></td>
-        <td><%= game.description %></td>
-        <td><%= game.guide %></td>
-        <td><%= game.publisher_id %></td>
-        <td><%= photo_for(game) %></td>
-        <td><%= link_to 'Show', game %></td>
-        <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Game', new_game_path %>
+<!--<div class="container">-->
+    <div class="row col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="section-title"><span> HOT GAMES</span></h4>
+            </div>
+            <div class="col-md-12">
+                <!-- Controls -->
+                <div class="controls pull-right hidden-xs">
+                    <a class="left fa fa-chevron-left" href="#carousel-example"
+                        data-slide="prev"></a><a class="right fa fa-chevron-right" href="#carousel-example"
+                            data-slide="next"></a>
+                </div>
+            </div>
+        </div>
+        <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                
+                    <div class="row">
+                    		<% @games.each do |game| %>
+                        <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                	<%= image_tag game.photo.thumb.url || "yasuo.jpg", class:"img-responsive"%>
+                                    <!--<img src="https://static.gamespot.com/uploads/screen_kubrick/1197/11970954/3307360-super-mario-odyssey-review-promo1-2.jpg" class="img-responsive" alt="a" />-->
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                    		<div class="price col-md-7">
+                                            <h5><a href="<%= game_url(game) %>"><%= game.name %></a></h5>
+                                        </div>
+                                        <div class="rating hidden-sm col-md-5">
+                                        	<% GamesHelper.point_avg(game.id).times do |i| %>
+                                        	<i class="price-text-color fa fa-star"></i>
+                                        	<% end %>
+                                        	<% (5-GamesHelper.point_avg(game.id)).times do |i| %>
+                                        	<i class="fa fa-star"></i>
+                                        	<% end %>
+                                        </div>
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-comments"></i><span class="hidden-sm"><%= game.reviews.count %>(Review)</span></p>
+                                        <p class="btn-details">
+                                            <i class="fa fa-list"></i><a href="<%= game_url(game) %>" class="hidden-sm">View details</a></p>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="row">
+                    	<% @mores.each do |game| %>
+                        <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                	<%= image_tag game.photo.thumb.url || "yasuo.jpg", class:"img-responsive"%>
+                                    <!--<img src="https://static.gamespot.com/uploads/screen_kubrick/1197/11970954/3307360-super-mario-odyssey-review-promo1-2.jpg" class="img-responsive" alt="a" />-->
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                    		<div class="price col-md-7">
+                                            <h5><a href="<%= game_url(game) %>"><%= game.name %></a></h5>
+                                        </div>
+                                        <div class="rating hidden-sm col-md-5">
+                                        	<% GamesHelper.point_avg(game.id).times do |i| %>
+                                        	<i class="price-text-color fa fa-star"></i>
+                                        	<% end %>
+                                        	<% (5-GamesHelper.point_avg(game.id)).times do |i| %>
+                                        	<i class="fa fa-star"></i>
+                                        	<% end %>
+                                        </div>
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-comments"></i><span class="hidden-sm"><%= game.reviews.count %>(Review)</span></p>
+                                        <p class="btn-details">
+                                            <i class="fa fa-list"></i><a href="<%= game_url(game) %>" class="hidden-sm">View details</a></p>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!--last game-->
+        <div class="row col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="section-title"><span> LASTEST GAMES</span></h4>
+            </div>
+            <div class="col-md-12">
+                <!-- Controls -->
+                <div class="controls pull-right hidden-xs">
+                    <a class="left fa fa-chevron-left" href="#carousel-example"
+                        data-slide="prev"></a><a class="right fa fa-chevron-right" href="#carousel-example"
+                            data-slide="next"></a>
+                </div>
+            </div>
+        </div>
+        <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                
+                    <div class="row">
+                    		<% @last_games.each do |game| %>
+                        <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                	<%= image_tag game.photo.thumb.url || "yasuo.jpg", class:"img-responsive"%>
+                                    <!--<img src="https://static.gamespot.com/uploads/screen_kubrick/1197/11970954/3307360-super-mario-odyssey-review-promo1-2.jpg" class="img-responsive" alt="a" />-->
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                    		<div class="price col-md-7">
+                                            <h5><a href="<%= game_url(game) %>"><%= game.name %></a></h5>
+                                        </div>
+                                        <div class="rating hidden-sm col-md-5">
+                                        	<% GamesHelper.point_avg(game.id).times do |i| %>
+                                        	<i class="price-text-color fa fa-star"></i>
+                                        	<% end %>
+                                        	<% (5-GamesHelper.point_avg(game.id)).times do |i| %>
+                                        	<i class="fa fa-star"></i>
+                                        	<% end %>
+                                        </div>
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-comments"></i><span class="hidden-sm"><%= game.reviews.count %>(Review)</span></p>
+                                        <p class="btn-details">
+                                            <i class="fa fa-list"></i><a href="<%= game_url(game) %>" class="hidden-sm">View details</a></p>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="row">
+                    	<% @last_mores.each do |game| %>
+                        <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                	<%= image_tag game.photo.thumb.url || "yasuo.jpg", class:"img-responsive"%>
+                                    <!--<img src="https://static.gamespot.com/uploads/screen_kubrick/1197/11970954/3307360-super-mario-odyssey-review-promo1-2.jpg" class="img-responsive" alt="a" />-->
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                    		<div class="price col-md-7">
+                                            <h5><a href="<%= game_url(game) %>"><%= game.name %></a></h5>
+                                        </div>
+                                        <div class="rating hidden-sm col-md-5">
+                                        	<% GamesHelper.point_avg(game.id).times do |i| %>
+                                        	<i class="price-text-color fa fa-star"></i>
+                                        	<% end %>
+                                        	<% (5-GamesHelper.point_avg(game.id)).times do |i| %>
+                                        	<i class="fa fa-star"></i>
+                                        	<% end %>
+                                        </div>
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-comments"></i><span class="hidden-sm"><%= game.reviews.count %>(Review)</span></p>
+                                        <p class="btn-details">
+                                            <i class="fa fa-list"></i><a href="<%= game_url(game) %>" class="hidden-sm">View details</a></p>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!--</div>-->
