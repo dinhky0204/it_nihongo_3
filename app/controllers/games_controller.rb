@@ -3,16 +3,22 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
+  def top
+  end
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    @games = Game.last(4)
+    @mores = Game.first(4)
     @game_genre = GameGenre.all
   end
 
   # GET /games/1
   # GET /games/1.json
   def show
+    @game = Game.find(params[:id])
+    @game.view = @game.view + 1
+    @game.save
     @total = RateTable.where(game_id: params[:id]).count
 
     @star_1 = RateTable.where(game_id: params[:id], point: 1).count
