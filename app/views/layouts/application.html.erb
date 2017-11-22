@@ -21,6 +21,8 @@
     <%= javascript_include_tag 'admin_game' if params[:controller]== "admin" && params[:action] == "create_game" %>
      <%= stylesheet_link_tag 'home_page', media: 'all', 'data-turbolinks-track': 'reload' if params[:controller] == 'home_page' %>
      <%= javascript_include_tag 'home_page' if (params[:controller] == 'home_page')%>
+     <%= stylesheet_link_tag 'hot_game', media: 'all', 'data-turbolinks-track': 'reload' if (params[:controller] == 'games' && params[:action] == "index") %>
+     <%= javascript_include_tag 'hot_game' if (params[:controller] == 'games' && params[:action] == "index") %>
   </head>
   <% if current_user.present? && current_user.is_admin? && params[:controller]== "admin" %>
      <%= render 'admin/navigation' %>

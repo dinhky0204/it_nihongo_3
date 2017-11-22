@@ -1,5 +1,6 @@
 require 'csv'
 class GamesController < ApplicationController
+
   before_action :set_game, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
@@ -8,8 +9,10 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.last(4)
-    @mores = Game.first(4)
+    @games = Game.order(view: :desc).limit(4)
+    @mores = Game.order(view: :desc).drop(4).first(4)
+    @last_games = Game.order(created_at: :desc).limit(4)
+    @last_mores = Game.order(created_at: :desc).drop(4).first(4)
     @game_genre = GameGenre.all
   end
 
