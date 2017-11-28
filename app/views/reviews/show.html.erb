@@ -49,20 +49,20 @@
                 <% if !find_like(current_user.id, @review.id).first %>
                     <div id="like" class="btn-btr icon-btn btn-unlike">
                       <span id="icon" data-status="like" data-likeid="null" data-reviewid="<%= @review.id %>" data-user="<%= current_user %>" class="icon-unlike glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary-unlike"></span>
-                      <a class="like-value"><%= @review.likes.count %>
+                      <a class="like-value" data-toggle="modal" data-target="#squarespaceModal"><%= @review.likes.count %>
                         Like</a>
                     </div>
                 <% else %>
                     <div id="like" class="btn-btr icon-btn btn-like">
                       <span id="icon" data-status="unlike" data-likeid="<%= find_like(current_user.id, @review.id).first.id %>" data-reviewid="<%= @review.id %>" data-user="<%= current_user %>" class="icon-like glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary-like"></span>
-                      <a class="like-value"><%= @review.likes.count %>
+                      <a class="like-value" data-toggle="modal" data-target="#squarespaceModal"><%= @review.likes.count %>
                         Like</a>
                     </div>
                 <% end %>
             <% else %>
                 <div id="like" class="btn-btr icon-btn btn-unlike">
                   <span id="icon" data-user="<%= current_user %>" class="icon-unlike glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary-unlike"></span>
-                  <a class="like-value"><%= @review.likes.count %>
+                  <a class="like-value" data-toggle="modal" data-target="#squarespaceModal"><%= @review.likes.count %>
                     Like</a>
                 </div>
             <% end %>
@@ -150,5 +150,41 @@
       </div>
     </div>
   </div>
+</div>
+
+
+<!-- line modal -->
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+     aria-hidden="true">
+
+  <div class="modal-header" style="text-align: center">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+    class="sr-only">Close</span></button>
+    <h4 class="modal-title" style="color: #357ebd;" id="lineModalLabel">Liked users</h4>
+  </div>
+
+  <% @review.likes.each do |like| %>
+      <div class="row blog-post" style="display: flex;align-items: center;">
+        <div class="col-sm-2 avatar-like">
+          <% if like.user.avatar.url.nil? %>
+              <img src="https://pbs.twimg.com/media/BMj-KfjCMAAbIlG.jpg">
+          <% else %>
+          <img src="<%= like.user.avatar.url %>" alt="" class="img-responsive">
+          <% end %>
+        </div>
+        <div class="col-sm-7">
+          <div class="post-header">
+            <%= link_to like.user.name, user_path(like.user), method: :get, class: "a-custom" %>
+          </div>
+        </div>
+        <div class="form-follow col-sm-3">
+          <%= render "relationships/form_follow", user: like.user %>
+        </div>
+      </div>
+        <hr>
+  <% end %>
+</div>
+</div>
+
 </div>
 

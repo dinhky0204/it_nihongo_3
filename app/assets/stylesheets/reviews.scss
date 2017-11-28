@@ -97,7 +97,6 @@ body {
 
       img {
         border-radius: 100%;
-        margin: 10px auto;
       }
     }
 
@@ -477,5 +476,26 @@ h2 .h2-custom {
     margin-top: 20px;
     font-size: 20px!important;
     color: #e03800!important;
+  }
+}
+
+.avatar-like {
+  align-items: center;
+  display: flex;
+
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    margin: 10px auto;
+  }
+}
+
+#squarespaceModal {
+  hr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: 0;
+    border-top: 2px solid #eeeeee;
   }
 }
