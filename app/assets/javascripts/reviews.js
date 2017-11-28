@@ -80,6 +80,7 @@ $(document).ready(function () {
                     $('.like-value').html(String(response.like_count) + " Like");
                     like_id = response.like.id;
                     status = "unlike";
+                    location.reload();
                 },
                 error: function () {
                 }
@@ -97,6 +98,7 @@ $(document).ready(function () {
                     $('.like-value').html(String(response) + " Like");
                     status = "like";
                     like_id= null;
+                    location.reload();
                 },
                 error: function () {
                 }
