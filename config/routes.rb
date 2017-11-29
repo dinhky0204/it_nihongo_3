@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post 'admin/publisher_add'
   post 'admin/publisher_update'
   get 'admin/publishers'
-  get 'admin/games'
+  get 'admin/games_in'
   get 'admin/create_game'
   post 'admin/game_delete'
   get 'admin/users'

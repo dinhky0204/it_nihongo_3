@@ -23,8 +23,14 @@ RailsAdmin.config do |config|
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
 
+  # config.included_models = ["like", "comment", "notification", "game_genre"]
+
+  config.navigation_static_links = {
+    'Review' => '/hot_review'
+  }
+
   config.actions do
-    dashboard                     # mandatory
+    dashboard
     index                         # mandatory
     new
     export
@@ -32,7 +38,6 @@ RailsAdmin.config do |config|
     show
     edit
     delete
-    show_in_app
 
     ## With an audit adapter, you can add:
     # history_index
