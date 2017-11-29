@@ -25,10 +25,6 @@ RailsAdmin.config do |config|
 
   # config.included_models = ["like", "comment", "notification", "game_genre"]
 
-  config.navigation_static_links = {
-    'Review' => '/hot_review'
-  }
-
   config.actions do
     dashboard
     index                         # mandatory
@@ -43,4 +39,83 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.default_items_per_page = 10
+
+  config.model 'Review' do
+    list do
+      field :title
+      field :user
+      field :game
+      field :like, :integer do 
+        def value
+          bindings[:object].likes.count
+        end
+      end
+      field :comment, :integer do 
+        def value
+          bindings[:object].review_comments.count
+        end
+      end
+      field :created_at
+      
+    end
+  end
+
+  config.model 'Game' do
+    list do
+      field :name
+      field :story
+      field :guide
+      field :publisher
+      field :view
+      field :review, :integer do
+        def value
+          bindings[:object].reviews.count
+        end
+      end
+    end
+  end
+
+  config.model 'Genre' do
+    list do
+      field :name
+      field :game, :integer do
+        def value
+          bindings[:object].games.count
+        end
+      end
+      field :created_at
+      field :updated_at
+    end
+  end
+
+  config.model 'User' do
+    list do
+      field :email
+      field :name
+      field :avatar
+      field :is_admin
+      field :address
+      field :birthday
+      field :followings, :integer do
+        def value
+          bindings[:object].following.count
+        end
+      end
+      field :followers, :integer do
+        def value
+          bindings[:object].followers.count
+        end
+      end
+      field :like, :integer do
+        def value
+          bindings[:object].likes.count
+        end
+      end
+      field :created_at
+      field :updated_at
+    end
+  end
+
 end
