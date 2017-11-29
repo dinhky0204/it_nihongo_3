@@ -169,7 +169,7 @@
           <% if like.user.avatar.url.nil? %>
               <img src="https://pbs.twimg.com/media/BMj-KfjCMAAbIlG.jpg">
           <% else %>
-          <img src="<%= like.user.avatar.url %>" alt="" class="img-responsive">
+              <img src="<%= like.user.avatar.url %>" alt="" class="img-responsive">
           <% end %>
         </div>
         <div class="col-sm-7">
@@ -177,11 +177,13 @@
             <%= link_to like.user.name, user_path(like.user), method: :get, class: "a-custom" %>
           </div>
         </div>
-        <div class="form-follow col-sm-3">
-          <%= render "relationships/form_follow", user: like.user %>
-        </div>
+        <% if user_signed_in? %>
+            <div class="form-follow col-sm-3">
+              <%= render "relationships/form_follow", user: like.user %>
+            </div>
+        <% end %>
       </div>
-        <hr>
+      <hr>
   <% end %>
 </div>
 </div>
